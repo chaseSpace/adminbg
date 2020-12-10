@@ -8,5 +8,4 @@ func Init(engine *gin.Engine) {
 			"message": "pong",
 		})
 	})
-
 }
