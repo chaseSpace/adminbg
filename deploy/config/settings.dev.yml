@@ -1,0 +1,45 @@
+app:
+  # dev开发环境 test测试环境 prod线上环境
+  mode: dev
+  # 服务器ip，默认使用 0.0.0.0
+  host: 0.0.0.0
+  # 服务名称
+  name: miya_buying
+  # 端口号
+  port: 6500 # 服务端口号
+  read_timeout: 1
+  write_timeout: 2
+
+logger:
+  # 日志存放路径（win/unix不同）
+  dir: D:/tmp/miya_buying/log
+  db_log_filename: "db.log"
+  req_log_filename: "req.log"
+  default_log_filename: "default.log"
+  # 控制台日志
+  to_stdout: true
+
+jwt:
+  # token 密钥，生产环境时及的修改
+  secret: "this is miya_buying jwt secret"
+  # token 过期时间 单位：秒
+  timeout: 3600
+  # 用于接口测试，若req携带token则会覆盖这个 生产环境不读取
+  test_token: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjQ3NjA0NTU5NzksIm9yaWdfaWF0IjoxNjA2ODE5OTc5LCJyb2xlX2pzb24iOiJ7XCJyb2xlSWRcIjoxLFwicm9sZU5hbWVcIjpcIuezu-e7n-euoeeQhuWRmFwiLFwic3RhdHVzXCI6XCIwXCIsXCJyb2xlS2V5XCI6XCJhZG1pblwiLFwicm9sZVNvcnRcIjoxLFwiZmxhZ1wiOlwiXCIsXCJjcmVhdGVCeVwiOlwiMVwiLFwidXBkYXRlQnlcIjpcIlwiLFwicmVtYXJrXCI6XCJcIixcImFkbWluXCI6dHJ1ZSxcImRhdGFTY29wZVwiOlwiXCIsXCJjcmVhdGVkQXRcIjpcIjIwMjAtMTEtMjRUMTg6Mzg6MTguMTQ4KzA4OjAwXCIsXCJ1cGRhdGVkQXRcIjpcIjIwMjAtMTEtMjRUMTg6Mzg6MTguMTQ4KzA4OjAwXCIsXCJkZWxldGVkQXRcIjpudWxsLFwicGFyYW1zXCI6XCJcIixcIm1lbnVJZHNcIjpudWxsLFwiZGVwdElkc1wiOm51bGx9IiwidXNlcl9qc29uIjoie1widXNlcklkXCI6MSxcInVzZXJuYW1lXCI6XCJhZG1pblwiLFwicGFzc3dvcmRcIjpcIiQyYSQxMCRjS0ZGVEN6R092YUlISEpZMks0NVp1d3Q4VEQ2b1B6WWk0czVNellJQkFXQ0xMNlpob3VQMlwiLFwibmlja05hbWVcIjpcInpoYW5nd2pcIixcInBob25lXCI6XCIxMzgxODg4ODg4OFwiLFwicm9sZUlkXCI6MSxcInNhbHRcIjpcIlwiLFwiYXZhdGFyXCI6XCJcIixcInNleFwiOlwiMFwiLFwiZW1haWxcIjpcIjEyMkBxcS5jb21cIixcImRlcHRJZFwiOjEsXCJwb3N0SWRcIjoxLFwiY3JlYXRlQnlcIjpcIjFcIixcInVwZGF0ZUJ5XCI6XCIxXCIsXCJyZW1hcmtcIjpcIlwiLFwic3RhdHVzXCI6XCIwXCIsXCJjcmVhdGVkQXRcIjpcIjIwMjAtMTEtMjRUMTg6Mzg6MTguMTQ4KzA4OjAwXCIsXCJ1cGRhdGVkQXRcIjpcIjIwMjAtMTEtMjdUMTQ6MDU6NDMuNDY3KzA4OjAwXCIsXCJkZWxldGVkQXRcIjpudWxsLFwiZGF0YVNjb3BlXCI6XCJcIixcInBhcmFtc1wiOlwiXCJ9In0._AWM2cErWSZkZoyET_K3jyIAG9B8cVmUoMDrZjR2txM"
+
+database:
+  mysql:
+    source: root:123456@tcp(192.168.1.168:3306)/buying?charset=utf8&parseTime=True&loc=Local&timeout=1000ms
+  clickhouse:
+    source: tcp://192.168.1.168:9000?username=default&password=&database=xman&read_timeout=5&write_timeout=10
+    # 连接多个ck，source: tcp://host1:9000?username=user&password=qwerty&database=clicks&read_timeout=10&write_timeout=20&alt_hosts=host2:9000,host3:9000
+
+others:  # 杂项
+  ppl_api_addr: "https://pplapi.dian-su.cn"
+
+kafka:
+  hosts: 116.62.161.200:9092
+  topics: xmen_basic_event_buying_v2,xmen_consume_event_buying_v2
+  consumer_id: mpyp.consumer.0
+  group_id: group_xproject
+  client_id: client_xproject
