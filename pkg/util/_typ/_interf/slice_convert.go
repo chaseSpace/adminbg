@@ -1,11 +1,11 @@
 package _interf
 
 import (
+	"adminbg/pkg/util/_typ/_err"
+	"adminbg/pkg/util/_typ/_float"
+	"adminbg/pkg/util/_typ/_int"
+	"adminbg/pkg/util/_typ/_str"
 	"fmt"
-	"github.com/leigg-go/go-util/_typ/_err"
-	"github.com/leigg-go/go-util/_typ/_float"
-	"github.com/leigg-go/go-util/_typ/_int"
-	"github.com/leigg-go/go-util/_typ/_str"
 	"strings"
 )
 

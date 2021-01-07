@@ -2,7 +2,8 @@ package log
 
 import (
 	"adminbg/config"
-	"adminbg/pkg/_util/_file"
+	"adminbg/pkg/util"
+	"adminbg/pkg/util/_file"
 	"path/filepath"
 )
 
@@ -16,7 +17,8 @@ var (
 
 func MustInit(c config.Logger) {
 
-	_ = _file.MkdirIfNotExist(c.Dir)
+	err := _file.MkdirAllIfNotExist(c.Dir)
+	util.PanicIfErr(err, nil)
 
 	defLogPath := filepath.Join(c.Dir, c.DefaultLogFilename)
 	reqLogPath := filepath.Join(c.Dir, c.RequestLogFilename)
@@ -25,13 +27,23 @@ func MustInit(c config.Logger) {
 	ReqLogger = NewClogger(reqLogPath, c.ToStdout)
 }
 
-// 快捷方式，需要先调用MustInit
-func Printf(format string, v ...interface{}) {
-	DefLogger.Printf(format, v...)
+/*
+快捷方式，需要先调用MustInit
+*/
+func Debugf(format string, v ...interface{}) {
+	DefLogger.Debugf(format, v...)
 }
 
-func Println(v ...interface{}) {
-	DefLogger.Println(v...)
+func Debugln(v ...interface{}) {
+	DefLogger.Debugln(v...)
+}
+
+func Infof(format string, v ...interface{}) {
+	DefLogger.Infof(format, v...)
+}
+
+func Infoln(v ...interface{}) {
+	DefLogger.Infoln(v...)
 }
 
 func Panicf(format string, v ...interface{}) {

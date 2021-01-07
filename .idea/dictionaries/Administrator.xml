@@ -1,11 +1,16 @@
 <component name="ProjectDictionaryState">
   <dictionary name="Administrator">
     <words>
+      <w>adminbg</w>
       <w>clickhouse</w>
       <w>clogger</w>
+      <w>debugf</w>
+      <w>debugln</w>
       <w>errorf</w>
       <w>errorln</w>
       <w>gorm</w>
+      <w>infof</w>
+      <w>infoln</w>
       <w>panicf</w>
       <w>panicln</w>
       <w>stdlogger</w>

@@ -1,7 +1,7 @@
 package _gorm
 
 import (
-	"adminbg/pkg/_util"
+	"adminbg/pkg/util"
 	"fmt"
 	"gorm.io/gorm"
 	"sync"
@@ -20,18 +20,18 @@ var (
 func MustInitDef(dialer gorm.Dialector, conf *gorm.Config) {
 	lock.Lock()
 	defer lock.Unlock()
-	_util.Must(DefGormDB == nil, fmt.Errorf("_gorm: DefGormDB already exists"))
+	util.Must(DefGormDB == nil, fmt.Errorf("_gorm: DefGormDB already exists"))
 
 	//dsn := "user:pass@tcp(127.0.0.1:3306)/dbname?charset=utf8mb4&parseTime=True&loc=Local"
 	db, err := gorm.Open(dialer, conf)
-	_util.PanicIfErr(err, nil, fmt.Sprintf("_gorm: gorm.Open err:%v", err))
+	util.PanicIfErr(err, nil, fmt.Sprintf("_gorm: gorm.Open err:%v", err))
 
 	DefGormDB = db
 }
 
 func MustInit(dialer gorm.Dialector, conf *gorm.Config) *gorm.DB {
 	db, err := gorm.Open(dialer, conf)
-	_util.PanicIfErr(err, nil, fmt.Sprintf("_gorm: gorm.Open err:%v", err))
+	util.PanicIfErr(err, nil, fmt.Sprintf("_gorm: gorm.Open err:%v", err))
 	return db
 }
 

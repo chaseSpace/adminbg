@@ -5,15 +5,13 @@ package config
 */
 
 type Conf struct {
-	App      App
-	Logger   Logger
-	Jwt      Jwt
-	Database Database
-	Others   Others
-	Kafka    Kafka
+	AppAdminbg AppAdminbg `yaml:"app_adminbg"`
+	Logger     Logger
+	Jwt        Jwt
+	Database   Database
 }
 
-type App struct {
+type AppAdminbg struct {
 	Mode         string
 	Host         string
 	Name         string
@@ -27,8 +25,7 @@ type Logger struct {
 	DBLogFilename      string `yaml:"db_log_filename"`
 	RequestLogFilename string `yaml:"req_log_filename"`
 	DefaultLogFilename string `yaml:"default_log_filename"`
-	// ...
-	ToStdout bool `yaml:"to_stdout"`
+	ToStdout           bool   `yaml:"to_stdout"`
 }
 
 type Jwt struct {
@@ -38,20 +35,11 @@ type Jwt struct {
 }
 
 type Database struct {
-	Mysql      Mysql
-	Clickhouse Clickhouse
+	Mysql Mysql
 }
 
 type Mysql struct {
 	Source string
-}
-
-type Clickhouse struct {
-	Source string
-}
-
-type Others struct {
-	PplApiAddr string `yaml:"ppl_api_addr"`
 }
 
 type Kafka struct {

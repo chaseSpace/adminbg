@@ -2,8 +2,8 @@ package log
 
 import (
 	"adminbg/config"
-	"adminbg/pkg/_util"
-	"adminbg/pkg/_util/_file"
+	"adminbg/pkg/util"
+	"adminbg/pkg/util/_file"
 	"context"
 	"gorm.io/gorm/logger"
 	"log"
@@ -22,10 +22,10 @@ type LoggerGorm struct {
 func NewGormLogger(c config.Logger) *LoggerGorm {
 
 	ormLogger := &LoggerGorm{}
-	_ = _file.MkdirIfNotExist(c.Dir)
+	_ = _file.MkdirAllIfNotExist(c.Dir)
 
 	f, err := os.OpenFile(filepath.Join(c.Dir, c.DBLogFilename), os.O_CREATE|os.O_APPEND, 0755)
-	_util.PanicIfErr(err, nil)
+	util.PanicIfErr(err, nil)
 
 	w := logger.New(log.New(f, "\r\n", log.LstdFlags), logger.Config{
 		SlowThreshold: 200 * time.Millisecond,

@@ -1,7 +1,7 @@
 package _redis
 
 import (
-	"adminbg/pkg/_util/_typ/_str"
+	"adminbg/pkg/util/_typ/_str"
 	"github.com/go-redis/redis"
 )
 

@@ -1,9 +1,9 @@
 package _redis
 
 import (
+	"adminbg/pkg/util"
 	"fmt"
 	"github.com/go-redis/redis"
-	"github.com/leigg-go/go-util/_util"
 	"sync"
 )
 
@@ -20,7 +20,7 @@ var (
 func MustInitDef(opts *redis.Options) {
 	lock.Lock()
 	defer lock.Unlock()
-	_util.Must(DefClient == nil, fmt.Errorf("_redis: DefClient already exists"))
+	util.Must(DefClient == nil, fmt.Errorf("_redis: DefClient already exists"))
 
 	DefClient = newClient(opts)
 }
