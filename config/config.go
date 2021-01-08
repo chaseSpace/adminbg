@@ -22,6 +22,7 @@ type AppAdminbg struct {
 
 type Logger struct {
 	Dir                string
+	Level              string
 	DBLogFilename      string `yaml:"db_log_filename"`
 	RequestLogFilename string `yaml:"req_log_filename"`
 	DefaultLogFilename string `yaml:"default_log_filename"`

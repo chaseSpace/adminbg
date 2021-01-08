@@ -4,7 +4,7 @@ package g
 base.go 管理 ·g· 下面所有对象的init和stop
 */
 func MustInit() {
-	mustInitDB()
+	initDB()
 }
 
 func Stop() {

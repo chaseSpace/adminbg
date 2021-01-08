@@ -15,7 +15,7 @@ var (
 	Mysql *gorm.DB
 )
 
-func mustInitDB() {
+func initDB() {
 	gormConf := &gorm.Config{
 		NamingStrategy: schema.NamingStrategy{
 			SingularTable: true,

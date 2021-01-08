@@ -29,7 +29,7 @@ func NewGormLogger(c config.Logger) *LoggerGorm {
 
 	w := logger.New(log.New(f, "\r\n", log.LstdFlags), logger.Config{
 		SlowThreshold: 200 * time.Millisecond,
-		LogLevel:      logger.Warn,
+		LogLevel:      logger.Info, // info表示记录所有db log
 		Colorful:      true,
 	})
 	ormLogger.AddWriter(w)
@@ -92,8 +92,6 @@ func (l *LoggerGorm) AddWriter(writer logger.Interface) {
 }
 
 func (l *LoggerGorm) LoopDo(fc func(logger.Interface)) {
-	l.mu.Lock()
-	defer l.mu.Unlock()
 	for _, w := range l.writers {
 		fc(w)
 	}

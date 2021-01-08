@@ -7,6 +7,7 @@ import (
 	"adminbg/pkg/log"
 	"adminbg/pkg/util/_config"
 	"flag"
+	"fmt"
 )
 
 var (
@@ -18,7 +19,7 @@ func init() {
 
 	g.Conf = new(config.Conf)
 	_config.MustLoadByFile(*cfgFile, g.Conf)
-	//fmt.Printf("%+v\n", g.Conf)
+	fmt.Printf("%+v\n", g.Conf)
 
 	// 所有全局资源初始化(db等)
 	g.MustInit()

@@ -12,7 +12,7 @@ import (
 */
 var (
 	DefLogger *Clogger
-	ReqLogger *Clogger
+	//ReqLogger *Clogger // 建议DefLogger够用，不需要增加过多日志文件
 )
 
 func MustInit(c config.Logger) {
@@ -21,10 +21,10 @@ func MustInit(c config.Logger) {
 	util.PanicIfErr(err, nil)
 
 	defLogPath := filepath.Join(c.Dir, c.DefaultLogFilename)
-	reqLogPath := filepath.Join(c.Dir, c.RequestLogFilename)
+	//reqLogPath := filepath.Join(c.Dir, c.RequestLogFilename)
 
-	DefLogger = NewClogger(defLogPath, c.ToStdout)
-	ReqLogger = NewClogger(reqLogPath, c.ToStdout)
+	DefLogger = NewClogger(defLogPath, c.Level, c.ToStdout)
+	//ReqLogger = NewClogger(reqLogPath, c.ToStdout)
 }
 
 /*
@@ -46,12 +46,12 @@ func Infoln(v ...interface{}) {
 	DefLogger.Infoln(v...)
 }
 
-func Panicf(format string, v ...interface{}) {
-	DefLogger.Panicf(format, v...)
+func Warnf(format string, v ...interface{}) {
+	DefLogger.Warnf(format, v...)
 }
 
-func Panicln(v ...interface{}) {
-	DefLogger.Panicln(v...)
+func Warnln(v ...interface{}) {
+	DefLogger.Warnln(v...)
 }
 
 func Errorf(format string, v ...interface{}) {
@@ -60,4 +60,12 @@ func Errorf(format string, v ...interface{}) {
 
 func Errorln(v ...interface{}) {
 	DefLogger.Errorln(v...)
+}
+
+func Panicf(format string, v ...interface{}) {
+	DefLogger.Panicf(format, v...)
+}
+
+func Panicln(v ...interface{}) {
+	DefLogger.Panicln(v...)
 }

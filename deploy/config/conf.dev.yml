@@ -1,15 +1,16 @@
 app_adminbg:
   # dev开发环境 test测试环境 prod线上环境
-  name: "adminbg"  # 服务名称
-  mode: "dev"
-  host: "0.0.0.0"
+  name: adminbg  # 服务名称
+  mode: dev
+  host: 0.0.0.0
   port: 6500
   read_timeout: 1
   write_timeout: 2
 
 logger:
   # 日志存放路径（win/unix不同）
-  dir: D:/tmp/adminbg/log
+  dir: "D:/tmp/adminbg/log"
+  level: info
   db_log_filename: "db.log"
   req_log_filename: "req.log"
   default_log_filename: "default.log"
