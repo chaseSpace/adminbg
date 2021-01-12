@@ -1,7 +1,7 @@
 package _redis
 
 import (
-	"adminbg/pkg/util"
+	"adminbg/util"
 	"fmt"
 	"github.com/go-redis/redis"
 	"sync"

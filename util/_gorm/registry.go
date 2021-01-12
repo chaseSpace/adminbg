@@ -1,7 +1,7 @@
 package _gorm
 
 import (
-	"adminbg/pkg/util"
+	"adminbg/util"
 	"fmt"
 	"gorm.io/gorm"
 	"sync"

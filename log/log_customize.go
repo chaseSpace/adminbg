@@ -1,7 +1,7 @@
 package log
 
 import (
-	"adminbg/pkg/util"
+	"adminbg/util"
 	"fmt"
 	"log"
 	"os"

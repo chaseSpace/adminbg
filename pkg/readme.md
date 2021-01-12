@@ -1,2 +1,2 @@
-## pkg 目录
-所有逻辑代码均放在此目录下
+## pkg dir
+All logic code puts here.

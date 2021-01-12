@@ -2,8 +2,8 @@ package log
 
 import (
 	"adminbg/config"
-	"adminbg/pkg/util"
-	"adminbg/pkg/util/_file"
+	"adminbg/util"
+	"adminbg/util/_file"
 	"path/filepath"
 )
 
@@ -20,7 +20,7 @@ func MustInit(c config.Logger) {
 	err := _file.MkdirAllIfNotExist(c.Dir)
 	util.PanicIfErr(err, nil)
 
-	defLogPath := filepath.Join(c.Dir, c.DefaultLogFilename)
+	defLogPath := filepath.Join(c.Dir, c.CommonLogFilename)
 	//reqLogPath := filepath.Join(c.Dir, c.RequestLogFilename)
 
 	DefLogger = NewClogger(defLogPath, c.Level, c.ToStdout)

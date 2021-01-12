@@ -2,8 +2,8 @@ package log
 
 import (
 	"adminbg/config"
-	"adminbg/pkg/util"
-	"adminbg/pkg/util/_file"
+	"adminbg/util"
+	"adminbg/util/_file"
 	"context"
 	"gorm.io/gorm/logger"
 	"log"

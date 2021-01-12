@@ -1,10 +1,10 @@
 package base
 
 import (
+	"adminbg/log"
 	"adminbg/pkg/g"
-	"adminbg/pkg/log"
-	"adminbg/pkg/util"
 	"adminbg/router"
+	"adminbg/util"
 	"context"
 	"fmt"
 	"github.com/gin-gonic/gin"
@@ -19,7 +19,7 @@ type AdminBgServer struct {
 }
 
 func (a *AdminBgServer) Init() {
-	log.Infoln("<------  ADMIN BG Initiating  ----->")
+	log.Infoln("<------------  ADMIN BG is initiating  ----------->")
 	ginEngine := gin.Default()
 	router.Init(ginEngine)
 
@@ -30,7 +30,7 @@ func (a *AdminBgServer) Init() {
 }
 
 func (a *AdminBgServer) Run() {
-	log.Infoln("<------  ADMIN BG is Running  ----->")
+	log.Infoln("<------------  ADMIN BG is running  ----------->")
 	httpSrvQuit := make(chan struct{})
 	go func() {
 		err := a.httpSrv.ListenAndServe()
@@ -50,6 +50,6 @@ func (a *AdminBgServer) Stop() {
 	_ = a.httpSrv.Shutdown(ctx)
 	cancel()
 
-	g.Stop() // 注意：最后回收资源，否则会影响使用这些资源的goroutine
-	log.Infoln("<------  ADMIN BG Exited  ----->")
+	g.Stop() // release global objects at last
+	log.Infoln("<------------  ADMIN BG exited  ----------->")
 }

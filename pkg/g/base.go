@@ -1,7 +1,7 @@
 package g
 
 /*
-base.go 管理 ·g· 下面所有对象的init和stop
+base.go Usage:  Maintain all global objects init and stop operations under the pkg `g`.
 */
 func MustInit() {
 	initDB()

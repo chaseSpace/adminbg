@@ -1,8 +1,8 @@
 package cerror
 
 import (
-	"adminbg/pkg/util/_gorm"
-	"adminbg/pkg/util/_redis"
+	"adminbg/util/_gorm"
+	"adminbg/util/_redis"
 	"github.com/pkg/errors"
 )
 

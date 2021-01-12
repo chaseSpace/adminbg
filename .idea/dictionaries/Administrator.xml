@@ -8,9 +8,11 @@
       <w>debugln</w>
       <w>errorf</w>
       <w>errorln</w>
+      <w>fpath</w>
       <w>gorm</w>
       <w>infof</w>
       <w>infoln</w>
+      <w>mysqldriver</w>
       <w>panicf</w>
       <w>panicln</w>
       <w>stdlogger</w>

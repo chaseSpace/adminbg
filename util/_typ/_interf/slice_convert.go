@@ -1,10 +1,10 @@
 package _interf
 
 import (
-	"adminbg/pkg/util/_typ/_err"
-	"adminbg/pkg/util/_typ/_float"
-	"adminbg/pkg/util/_typ/_int"
-	"adminbg/pkg/util/_typ/_str"
+	"adminbg/util/_typ/_err"
+	"adminbg/util/_typ/_float"
+	"adminbg/util/_typ/_int"
+	"adminbg/util/_typ/_str"
 	"fmt"
 	"strings"
 )

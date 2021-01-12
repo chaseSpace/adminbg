@@ -1,13 +1,13 @@
 package _config
 
 import (
-	"adminbg/pkg/util"
+	"adminbg/util"
 	"gopkg.in/yaml.v2"
 	"os"
 )
 
-func MustLoadByFile(fpath string, conf interface{}) {
-	f, err := os.Open(fpath)
+func MustLoadByFile(path string, conf interface{}) {
+	f, err := os.Open(path)
 	util.PanicIfErr(err, nil)
 
 	err = yaml.NewDecoder(f).Decode(conf)

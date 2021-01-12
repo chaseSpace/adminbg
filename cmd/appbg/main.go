@@ -3,9 +3,10 @@ package main
 import (
 	"adminbg/cmd/appbg/base"
 	"adminbg/config"
+	"adminbg/log"
 	"adminbg/pkg/g"
-	"adminbg/pkg/log"
-	"adminbg/pkg/util/_config"
+	"adminbg/pkg/model"
+	"adminbg/util/_config"
 	"flag"
 	"fmt"
 )
@@ -21,8 +22,9 @@ func init() {
 	_config.MustLoadByFile(*cfgFile, g.Conf)
 	fmt.Printf("%+v\n", g.Conf)
 
-	// 所有全局资源初始化(db等)
 	g.MustInit()
+	model.MustInit(g.Mysql)
+
 	log.MustInit(g.Conf.Logger)
 }
 
