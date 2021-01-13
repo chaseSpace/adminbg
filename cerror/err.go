@@ -13,9 +13,12 @@ var (
 	ErrJsonUnmarshal    = errors.New("[json unmarshal err]")
 	ErrExtractReqParams = errors.New("[extract req params err]")
 	ErrParams           = errors.New("[params err]")
+	ErrUnauthorized     = errors.New("[unauthorized request]")
 	ErrNotAllowed       = errors.New("[operation not be allowed]")
 	ErrResourceNotFound = errors.New("[resource not found]")
 )
 
 // Business error
-var ()
+var (
+	ErrIncorrectInfoProvided = errors.New("[incorrect info provided]")
+)

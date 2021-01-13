@@ -3,6 +3,7 @@ package base
 import (
 	"adminbg/log"
 	"adminbg/pkg/g"
+	"adminbg/pkg/mw"
 	"adminbg/router"
 	"adminbg/util"
 	"context"
@@ -20,7 +21,9 @@ type AdminBgServer struct {
 
 func (a *AdminBgServer) Init() {
 	log.Infoln("<------------  ADMIN BG is initiating  ----------->")
-	ginEngine := gin.Default()
+	ginEngine := gin.New()
+	ginEngine.Use(gin.Logger(), mw.RecoverIfNeed)
+
 	router.Init(ginEngine)
 
 	a.httpSrv = &http.Server{

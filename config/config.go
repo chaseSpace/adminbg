@@ -1,8 +1,9 @@
 package config
 
-/*
-存放全局配置，注意必要时使用yaml tag，否则读取不到配置
-*/
+import (
+	"adminbg/util"
+	"time"
+)
 
 type Conf struct {
 	AppAdminbg AppAdminbg `yaml:"app_adminbg"`
@@ -34,4 +35,11 @@ type Jwt struct {
 
 type Mysql struct {
 	Source string
+}
+
+func (c *Conf) AssertOK() {
+	if c.AppAdminbg.Jwt.Secret == "" {
+		panic("Conf.AppAdminbg.Jwt.Secret is empty!")
+	}
+	util.InitJWT(time.Duration(c.AppAdminbg.Jwt.Timeout)*time.Second, 0, c.AppAdminbg.Jwt.Secret)
 }

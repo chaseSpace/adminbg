@@ -42,8 +42,8 @@ func NewClogger(logPath string, level string, toStdout bool) *Clogger {
 }
 
 func (c *Clogger) Debugf(format string, v ...interface{}) {
-	if c.level >= DEBUG {
-		v = append([]interface{}{c.withCallerLoc()}, v...)
+	if c.level <= DEBUG {
+		format = fmt.Sprintf("[DEBUG] %s %s", c.withCallerLoc(), format)
 		c.LoopDo(func(l *log.Logger) {
 			l.Printf(format, v...)
 		})
@@ -51,8 +51,8 @@ func (c *Clogger) Debugf(format string, v ...interface{}) {
 }
 
 func (c *Clogger) Debugln(v ...interface{}) {
-	if c.level >= DEBUG {
-		v = append([]interface{}{c.withCallerLoc()}, v...)
+	if c.level <= DEBUG {
+		v = append([]interface{}{"[DEBUG]", c.withCallerLoc()}, v...)
 		c.LoopDo(func(l *log.Logger) {
 			l.Println(v...)
 		})
@@ -60,8 +60,8 @@ func (c *Clogger) Debugln(v ...interface{}) {
 }
 
 func (c *Clogger) Infof(format string, v ...interface{}) {
-	if c.level >= INFO {
-		v = append([]interface{}{c.withCallerLoc()}, v...)
+	if c.level <= INFO {
+		format = fmt.Sprintf("[INFO] %s %s", c.withCallerLoc(), format)
 		c.LoopDo(func(l *log.Logger) {
 			l.Printf(format, v...)
 		})
@@ -69,8 +69,8 @@ func (c *Clogger) Infof(format string, v ...interface{}) {
 }
 
 func (c *Clogger) Infoln(v ...interface{}) {
-	if c.level >= INFO {
-		v = append([]interface{}{c.withCallerLoc()}, v...)
+	if c.level <= INFO {
+		v = append([]interface{}{"[INFO]", c.withCallerLoc()}, v...)
 		c.LoopDo(func(l *log.Logger) {
 			l.Println(v...)
 		})
@@ -78,8 +78,8 @@ func (c *Clogger) Infoln(v ...interface{}) {
 }
 
 func (c *Clogger) Warnf(format string, v ...interface{}) {
-	if c.level >= WARN {
-		v = append([]interface{}{c.withCallerLoc()}, v...)
+	if c.level <= WARN {
+		format = fmt.Sprintf("[WARN] %s %s", c.withCallerLoc(), format)
 		c.LoopDo(func(l *log.Logger) {
 			l.Printf(format, v...)
 		})
@@ -87,8 +87,8 @@ func (c *Clogger) Warnf(format string, v ...interface{}) {
 }
 
 func (c *Clogger) Warnln(v ...interface{}) {
-	if c.level >= WARN {
-		v = append([]interface{}{c.withCallerLoc()}, v...)
+	if c.level <= WARN {
+		v = append([]interface{}{"[WARN]", c.withCallerLoc()}, v...)
 		c.LoopDo(func(l *log.Logger) {
 			l.Println(v...)
 		})
@@ -96,28 +96,28 @@ func (c *Clogger) Warnln(v ...interface{}) {
 }
 
 func (c *Clogger) Errorf(format string, v ...interface{}) {
-	if c.level >= ERROR {
-		format = fmt.Sprintf("%s %s", c.withCallerLoc(), format)
+	if c.level <= ERROR {
+		format = fmt.Sprintf("[ERROR] %s %s", c.withCallerLoc(), format)
 		c.LoopDo(func(l *log.Logger) {
 			l.Printf(format, v...)
-			l.Println(debug.Stack())
+			l.Println(string(debug.Stack()))
 		})
 	}
 }
 
 func (c *Clogger) Errorln(v ...interface{}) {
-	if c.level >= ERROR {
-		v = append([]interface{}{c.withCallerLoc()}, v...)
+	if c.level <= ERROR {
+		v = append([]interface{}{"[ERROR]", c.withCallerLoc()}, v...)
 		c.LoopDo(func(l *log.Logger) {
 			l.Println(v...)
-			l.Println(debug.Stack())
+			l.Println(string(debug.Stack()))
 		})
 	}
 }
 
 // Panic不受level管控，与标准库log.Panic行为一致
 func (c *Clogger) Panicf(format string, v ...interface{}) {
-	format = fmt.Sprintf("%s %s", c.withCallerLoc(), format)
+	format = fmt.Sprintf("[PANIC] %s %s", c.withCallerLoc(), format)
 	c.LoopDo(func(l *log.Logger) {
 		l.Panicf(format, v...)
 	})
@@ -125,7 +125,7 @@ func (c *Clogger) Panicf(format string, v ...interface{}) {
 
 // Panic不受level管控，与标准库log.Panic行为一致
 func (c *Clogger) Panicln(v ...interface{}) {
-	v = append([]interface{}{c.withCallerLoc()}, v...)
+	v = append([]interface{}{"[PANIC]", c.withCallerLoc()}, v...)
 	c.LoopDo(func(l *log.Logger) {
 		l.Panicln(v...)
 	})

@@ -8,7 +8,6 @@ import (
 	"adminbg/pkg/model"
 	"adminbg/util/_config"
 	"flag"
-	"fmt"
 )
 
 var (
@@ -20,7 +19,8 @@ func init() {
 
 	g.Conf = new(config.Conf)
 	_config.MustLoadByFile(*cfgFile, g.Conf)
-	fmt.Printf("%+v\n", g.Conf)
+	//fmt.Printf("%+v\n", g.Conf)
+	g.Conf.AssertOK()
 
 	g.MustInit()
 	model.MustInit(g.Mysql)

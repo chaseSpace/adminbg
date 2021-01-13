@@ -1,0 +1,13 @@
+###
+POST {{addr}}/web/v1/sign_in
+Content-Type: application/json
+
+{
+  "user_name": "{{admin_username}}",
+  "pwd": "{{admin_base64_pass}}"
+}
+
+###
+POST {{addr}}/web/v1/sign_out
+Content-Type: application/json
+token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVSUQiOjEsImV4cCI6MTYxMDUzMTI1MiwiaXNzIjoiaHR0cHM6Ly9naXRodWIuY29tL2NoYXNlU3BhY2UvYWRtaW5iZyJ9.13W7UB5uwDUu8b5_bfTfa8AagLZUDqLiHtkM535C4OM
