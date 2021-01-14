@@ -22,7 +22,7 @@ type AdminBgServer struct {
 func (a *AdminBgServer) Init() {
 	log.Infoln("<------------  ADMIN BG is initiating  ----------->")
 	ginEngine := gin.New()
-	ginEngine.Use(gin.Logger(), mw.RecoverIfNeed)
+	ginEngine.Use(gin.Logger(), mw.Recovery)
 
 	router.Init(ginEngine)
 

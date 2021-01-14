@@ -1,6 +1,7 @@
 package util
 
 import (
+	"adminbg/pkg/g"
 	"github.com/pkg/errors"
 	"gopkg.in/jose.v1/crypto"
 	"gopkg.in/jose.v1/jws"
@@ -13,10 +14,11 @@ const (
 )
 
 type JwtHelper struct {
-	secret       []byte
-	validator    *jwt.Validator
-	cryptoMethod crypto.SigningMethod
-	timeout      time.Duration
+	secret        []byte
+	validator     *jwt.Validator
+	cryptoMethod  crypto.SigningMethod
+	timeout       time.Duration
+	timeoutForDev time.Duration
 }
 
 var BgJWT *JwtHelper
@@ -27,35 +29,35 @@ var AdminBgClaims = jws.Claims{
 	//"iat": time.Now(), timestamp of issue at
 }
 
-func InitJWT(timeout, notValidBefore time.Duration, secret string) {
+func InitJWT(timeout, timeoutForDev, notValidBefore time.Duration, secret string) {
 	BgJWT = &JwtHelper{
-		validator:    jws.NewValidator(AdminBgClaims, timeout, notValidBefore, nil),
-		cryptoMethod: crypto.SigningMethodHS256,
-		secret:       []byte(secret),
-		timeout:      timeout,
+		validator:     jws.NewValidator(AdminBgClaims, timeout, notValidBefore, nil),
+		cryptoMethod:  crypto.SigningMethodHS256,
+		secret:        []byte(secret),
+		timeout:       timeout,
+		timeoutForDev: timeoutForDev,
 	}
 }
 
 func (j *JwtHelper) GenToken(claims jws.Claims) ([]byte, error) {
-	claims.SetExpiration(time.Now().Add(j.timeout))
+	if g.Conf.AppAdminbg.Mode == "dev" {
+		claims.SetExpiration(time.Now().Add(j.timeoutForDev))
+	} else {
+		claims.SetExpiration(time.Now().Add(j.timeout))
+	}
 
 	token := jws.NewJWT(claims, j.cryptoMethod)
 	b, err := token.Serialize(j.secret)
 	if err != nil {
-		return nil, errors.Wrap(err, "[jwt]")
+		return nil, errors.Wrap(err, "jwt")
 	}
 	return b, nil
 }
 
-func (j *JwtHelper) Verify(token []byte) (jwt.Claims, error) {
-	JWT, err := jws.ParseJWT(token)
+func (j *JwtHelper) Verify(JWT jwt.JWT) (jwt.Claims, error) {
+	err := JWT.Validate(j.secret, j.cryptoMethod, j.validator)
 	if err != nil {
-		return nil, errors.Wrap(err, "[jwt]")
-	}
-
-	err = j.validator.Validate(jws.NewJWT(jws.Claims(JWT.Claims()), j.cryptoMethod))
-	if err != nil {
-		return nil, errors.Wrap(err, "[jwt]")
+		return nil, errors.Wrap(err, "jwt")
 	}
 	return JWT.Claims(), nil
 }

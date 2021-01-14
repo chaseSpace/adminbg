@@ -7,7 +7,15 @@ Content-Type: application/json
   "pwd": "{{admin_base64_pass}}"
 }
 
-###
+###  token transfer by form `access_token` or header `Authorization: BEARER ...`, notice content-type is different.
 POST {{addr}}/web/v1/sign_out
 Content-Type: application/json
-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVSUQiOjEsImV4cCI6MTYxMDUzMTI1MiwiaXNzIjoiaHR0cHM6Ly9naXRodWIuY29tL2NoYXNlU3BhY2UvYWRtaW5iZyJ9.13W7UB5uwDUu8b5_bfTfa8AagLZUDqLiHtkM535C4OM
+Authorization: BEARER eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVSUQiOjEsImV4cCI6MTYxMDU5OTE1OSwiaXNzIjoiaHR0cHM6Ly9naXRodWIuY29tL2NoYXNlU3BhY2UvYWRtaW5iZyJ9.-dMy2NNMxcjuOEoFlA9mZhYuywvk9AVivCm9bW7XiN0
+#Content-Type: multipart/form-data; boundary=boundary
+#
+#--boundary
+#Content-Disposition: form-data;
+#
+#eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVSUQiOjEsImV4cCI6MTYxMDUzMTI1MiwiaXNzIjoiaHR0cHM6Ly9naXRodWIuY29tL2NoYXNlU3BhY2UvYWRtaW5iZyJ9.13W7UB5uwDUu8b5_bfTfa8AagLZUDqLiHtkM535C4OM
+
+### other tests.

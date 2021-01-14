@@ -12,7 +12,7 @@ type Conf struct {
 }
 
 type AppAdminbg struct {
-	Mode string
+	Mode string // dev | test | prod
 	Name string
 	Host string
 	Port int16
@@ -28,9 +28,9 @@ type Logger struct {
 }
 
 type Jwt struct {
-	Secret    string
-	Timeout   int32
-	TestToken string `yaml:"test_token"`
+	Secret        string
+	Timeout       int32
+	TimeoutForDev int32 `yaml:"timeout_for_dev"`
 }
 
 type Mysql struct {
@@ -41,5 +41,7 @@ func (c *Conf) AssertOK() {
 	if c.AppAdminbg.Jwt.Secret == "" {
 		panic("Conf.AppAdminbg.Jwt.Secret is empty!")
 	}
-	util.InitJWT(time.Duration(c.AppAdminbg.Jwt.Timeout)*time.Second, 0, c.AppAdminbg.Jwt.Secret)
+	timeout := time.Duration(c.AppAdminbg.Jwt.Timeout) * time.Second
+	timeoutDev := time.Duration(c.AppAdminbg.Jwt.TimeoutForDev) * time.Second
+	util.InitJWT(timeout, timeoutDev, 0, c.AppAdminbg.Jwt.Secret)
 }

@@ -23,7 +23,7 @@ func init() {
 	g.Conf.AssertOK()
 
 	g.MustInit()
-	model.MustInit(g.Mysql)
+	model.MustInit(g.MySQL)
 
 	log.MustInit(g.Conf.Logger)
 }

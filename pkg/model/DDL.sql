@@ -19,11 +19,19 @@ CREATE TABLE adminbg_user
     salt          varchar(10) NOT NULL,
     user_name     VARCHAR(50) NOT NULL,
     group_id      INT         NOT NULL DEFAULT 0,
+    ctime         TIMESTAMP   NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT 'create time',
+    mtime         TIMESTAMP   NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT 'modify time',
+    rtime         TIMESTAMP   NULL COMMENT 'remove time',
     UNIQUE KEY `idx_userName` (user_name),
     KEY `idx_groupId` (group_id)
 )
     ENGINE = InnoDB
     DEFAULT CHARSET = utf8mb4;
+-- test data
+-- >> Plain password is 123
+INSERT INTO adminbg_user (encrypted_pwd, salt, user_name, uid)
+VALUES ('85e25c1e193df1df5ada40fa52d3de6c713a242f', 'salt', 'admin', 1);
+# select sha1(concat('123','salt')) = '85e25c1e193df1df5ada40fa52d3de6c713a242f' ;
 
 
 # Group

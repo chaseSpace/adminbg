@@ -8,8 +8,8 @@ func MustInit() {
 }
 
 func Stop() {
-	if Mysql != nil {
-		db, _ := Mysql.DB()
+	if MySQL != nil {
+		db, _ := MySQL.DB()
 		_ = db.Close()
 	}
 }

@@ -20,6 +20,6 @@ func CheckUserPassport(userName string, plainPwd string) (*model.User, error) {
 			)));
 		`
 	row := model.User{}
-	err := g.Mysql.Raw(sql, userName, plainPwd, userName).Scan(&row).Error
+	err := g.MySQL.Raw(sql, userName, plainPwd, userName).Scan(&row).Error
 	return &row, cerror.WrapMysqlErr(err)
 }

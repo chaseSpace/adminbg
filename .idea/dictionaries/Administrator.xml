@@ -15,9 +15,11 @@
       <w>mysqldriver</w>
       <w>panicf</w>
       <w>panicln</w>
+      <w>rtime</w>
       <w>stdlogger</w>
       <w>warnf</w>
       <w>warnln</w>
+      <w>webv</w>
     </words>
   </dictionary>
 </component>

@@ -11,7 +11,7 @@ import (
 var Conf *config.Conf
 
 var (
-	Mysql *gorm.DB
+	MySQL *gorm.DB
 )
 
 func initDB() {
@@ -20,8 +20,8 @@ func initDB() {
 	clogger := Conf.Logger
 
 	var err error
-	Mysql, err = gorm.Open(mysqldriver.Open(mysql.Source), gormConf)
+	MySQL, err = gorm.Open(mysqldriver.Open(mysql.Source), gormConf)
 	util.PanicIfErr(err, nil)
 
-	Mysql.Logger = log.NewGormLogger(clogger)
+	MySQL.Logger = log.NewGormLogger(clogger)
 }

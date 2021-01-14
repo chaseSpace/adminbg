@@ -7,12 +7,10 @@ app_adminbg:
   jwt:
     secret: "this is a jwt secret"
     timeout: 3600
-    # 用于接口测试，若req携带token则会覆盖这个 生产环境不读取
-    test_token: ".jx"
-
+    timeout_for_dev: 36000
 logger:
   dir: "D:/tmp/adminbg/log"  # 日志存放路径（win/unix不同）
-  level: "info"
+  level: "debug"
   db_log_filename: "db.log"
   common_log_filename: "common.log"
   to_stdout: true # 控制台日志
