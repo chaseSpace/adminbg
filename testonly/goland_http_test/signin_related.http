@@ -1,16 +1,17 @@
 ###
-POST {{addr}}/web/v1/sign_in
+POST {{addr}}/web/v1/SignIn
 Content-Type: application/json
 
 {
-  "user_name": "{{admin_username}}",
+  "account_id": "{{admin_account_id}}",
   "pwd": "{{admin_base64_pass}}"
 }
 
+
 ###  token transfer by form `access_token` or header `Authorization: BEARER ...`, notice content-type is different.
-POST {{addr}}/web/v1/sign_out
+POST {{addr}}/web/v1/SignOut
 Content-Type: application/json
-Authorization: BEARER eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVSUQiOjEsImV4cCI6MTYxMDU5OTE1OSwiaXNzIjoiaHR0cHM6Ly9naXRodWIuY29tL2NoYXNlU3BhY2UvYWRtaW5iZyJ9.-dMy2NNMxcjuOEoFlA9mZhYuywvk9AVivCm9bW7XiN0
+Authorization: BEARER eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVSUQiOjEsImV4cCI6MTYxMDgwMzM5MCwiaXNzIjoiaHR0cHM6Ly9naXRodWIuY29tL2NoYXNlU3BhY2UvYWRtaW5iZyJ9.zHYEeJDtv4freHuEYyh2PZZfE1PcaW2DFLhCfzxy99I
 #Content-Type: multipart/form-data; boundary=boundary
 #
 #--boundary
@@ -19,3 +20,33 @@ Authorization: BEARER eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVSUQiOjEsImV4cCI6M
 #eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVSUQiOjEsImV4cCI6MTYxMDUzMTI1MiwiaXNzIjoiaHR0cHM6Ly9naXRodWIuY29tL2NoYXNlU3BhY2UvYWRtaW5iZyJ9.13W7UB5uwDUu8b5_bfTfa8AagLZUDqLiHtkM535C4OM
 
 ### other tests.
+
+###
+POST {{addr}}/web/v1/NewUser
+Content-Type: application/json
+Authorization: BEARER eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVSUQiOjEsImV4cCI6MTYxMDgwMzM5MCwiaXNzIjoiaHR0cHM6Ly9naXRodWIuY29tL2NoYXNlU3BhY2UvYWRtaW5iZyJ9.zHYEeJDtv4freHuEYyh2PZZfE1PcaW2DFLhCfzxy99I
+
+{
+  "name": "uuu",
+  "account_id": "admin123",
+  "pwd": "{{admin_base64_pass}}",
+  "phone": "133",
+  "email": "adminbg@qq.com",
+  "sex": "MAN",
+  "status": "NORMAL",
+  "group_id": 1
+}
+
+###
+POST {{addr}}/web/v1/ModifyUser
+Content-Type: application/json
+Authorization: BEARER eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVSUQiOjEsImV4cCI6MTYxMDgwMzM5MCwiaXNzIjoiaHR0cHM6Ly9naXRodWIuY29tL2NoYXNlU3BhY2UvYWRtaW5iZyJ9.zHYEeJDtv4freHuEYyh2PZZfE1PcaW2DFLhCfzxy99I
+
+{
+  "delete": false,
+  "uid": 2,
+  "name": "x1",
+  "sex": "MAN",
+  "status": "NORMAL",
+  "pwd": "{{admin_base64_pass}}"
+}

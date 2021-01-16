@@ -15,7 +15,9 @@ var (
 )
 
 func initDB() {
-	gormConf := &gorm.Config{}
+	gormConf := &gorm.Config{
+		AllowGlobalUpdate: false,
+	}
 	mysql := Conf.Mysql
 	clogger := Conf.Logger
 

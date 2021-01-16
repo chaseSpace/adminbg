@@ -14,7 +14,7 @@ import (
 // AssertAuthenticated assets if authenticated, then set user-binding info to context if true.
 func AssertAuthenticated(c *gin.Context) {
 	JWT, err := jws.ParseJWTFromRequest(c.Request)
-	if JWT == nil {
+	if err != nil {
 		log.Infof("[gin-middleware: AssertAuthenticated] -- jws.ParseJWTFromRequest err:%v", err)
 		common.SetRsp(c, errors.Wrap(cerror.ErrUnauthorized, "empty token"))
 		return

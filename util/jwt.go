@@ -1,7 +1,6 @@
 package util
 
 import (
-	"adminbg/pkg/g"
 	"github.com/pkg/errors"
 	"gopkg.in/jose.v1/crypto"
 	"gopkg.in/jose.v1/jws"
@@ -14,6 +13,7 @@ const (
 )
 
 type JwtHelper struct {
+	sysMode       string
 	secret        []byte
 	validator     *jwt.Validator
 	cryptoMethod  crypto.SigningMethod
@@ -29,8 +29,9 @@ var AdminBgClaims = jws.Claims{
 	//"iat": time.Now(), timestamp of issue at
 }
 
-func InitJWT(timeout, timeoutForDev, notValidBefore time.Duration, secret string) {
+func InitJWT(timeout, timeoutForDev, notValidBefore time.Duration, secret, sysMode string) {
 	BgJWT = &JwtHelper{
+		sysMode:       sysMode,
 		validator:     jws.NewValidator(AdminBgClaims, timeout, notValidBefore, nil),
 		cryptoMethod:  crypto.SigningMethodHS256,
 		secret:        []byte(secret),
@@ -40,7 +41,7 @@ func InitJWT(timeout, timeoutForDev, notValidBefore time.Duration, secret string
 }
 
 func (j *JwtHelper) GenToken(claims jws.Claims) ([]byte, error) {
-	if g.Conf.AppAdminbg.Mode == "dev" {
+	if j.sysMode == "dev" {
 		claims.SetExpiration(time.Now().Add(j.timeoutForDev))
 	} else {
 		claims.SetExpiration(time.Now().Add(j.timeout))

@@ -43,5 +43,5 @@ func (c *Conf) AssertOK() {
 	}
 	timeout := time.Duration(c.AppAdminbg.Jwt.Timeout) * time.Second
 	timeoutDev := time.Duration(c.AppAdminbg.Jwt.TimeoutForDev) * time.Second
-	util.InitJWT(timeout, timeoutDev, 0, c.AppAdminbg.Jwt.Secret)
+	util.InitJWT(timeout, timeoutDev, 0, c.AppAdminbg.Jwt.Secret, c.AppAdminbg.Mode)
 }
