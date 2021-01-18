@@ -14,7 +14,7 @@ func Init(engine *gin.Engine) {
 	/*
 		webv1Auth sub-router holds APIs that could only be requested by authenticated users.
 	*/
-	webv1Auth := webv1.Use(mw.AssertAuthenticated)
+	webv1Auth := webv1.Use(mw.AssertAuthenticated, mw.AssertCanCallThisAPI)
 	webv1Auth.POST("/SignOut", handler.SignOut) // same as logout
 	webv1Auth.POST("/NewUser", handler.NewUser)
 	webv1Auth.POST("/ModifyUser", handler.ModifyUser)

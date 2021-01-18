@@ -11,7 +11,7 @@ Content-Type: application/json
 ###  token transfer by form `access_token` or header `Authorization: BEARER ...`, notice content-type is different.
 POST {{addr}}/web/v1/SignOut
 Content-Type: application/json
-Authorization: BEARER eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVSUQiOjEsImV4cCI6MTYxMDgwMzM5MCwiaXNzIjoiaHR0cHM6Ly9naXRodWIuY29tL2NoYXNlU3BhY2UvYWRtaW5iZyJ9.zHYEeJDtv4freHuEYyh2PZZfE1PcaW2DFLhCfzxy99I
+Authorization: BEARER eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVSUQiOjEsImV4cCI6MTYxMDk3MzU1MSwiaXNzIjoiaHR0cHM6Ly9naXRodWIuY29tL2NoYXNlU3BhY2UvYWRtaW5iZyJ9.X7uqVTjk50xB-_vPR8MELKgKXv8o69XpymjtWNyniC4
 #Content-Type: multipart/form-data; boundary=boundary
 #
 #--boundary

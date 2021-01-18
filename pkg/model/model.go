@@ -40,7 +40,6 @@ type UserBase struct {
 	Sex          cproto.SexTyp
 	Remark       string
 	Status       cproto.UserStatusTyp
-	GroupId      int16
 }
 
 func (u *UserBase) Check() error {
@@ -54,6 +53,16 @@ func (u *UserBase) Check() error {
 		return errors.Wrap(cerror.ErrParams, "invalid status")
 	}
 	return nil
+}
+
+type UserGroupRef struct {
+	gorm.Model
+	Uid     int32
+	GroupId int32
+}
+
+func (*UserGroupRef) TableName() string {
+	return TablePrefix + "user_group_ref"
 }
 
 type UserGroup struct {
@@ -75,6 +84,50 @@ type Role struct {
 
 func (*Role) TableName() string {
 	return TablePrefix + "role"
+}
+
+type RoleMfRef struct {
+	gorm.Model
+	RoleId int32
+	MfId   int32
+}
+
+func (*RoleMfRef) TableName() string {
+	return TablePrefix + "role_mf_ref"
+}
+
+type MenuAndFunction struct {
+	BaseModel
+	MfId     int32
+	MfName   string
+	Path     string
+	ParentId int32
+	Level    int8
+	Type     cproto.MfType
+}
+
+func (*MenuAndFunction) TableName() string {
+	return TablePrefix + "menu_and_function"
+}
+
+type MfApiRef struct {
+	gorm.Model
+	MfId  int32
+	ApiId int32
+}
+
+func (*MfApiRef) TableName() string {
+	return TablePrefix + "mf_api_ref"
+}
+
+type Api struct {
+	gorm.Model
+	Identity string
+	MfId     int32
+}
+
+func (*Api) TableName() string {
+	return TablePrefix + "api"
 }
 
 func MustInit(db *gorm.DB) {

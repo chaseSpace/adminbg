@@ -54,7 +54,7 @@ func InsertUser(entity *model.UserBase) (bool, error) {
 		INSERT INTO %s (account_id, encrypted_pwd, salt, nick_name, phone
 								 , email, sex, remark, group_id, status)
 		SELECT ?, SHA1(CONCAT(?, ?)), ?
-			 , ?, ?, ?, ?, ?
+			 , ?, ?, ?, ?
 			 , ?, ?
 		WHERE NOT EXISTS (
 				SELECT 1
@@ -63,8 +63,8 @@ func InsertUser(entity *model.UserBase) (bool, error) {
 			);
 		`, TN.User, TN.User)
 	ret := g.MySQL.Exec(sql, entity.AccountId, entity.EncryptedPwd, entity.Salt, entity.Salt, entity.NickName, entity.Phone, entity.Email,
-		entity.Sex, entity.Remark, entity.GroupId, entity.Status, entity.AccountId)
-
+		entity.Sex, entity.Remark, entity.Status, entity.AccountId)
+	// todo: insert into user_group_ref
 	return ret.RowsAffected == 1, ret.Error
 }
 

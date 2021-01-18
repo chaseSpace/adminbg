@@ -68,7 +68,7 @@ func NewUserLogic(req *cproto.NewUserReq) (*cproto.NewUserRsp, error) {
 		Sex:          req.Sex,
 		Remark:       req.Remark,
 		Status:       req.Status,
-		GroupId:      req.GroupId,
+		//GroupId:      req.GroupId,
 	}
 	ok, err := crud.InsertUser(ubase)
 	if err != nil {
