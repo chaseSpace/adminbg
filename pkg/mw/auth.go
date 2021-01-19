@@ -4,23 +4,24 @@ import (
 	"adminbg/cerror"
 	"adminbg/log"
 	"adminbg/pkg/common"
+	"adminbg/pkg/crud"
 	"adminbg/util"
 	"github.com/gin-gonic/gin"
 	"github.com/pkg/errors"
 	"gopkg.in/jose.v1/jws"
 )
 
-// AssertAuthenticated assets if authenticated, then set user-binding info to context if true.
-func AssertAuthenticated(c *gin.Context) {
+// IfAuthenticated assets if authenticated, then set user-binding info to context if true.
+func IfAuthenticated(c *gin.Context) {
 	JWT, err := jws.ParseJWTFromRequest(c.Request)
 	if err != nil {
-		log.Infof("[gin-middleware: AssertAuthenticated] -- jws.ParseJWTFromRequest err:%v", err)
+		log.Infof("[gin-middleware: IfAuthenticated] -- jws.ParseJWTFromRequest err:%v", err)
 		common.SetRsp(c, errors.Wrap(cerror.ErrUnauthorized, "empty token"))
 		return
 	}
 	claims, err := util.BgJWT.Verify(JWT)
 	if err != nil {
-		log.Debugf("[gin-middleware: AssertAuthenticated] -- auth failed, err:%v", err)
+		log.Debugf("[gin-middleware: IfAuthenticated] -- auth failed, err:%v", err)
 		common.SetRsp(c, errors.Wrap(cerror.ErrUnauthorized, err.Error()))
 		return
 	}
@@ -32,9 +33,35 @@ func AssertAuthenticated(c *gin.Context) {
 	}
 	c.Set(common.GinCtxKey_UID, int32(uid.(float64)))
 
-	log.Debugf("[gin-middleware: AssertAuthenticated] -- auth passed, uid:%.f", uid)
+	log.Debugf("[gin-middleware: IfAuthenticated] -- auth passed, uid:%.f", uid)
 }
 
-func AssertCanCallThisAPI(c *gin.Context) {
-	//path := c.Request.URL.Path // e.g. /web/v1/SignOut
+func IfCanCallThisAPI(c *gin.Context) {
+	path := c.Request.URL.Path // e.g. /web/v1/SignOut
+
+	_uid, _ := c.Get(common.GinCtxKey_UID)
+	uid := _uid.(int32)
+	groups, err := crud.GetUserGroup(uid)
+	if err != nil {
+		common.SetRsp(c, errors.Wrap(err, "mw"))
+		return
+	}
+	if len(groups) == 0 {
+		log.Warnf("[gin-middleware: IfCanCallThisAPI] uid:%d is not bound to any group", uid)
+		common.SetRsp(c, errors.Wrap(cerror.ErrNotAllowed, "mw"))
+		return
+	}
+	var roleIDs []int16
+	for _, gp := range groups {
+		roleIDs = append(roleIDs, gp.RoleId)
+	}
+	api, err := crud.GetAPIByRoleId(path, roleIDs)
+	if err != nil {
+		common.SetRsp(c, errors.Wrap(err, "mw"))
+		return
+	}
+	if api.ApiId == 0 {
+		common.SetRsp(c, errors.Wrap(cerror.ErrNotAllowed, "mw"))
+		return
+	}
 }

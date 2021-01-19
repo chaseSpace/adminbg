@@ -3,7 +3,6 @@ package model
 import (
 	"adminbg/cerror"
 	"adminbg/cproto"
-	"adminbg/util"
 	"github.com/pkg/errors"
 	"gorm.io/gorm"
 	"time"
@@ -121,7 +120,8 @@ func (*MfApiRef) TableName() string {
 }
 
 type Api struct {
-	gorm.Model
+	BaseModel
+	ApiId    int32
 	Identity string
 	MfId     int32
 }
@@ -131,6 +131,5 @@ func (*Api) TableName() string {
 }
 
 func MustInit(db *gorm.DB) {
-	err := db.AutoMigrate(new(User), new(UserGroup), new(Role))
-	util.PanicIfErr(err, nil)
+	// We should execute `DDL.sql` to migrate tables' schema, not in runtime.
 }

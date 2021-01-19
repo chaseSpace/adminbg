@@ -123,6 +123,7 @@ CREATE TABLE adminbg_menu_and_function
     KEY `idx_type` (type)
 )
     ENGINE = InnoDB
+    AUTO_INCREMENT = 2000
     DEFAULT CHARSET = utf8mb4;
 
 

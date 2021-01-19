@@ -8,14 +8,20 @@ import (
 
 func Init(engine *gin.Engine) {
 
-	webv1 := engine.Group("/web/v1")
-	webv1.POST("/SignIn", handler.SignIn) // same as login
+	v1Free := engine.Group("/web/v1")
+	v1Free.POST("/SignIn", handler.SignIn) // same as login
 
 	/*
-		webv1Auth sub-router holds APIs that could only be requested by authenticated users.
+		v1OnlyAuth sub-router hold handle-funcs(APIs) that can only be requested by authenticated users.
 	*/
-	webv1Auth := webv1.Use(mw.AssertAuthenticated, mw.AssertCanCallThisAPI)
-	webv1Auth.POST("/SignOut", handler.SignOut) // same as logout
-	webv1Auth.POST("/NewUser", handler.NewUser)
-	webv1Auth.POST("/ModifyUser", handler.ModifyUser)
+	v1OnlyAuth := v1Free.Use(mw.IfAuthenticated)
+	v1OnlyAuth.POST("/SignOut", handler.SignOut) // same as logout
+
+	/*
+		v1AuthContainsApi sub-router hold handle-funcs(APIs) that can only be requested by authenticated users,
+		and the users who can call these APIs.
+	*/
+	v1AuthContainsApi := v1OnlyAuth.Use(mw.IfCanCallThisAPI)
+	v1AuthContainsApi.POST("/NewUser", handler.NewUser)
+	v1AuthContainsApi.POST("/ModifyUser", handler.ModifyUser)
 }

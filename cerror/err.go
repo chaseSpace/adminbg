@@ -14,7 +14,7 @@ var (
 	ErrExtractReqParams = errors.New("[extract req params err]")
 	ErrParams           = errors.New("[params err]")
 	ErrUnauthorized     = errors.New("[unauthorized request]")
-	ErrNotAllowed       = errors.New("[operation not be allowed]")
+	ErrNotAllowed       = errors.New("[operation is not allowed]")
 	ErrResourceNotFound = errors.New("[resource not found]")
 )
 
