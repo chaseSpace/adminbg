@@ -130,6 +130,20 @@ func (*Api) TableName() string {
 	return TablePrefix + "api"
 }
 
+type OperationLog struct {
+	OpId       int32
+	Type       string
+	OpUid      int32
+	OpUsername string
+	Remark     string
+	CreatedAt  time.Time
+	UpdatedAt  time.Time
+}
+
+func (*OperationLog) TableName() string {
+	return TablePrefix + "operation_log"
+}
+
 func MustInit(db *gorm.DB) {
 	// We should execute `DDL.sql` to migrate tables' schema, not in runtime.
 }

@@ -20,6 +20,7 @@ Coming...
 -   Role management
 -   Menu management(Contains feature management)
 -   Logging management
+    -   Operation logs(contains sign-in related logs)
 
 <!-- 
 #### 前端功能
@@ -39,8 +40,7 @@ Coming...
 	-   API管理（单独开放给技术管理员角色）
 	    -   增删查改（普通账户不应被授予API的任何管理权限）
 	-	日志管理
-            -	登录日志
-            -	操作日志
+            -	操作日志(包含登录)
 -->
 
 #### Develop progress

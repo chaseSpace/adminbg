@@ -37,10 +37,13 @@ func IfAuthenticated(c *gin.Context) {
 }
 
 func IfCanCallThisAPI(c *gin.Context) {
-	path := c.Request.URL.Path // e.g. /web/v1/SignOut
-
 	_uid, _ := c.Get(common.GinCtxKey_UID)
 	uid := _uid.(int32)
+	// Super admin user skips check below.
+	if yes, _ := common.IsSuperAdmin(uid); yes {
+		return
+	}
+	path := c.Request.URL.Path // e.g. /web/v1/SignOut
 	groups, err := crud.GetUserGroup(uid)
 	if err != nil {
 		common.SetRsp(c, errors.Wrap(err, "mw"))

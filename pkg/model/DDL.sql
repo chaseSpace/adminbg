@@ -157,3 +157,19 @@ CREATE TABLE adminbg_api
 )
     ENGINE = InnoDB
     DEFAULT CHARSET = utf8mb4;
+
+
+# ---------------------------- split line -----------------------------------
+
+# Operation_log
+DROP TABLE IF EXISTS adminbg_operation_log;
+CREATE TABLE adminbg_operation_log
+(
+    op_id       INT PRIMARY KEY AUTO_INCREMENT,
+    type        ENUM ('SIGN-IN','SIGN-OUT','OTHER') NOT NULL,
+    op_uid      INT                                 NOT NULL,
+    op_username VARCHAR(50)                         NOT NULL DEFAULT '' COMMENT 'shortcut for username',
+    remark      VARCHAR(50)                         NOT NULL COMMENT 'remark is alterable',
+    created_at  DATETIME(3)                         NOT NULL DEFAULT CURRENT_TIMESTAMP(3),
+    updated_at  DATETIME(3)                         NOT NULL DEFAULT CURRENT_TIMESTAMP(3) ON UPDATE CURRENT_TIMESTAMP(3)
+)
