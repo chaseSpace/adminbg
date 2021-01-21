@@ -50,10 +50,47 @@ Detailed:
 -   SignIn related
     -   /SignIn √
     -   /SignOut √
--   User management related
-    -   /NewUser √
-    -   /ModifyUser √
-    
+-   System management
+    -   User management related
+        -   /NewUser √
+        -   /UpdateUser √
+        -   /GetUser(user-info)
+        -   /GetUserList(user-info)
+        -   /DeleteUsers
+    -   UserGroup management
+        -   /NewUserGroup
+        -   /UpdateUserGroup
+        -   /GetUserGroup
+        -   /GetUserGroupList(Get only authorized groups info)
+        -   /DeleteUserGroup(Zero group-id group would be reserved)
+    -   Role management
+        -   /NewRole
+        -   /UpdateRole
+        -   /GetRole
+        -   /GetRoleList
+        -   /DeleteRole(Zero role-id role would be reserved)
+    -   Menu&Function management(Contains Binding management of functions and APIs)
+        -   /NewMenu
+        -   /UpdateMenu
+        -   /GetMenuList(Contain child-menus&functions of leaf-menu)
+        -   /DeleteMenus
+        -   /NewFunction
+        -   /DeleteFunctions
+        -   /GetAPIList(Filter by params)
+        -   /UpdateFuncAndAPIBindingInfo(Bind/Unbind depends on params)
+    -   API management
+        -   /NewAPI
+        -   /UpdateAPI
+        -   /GetAPIList(As mentioned above)
+        -   /DeleteAPI
+    -   Logging management
+        -   /GetLoggingList
+        -   ~~/DeleteLogging~~
+        
+        
+Note: 
+-   Design by default, system would not provide an API that can delete operation logging.
+  
 <!-- 
 详细
 -   登录相关

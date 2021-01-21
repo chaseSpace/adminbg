@@ -23,5 +23,10 @@ func Init(engine *gin.Engine) {
 	*/
 	v1AuthContainsApi := v1OnlyAuth.Use(mw.IfCanCallThisAPI)
 	v1AuthContainsApi.POST("/NewUser", handler.NewUser)
-	v1AuthContainsApi.POST("/ModifyUser", handler.ModifyUser)
+	v1AuthContainsApi.POST("/UpdateUser", handler.UpdateUser)
+	/*
+		/GetUserList /DeleteUser
+
+
+	*/
 }

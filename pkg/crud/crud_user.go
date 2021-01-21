@@ -52,7 +52,7 @@ func InsertUser(entity *model.UserBase) (bool, error) {
 	// Any validation should be completed in outside.
 	sql := fmt.Sprintf(`
 		INSERT INTO %s (account_id, encrypted_pwd, salt, nick_name, phone
-								 , email, sex, remark, group_id, status)
+								 , email, sex, remark, status)
 		SELECT ?, SHA1(CONCAT(?, ?)), ?
 			 , ?, ?, ?, ?
 			 , ?, ?
@@ -81,7 +81,7 @@ func DeleteUser(userIdt UserIdentity) (bool, error) {
 }
 
 // Update user info, that is not permitted to modify account_id by default.
-func UpdateUser(userIdt UserIdentity, alter *cproto.ModifyUserReq) (bool, error) {
+func UpdateUser(userIdt UserIdentity, alter *cproto.UpdateUserReq) (bool, error) {
 	sql := `
 		UPDATE adminbg_user
 		SET nick_name = ?, phone = ?, email = ?, sex = ?, status = ?, group_id = ?, remark = ?, 

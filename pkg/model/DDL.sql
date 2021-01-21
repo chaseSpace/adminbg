@@ -10,6 +10,9 @@ DDL: DATA DEFINE LANGUAGE
         -   Foreign keys are not recommended.
 */
 
+CREATE DATABASE IF NOT EXISTS adminbg;
+USE adminbg;
+
 # User
 DROP TABLE IF EXISTS adminbg_user;
 CREATE TABLE adminbg_user
@@ -73,6 +76,12 @@ CREATE TABLE adminbg_user_group
     ENGINE = InnoDB
     DEFAULT CHARSET = utf8mb4;
 
+# You have to execute this two SQLs to insert a zero-value AUTO_INCREMENT column.
+INSERT INTO adminbg_user_group(group_name, role_id)
+VALUES ('DefaultGroup', 0);
+UPDATE adminbg_user_group
+SET group_id=0
+WHERE group_id = LAST_INSERT_ID();
 
 # Role
 DROP TABLE IF EXISTS adminbg_role;
@@ -88,7 +97,12 @@ CREATE TABLE adminbg_role
 )
     ENGINE = InnoDB
     DEFAULT CHARSET = utf8mb4;
-
+# You have to execute this two SQLs to insert a zero-value AUTO_INCREMENT column.
+INSERT INTO adminbg_role(role_name, status)
+VALUES ('DefaultRole', 'NORMAL');
+UPDATE adminbg_role
+SET role_id=0
+WHERE role_id = LAST_INSERT_ID();
 
 # Role_mf_ref
 DROP TABLE IF EXISTS adminbg_role_mf_ref;

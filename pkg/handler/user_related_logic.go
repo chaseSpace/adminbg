@@ -80,8 +80,8 @@ func NewUserLogic(req *cproto.NewUserReq) (*cproto.NewUserRsp, error) {
 	return &cproto.NewUserRsp{}, nil
 }
 
-func ModifyUserLogic(req *cproto.ModifyUserReq) (*cproto.ModifyUserRsp, error) {
-	rsp := new(cproto.ModifyUserRsp)
+func UpdateUserLogic(req *cproto.UpdateUserReq) (*cproto.UpdateUserRsp, error) {
+	rsp := new(cproto.UpdateUserRsp)
 
 	if req.Delete {
 		foundAndDeleted, err := crud.DeleteUser(crud.UserIdentity{Uid: req.Uid})

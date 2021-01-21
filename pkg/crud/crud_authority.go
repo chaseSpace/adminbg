@@ -22,7 +22,7 @@ func GetUserGroup(uid int32) ([]*model.UserGroup, error) {
 	return row, cerror.WrapMysqlErr(err)
 }
 
-func GetAPIByRoleId(apiPath string, roleId []int16) (*model.Api, error) {
+func GetAPIByRoleIds(apiPath string, roleId []int16) (*model.Api, error) {
 	row := model.Api{}
 	sql := fmt.Sprintf(`
 		SELECT *

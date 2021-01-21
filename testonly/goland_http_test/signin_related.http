@@ -24,7 +24,7 @@ Authorization: BEARER {{admin_token}}
 ###
 POST {{addr}}/web/v1/NewUser
 Content-Type: application/json
-Authorization: BEARER eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVSUQiOjEsImV4cCI6MTYxMDgwMzM5MCwiaXNzIjoiaHR0cHM6Ly9naXRodWIuY29tL2NoYXNlU3BhY2UvYWRtaW5iZyJ9.zHYEeJDtv4freHuEYyh2PZZfE1PcaW2DFLhCfzxy99I
+Authorization: BEARER {{admin_token}}
 
 {
   "name": "uuu",

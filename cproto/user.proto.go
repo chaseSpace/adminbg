@@ -66,7 +66,7 @@ func (sta UserStatusTyp) IsValid() bool {
 }
 
 // POST /web/v1/ModifyUser
-type ModifyUserReq struct {
+type UpdateUserReq struct {
 	Delete  bool          `json:"delete"` // if true, server will delete user for this uid, other params would be ignored.
 	Uid     int32         `json:"uid" binding:"required"`
 	Name    string        `json:"name" binding:"required"`
@@ -80,4 +80,4 @@ type ModifyUserReq struct {
 	Remark  string        `json:"remark"`
 }
 
-type ModifyUserRsp struct{}
+type UpdateUserRsp struct{}

@@ -36,21 +36,26 @@ func IfAuthenticated(c *gin.Context) {
 	log.Debugf("[gin-middleware: IfAuthenticated] -- auth passed, uid:%.f", uid)
 }
 
+/*
+TODO:
+	This mw func will execute two db operations, read five tables in total,
+	may be an optimizable point.
+*/
 func IfCanCallThisAPI(c *gin.Context) {
 	_uid, _ := c.Get(common.GinCtxKey_UID)
 	uid := _uid.(int32)
-	// Super admin user skips check below.
+	// Super-admin user skips check below.
 	if yes, _ := common.IsSuperAdmin(uid); yes {
 		return
 	}
-	path := c.Request.URL.Path // e.g. /web/v1/SignOut
+	path := c.Request.URL.Path // e.g. /web/v1/NewUser
 	groups, err := crud.GetUserGroup(uid)
 	if err != nil {
 		common.SetRsp(c, errors.Wrap(err, "mw"))
 		return
 	}
 	if len(groups) == 0 {
-		log.Warnf("[gin-middleware: IfCanCallThisAPI] uid:%d is not bound to any group", uid)
+		log.Warnf("[gin-middleware: IfCanCallThisAPI] uid:%d is not bound to any group(Abnormal data)", uid)
 		common.SetRsp(c, errors.Wrap(cerror.ErrNotAllowed, "mw"))
 		return
 	}
@@ -58,7 +63,7 @@ func IfCanCallThisAPI(c *gin.Context) {
 	for _, gp := range groups {
 		roleIDs = append(roleIDs, gp.RoleId)
 	}
-	api, err := crud.GetAPIByRoleId(path, roleIDs)
+	api, err := crud.GetAPIByRoleIds(path, roleIDs)
 	if err != nil {
 		common.SetRsp(c, errors.Wrap(err, "mw"))
 		return
