@@ -3,6 +3,7 @@ package model
 import (
 	"adminbg/cerror"
 	"adminbg/cproto"
+	"fmt"
 	"github.com/pkg/errors"
 	"gorm.io/gorm"
 	"time"
@@ -97,16 +98,51 @@ func (*RoleMfRef) TableName() string {
 
 type MenuAndFunction struct {
 	BaseModel
-	MfId     int32
-	MfName   string
-	Path     string
-	ParentId int32
-	Level    int8
-	Type     cproto.MfType
+	MfId        int32 `gorm:"primary_key"` // Set gorm tag could write back this field when insert
+	MfName      string
+	Path        string
+	ParentId    int32
+	Level       int8
+	Type        cproto.MfType
+	MenuRoute   string
+	MenuDisplay cproto.MenuDisplay
+	SortNum     uint16
 }
 
 func (*MenuAndFunction) TableName() string {
 	return TablePrefix + "menu_and_function"
+}
+func (r *MenuAndFunction) Check() error {
+	switch r.Type {
+	case cproto.MENU:
+		if !(r.Level > 0 && r.Level <= MaxMenuLevel) {
+			return errors.New("invalid menu level")
+		}
+		if r.Level != 1 && r.ParentId == MenuRootId {
+			return errors.New("parent_id can be 100 only when level is 1")
+		}
+		routeUTF8Len := len([]rune(r.MenuRoute))
+		min, max := 1, 100
+		if !(routeUTF8Len >= 1 && routeUTF8Len <= 100) {
+			return fmt.Errorf("invalid menu route length, valid range is [%d,%d]", min, max)
+		}
+	case cproto.FUNCTION:
+		if r.Level != 0 {
+			return errors.New("function's level must be 0")
+		}
+	}
+	min, max := 1, 50
+	nameUTF8Len := len([]rune(r.MfName))
+	if !(nameUTF8Len > 0 && nameUTF8Len <= 50) {
+		return fmt.Errorf("invalid name length, valid range is [%d,%d]", min, max)
+	}
+	if err := r.Type.Check(); err != nil {
+		return err
+	}
+	if err := r.MenuDisplay.Check(); err != nil {
+		return err
+	}
+	return nil
 }
 
 type MfApiRef struct {

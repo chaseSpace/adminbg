@@ -1,6 +1,9 @@
 package crud
 
-import "adminbg/pkg/model"
+import (
+	"adminbg/pkg/model"
+	"gorm.io/gorm"
+)
 
 /*
  CRUD: create, retrieve, update, delete operations for DB
@@ -25,4 +28,14 @@ var TN = struct {
 	RoleMfRef:       new(model.RoleMfRef).TableName(),
 	Api:             new(model.Api).TableName(),
 	MfApiRef:        new(model.MfApiRef).TableName(),
+}
+
+type commTyp struct {
+	Id int32
+}
+
+func LastInsertId(tx *gorm.DB) (int32, error) {
+	row := commTyp{}
+	err := tx.Raw("SELECT LAST_INSERT_ID() id").Scan(&row).Error
+	return row.Id, err
 }

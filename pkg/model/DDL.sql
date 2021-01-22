@@ -124,22 +124,27 @@ CREATE TABLE adminbg_role_mf_ref
 DROP TABLE IF EXISTS adminbg_menu_and_function;
 CREATE TABLE adminbg_menu_and_function
 (
-    mf_id      INT PRIMARY KEY AUTO_INCREMENT,
-    mf_name    VARCHAR(50)               NOT NULL,
-    path       VARCHAR(50)               NOT NULL,
-    parent_id  INT                       NOT NULL DEFAULT 100,
-    level      TINYINT                   NOT NULL,
-    type       ENUM ('MENU', 'FUNCTION') NOT NULL,
-    created_at DATETIME(3)               NOT NULL DEFAULT CURRENT_TIMESTAMP(3),
-    updated_at DATETIME(3)               NOT NULL DEFAULT CURRENT_TIMESTAMP(3) ON UPDATE CURRENT_TIMESTAMP(3),
-    deleted_at DATETIME(3)               NULL,
+    mf_id        INT PRIMARY KEY AUTO_INCREMENT,
+    mf_name      VARCHAR(50)               NOT NULL,
+    path         VARCHAR(50)               NOT NULL,
+    parent_id    INT                       NOT NULL DEFAULT 100,
+    level        TINYINT                   NOT NULL,
+    type         ENUM ('MENU', 'FUNCTION') NOT NULL,
+    menu_route   VARCHAR(100)              NOT NULL COMMENT 'Be used in the frontend',
+    menu_display ENUM ('Y','N')            NOT NULL COMMENT 'Be used in the frontend',
+    sort_num     SMALLINT UNSIGNED         NOT NULL,
+    created_at   DATETIME(3)               NOT NULL DEFAULT CURRENT_TIMESTAMP(3),
+    updated_at   DATETIME(3)               NOT NULL DEFAULT CURRENT_TIMESTAMP(3) ON UPDATE CURRENT_TIMESTAMP(3),
+    deleted_at   DATETIME(3)               NULL,
     KEY `idx_level` (level),
     KEY `idx_type` (type)
 )
     ENGINE = InnoDB
     AUTO_INCREMENT = 2000
     DEFAULT CHARSET = utf8mb4;
-
+# DefaultMenu, also called root class menu cannot be deleted
+INSERT INTO adminbg_menu_and_function (mf_id, mf_name, path, parent_id, level, type, menu_route, menu_display, sort_num)
+VALUES (100, 'DefaultMenu', '100/', 0, 0, 'MENU', '', 'N', 0);
 
 # Mf_api_ref
 DROP TABLE IF EXISTS adminbg_mf_api_ref;

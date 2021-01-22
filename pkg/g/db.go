@@ -26,4 +26,5 @@ func initDB() {
 	util.PanicIfErr(err, nil)
 
 	MySQL.Logger = log.NewGormLogger(clogger)
+
 }

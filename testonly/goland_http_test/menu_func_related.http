@@ -1,0 +1,12 @@
+POST {{addr}}/web/v1/NewMenu
+Content-Type: application/json
+Authorization: BEARER {{admin_token}}
+
+{
+  "parent_id": 1100,
+  "level": 1,
+  "name": "m1",
+  "route": "/XXX",
+  "menu_display": "Y",
+  "sort_num": 0
+}
