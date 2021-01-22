@@ -48,12 +48,12 @@ It's been a few weeks.
 
 Detailed:
 -   SignIn related
-    -   ✔️/SignIn 
-    -   ✔️/SignOut 
+    -   ✔️ /SignIn 
+    -   ✔️ /SignOut 
 -   System management
     -   User management related
-        -   ✔️/NewUser 
-        -   ✔️/UpdateUser 
+        -   ✔️ /NewUser 
+        -   ✔️ /UpdateUser 
         -   /GetUser(user-info)
         -   /GetUserList(user-info)
         -   /DeleteUsers
@@ -94,8 +94,8 @@ Note:
 <!-- 
 详细
 -   登录相关
-    -   ✔️/SignIn 
-    -   ✔️/SignOut 
+    -   ✔️ /SignIn 
+    -   ✔️ /SignOut 
 -   用户管理相关
     -   /NewUser √
     -   /ModifyUser √
