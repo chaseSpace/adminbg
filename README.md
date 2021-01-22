@@ -1,19 +1,19 @@
 # adminbg
 
-#### Overview
+## Overview
 The Minimum, the simplest administration background system including authority management in Go. 
 
-#### Using third-party package
+## Using third-party package
 - gin
 - gorm
 
 No third party authority management package is be used.
 
-#### Install
+## Install
 
 Coming...
 
-#### Feature
+## Feature
 
 -   User management
 -   User group management
@@ -23,7 +23,7 @@ Coming...
     -   Operation logs(contains sign-in related logs)
 
 <!-- 
-#### 前端功能
+## 前端功能
 -  系统管理
 	-	用户管理
 	    -   增删改查（普通用户只能操作已授权管理的组内的用户）
@@ -43,7 +43,7 @@ Coming...
             -	操作日志(包含登录)
 -->
 
-#### Develop progress
+## Develop progress
 It's been a few weeks.
 
 Detailed:
@@ -103,7 +103,7 @@ Note:
 
 <!-- 
 
-#### 二次开发说明
+## 二次开发说明
 
 **尽可能不在根目录下新增目录，业务代码只需写在pkg/目录中，可在pkg/目录下新建子目录**
 
