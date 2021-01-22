@@ -18,7 +18,8 @@ Coming...
 -   User management
 -   User group management
 -   Role management
--   Menu management(Contains feature management)
+-   Menu&Function management(Contains feature management)
+-   API management
 -   Logging management
     -   Operation logs(contains sign-in related logs)
 
@@ -26,21 +27,21 @@ Coming...
 ## 前端功能
 -  系统管理
 	-	用户管理
-	    -   增删改查（普通用户只能操作已授权管理的组内的用户）
+	    -   增删改查
 	    -   此页面包含对用户绑定组的操作（一个用户可绑定多个组）
     -	用户组管理
         -   有不可删的默认组
-        -   增删改查（普通用户只能操作已授权管理的组）
+        -   增删改查
 	-	角色管理
 	    -   有不可删的默认角色
-	    -   增删改查（未细分管理权限，普通账户不应被授予角色的增删改权限）
+	    -   增删改查
 	-	菜单管理
 	    -   菜单、以及叶子菜单下的功能管理（增删查改）
 	    -   此页面包含对功能绑定API的操作（一个功能可绑定多个API）
 	-   API管理（单独开放给技术管理员角色）
 	    -   增删查改（普通账户不应被授予API的任何管理权限）
 	-	日志管理
-            -	操作日志(包含登录)
+            -	操作日志(包含登录相关)
 -->
 
 ## Develop progress
@@ -61,7 +62,7 @@ Detailed:
         -   /NewUserGroup
         -   /UpdateUserGroup
         -   /GetUserGroup
-        -   /GetUserGroupList(Get only authorized groups info)
+        -   /GetUserGroupList
         -   /DeleteUserGroup(Zero group-id group would be reserved)
     -   Role management
         -   /NewRole
