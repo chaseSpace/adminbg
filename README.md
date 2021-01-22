@@ -73,12 +73,12 @@ Detailed:
     -   Menu&Function management(Contains Binding management of functions and APIs)
         -   /NewMenu
         -   /UpdateMenu
-        -   /GetMenuList(Contain child-menus&functions of leaf-menu)
-        -   /DeleteMenus
+        -   /GetMenuListWithDetail(Contain child-menus&functions of leaf-menus)
+        -   /DeleteMenus(It's better to give a prompt to delete all sub-menus)
         -   /NewFunction
         -   /DeleteFunctions
         -   /GetAPIList(Filter by params)
-        -   /UpdateFuncAndAPIBindingInfo(Bind/Unbind depends on params)
+        -   /UpdateFuncAndAPIBindInfo(Bind/Unbind depends on params)
     -   API management
         -   /NewAPI
         -   /UpdateAPI
@@ -91,7 +91,8 @@ Detailed:
         
 Note: 
 -   Design by default, system would not provide an API that can delete operation logging.
-  
+-   In addition to the specific comments, almost all the Delete-APIs mentioned above are logical deletions.
+ 
 <!-- 
 详细
 -   登录相关
