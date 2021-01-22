@@ -48,7 +48,7 @@ It's been a few weeks.
 
 Detailed:
 -   SignIn related
-    -   /SignIn √
+    -   ✔️ /SignIn √
     -   /SignOut √
 -   System management
     -   User management related
