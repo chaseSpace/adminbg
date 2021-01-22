@@ -1,7 +1,7 @@
 # adminbg
 
 ## Overview
-The Minimum, the simplest administration background system including authority management in Go. 
+The Minimum, the Simplest administration background system including authority management in Go. 
 
 ## Using third-party package
 - gin
