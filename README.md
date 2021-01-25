@@ -90,7 +90,7 @@ Detailed:
         
         
 Note: 
--   Design by default, system would not provide an API that can delete operation logging.
+-   By default, system would not provide an API that can delete operation log(But it would be implemented).
 -   In addition to the specific comments, almost all the Delete-APIs mentioned above are logical deletions.
  
 <!-- 
