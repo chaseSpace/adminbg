@@ -86,7 +86,7 @@ Detailed:
         -   /DeleteAPI
     -   Logging management
         -   /GetLoggingList
-        -   /DeleteLogging(Not Expose)
+        -   /DeleteLogging(_Not Expose_)
         
         
 Note: 
