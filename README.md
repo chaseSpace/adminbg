@@ -7,7 +7,7 @@ The Minimum, the Simplest administration background system including authority m
 - gin
 - gorm
 
-No third party authority management package is be used.
+No third party authority management package used.
 
 ## Install
 
