@@ -27,16 +27,17 @@ func GetAPIByRoleIds(apiPath string, roleId []int16) (*model.Api, error) {
 	sql := fmt.Sprintf(`
 		SELECT *
 		FROM %s
-		WHERE identity = ?
-		  AND api_id IN (
-			SELECT api_id
-			FROM %s
-			WHERE mf_id IN (
-				SELECT mf_id
+		WHERE deleted_at IS NULL
+			AND identity = ?
+			AND api_id IN (
+				SELECT api_id
 				FROM %s
-				WHERE role_id in ?
+				WHERE mf_id IN (
+					SELECT mf_id
+					FROM %s
+					WHERE role_id IN (?)
+				)
 			)
-		)
 	`, TN.Api, TN.MfApiRef, TN.RoleMfRef)
 	err := g.MySQL.Raw(sql, apiPath, roleId).Scan(&row).Error
 	return &row, cerror.WrapMysqlErr(err)

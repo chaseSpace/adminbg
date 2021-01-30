@@ -26,4 +26,6 @@ func Init(engine *gin.Engine) {
 	v1AuthContainsApi.POST("/UpdateUser", handler.UpdateUser)
 
 	v1AuthContainsApi.POST("/NewMenu", handler.NewMenu)
+	v1AuthContainsApi.GET("/GetMenuList", handler.GetMenuList)
+	v1AuthContainsApi.POST("/UpdateMenu", handler.UpdateMenu)
 }

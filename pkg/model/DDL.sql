@@ -54,7 +54,6 @@ CREATE TABLE adminbg_user_group_ref
     group_id   INT         NOT NULL,
     created_at DATETIME(3) NOT NULL DEFAULT CURRENT_TIMESTAMP(3),
     updated_at DATETIME(3) NOT NULL DEFAULT CURRENT_TIMESTAMP(3) ON UPDATE CURRENT_TIMESTAMP(3),
-    deleted_at DATETIME(3) NULL,
     UNIQUE KEY `idx_uidGroupId` (uid, group_id)
 )
     ENGINE = InnoDB
@@ -113,7 +112,6 @@ CREATE TABLE adminbg_role_mf_ref
     mf_id      INT         NOT NULL,
     created_at DATETIME(3) NOT NULL DEFAULT CURRENT_TIMESTAMP(3),
     updated_at DATETIME(3) NOT NULL DEFAULT CURRENT_TIMESTAMP(3) ON UPDATE CURRENT_TIMESTAMP(3),
-    deleted_at DATETIME(3) NULL,
     UNIQUE KEY `idx_roleIdMfId` (role_id, mf_id)
 )
     ENGINE = InnoDB
@@ -155,7 +153,6 @@ CREATE TABLE adminbg_mf_api_ref
     api_id     INT         NOT NULL,
     created_at DATETIME(3) NOT NULL DEFAULT CURRENT_TIMESTAMP(3),
     updated_at DATETIME(3) NOT NULL DEFAULT CURRENT_TIMESTAMP(3) ON UPDATE CURRENT_TIMESTAMP(3),
-    deleted_at DATETIME(3) NULL,
     UNIQUE KEY `idx_mfIdApiId` (mf_id, api_id)
 )
     ENGINE = InnoDB

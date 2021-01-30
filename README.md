@@ -71,11 +71,12 @@ Detailed:
         -   /GetRoleList
         -   /DeleteRole(Zero role-id role would be reserved)
     -   Menu&Function management(Contains Binding management of functions and APIs)
-        -   /NewMenu
-        -   /UpdateMenu
-        -   /GetMenuListWithDetail(Contain child-menus&functions of leaf-menus)
-        -   /DeleteMenus(It's better to give a prompt to delete all sub-menus)
+        -   ✔️ /NewMenu
+        -   ✔️ /GetMenuList(Contain child-menus && functions of leaf-menus)
+        -   ✔️ /UpdateMenu
+        -   /DeleteMenus(It's better to give a prompt to delete all child-menus at front end)
         -   /NewFunction
+        -   /UpdateFunction
         -   /DeleteFunctions
         -   /GetAPIList(Filter by params)
         -   /UpdateFuncAndAPIBindInfo(Bind/Unbind depends on params)

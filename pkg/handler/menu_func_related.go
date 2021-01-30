@@ -13,3 +13,19 @@ func NewMenu(c *gin.Context) {
 	rsp, err := NewMenuLogic(&req)
 	common.SetRsp(c, err, rsp)
 }
+
+func UpdateMenu(c *gin.Context) {
+	var req cproto.UpdateMenuReq
+	common.MustExtractReqParams(c, &req)
+
+	rsp, err := UpdateMenuLogic(&req)
+	common.SetRsp(c, err, rsp)
+}
+
+func GetMenuList(c *gin.Context) {
+	var req cproto.GetMenuListReq
+	common.MustExtractReqParams(c, &req)
+
+	rsp, err := GetMenuListLogic(&req)
+	common.SetRsp(c, err, rsp)
+}

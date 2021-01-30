@@ -1,15 +1,18 @@
 package crud
 
 import (
+	"adminbg/cerror"
 	"adminbg/cproto"
 	"adminbg/pkg/g"
 	"adminbg/pkg/model"
 	"fmt"
+	"github.com/pkg/errors"
 	"gorm.io/gorm"
+	"strings"
 )
 
 func InsertNewMenu(menu *model.MenuAndFunction) error {
-	menu.Type = cproto.MENU
+	menu.Type = cproto.Menu
 	if err := menu.Check(); err != nil {
 		return err
 	}
@@ -28,7 +31,7 @@ func InsertNewMenu(menu *model.MenuAndFunction) error {
 	updateSQL := fmt.Sprintf(`
 		UPDATE %s a
 			JOIN %s b
-		SET a.path = concat(b.path, ?, '/')
+		SET a.path = concat(b.path, a.mf_id, '/')
 		WHERE a.mf_id = ?
 			AND b.mf_id = ?
 	`, TN.MenuAndFunction, TN.MenuAndFunction)
@@ -36,7 +39,7 @@ func InsertNewMenu(menu *model.MenuAndFunction) error {
 	var err error
 	err = g.MySQL.Transaction(func(tx *gorm.DB) error {
 		insert := tx.Exec(insertSQL, menu.MfName, menu.ParentId, menu.Level, menu.Type, menu.MenuRoute,
-			menu.MenuDisplay, menu.SortNum, menu.ParentId, menu.ParentId)
+			menu.MenuDisplay, menu.SortNum, menu.ParentId)
 		if insert.Error != nil {
 			return insert.Error
 		}
@@ -47,8 +50,48 @@ func InsertNewMenu(menu *model.MenuAndFunction) error {
 		if err != nil {
 			return err
 		}
-		err = tx.Exec(updateSQL, id, id, menu.ParentId).Error
+		err = tx.Exec(updateSQL, id, menu.ParentId).Error
 		return err
 	})
 	return err
+}
+
+func UpdateMenu(menu *model.MenuAndFunction) error {
+	menu.Type = cproto.Menu
+	if err := menu.Check(); err != nil {
+		return err
+	}
+	updateSQL := fmt.Sprintf(`
+		UPDATE %s a
+			LEFT JOIN %s b ON b.mf_id = ?
+		SET a.path = concat(b.path, a.mf_id, '/'), 
+			a.parent_id = ?, 
+			a.level = ?, 
+			a.mf_name = ?, 
+			a.menu_route = ?, 
+			a.menu_display = ?, 
+			a.sort_num = ?
+		WHERE a.mf_id = ?
+		`, TN.MenuAndFunction, TN.MenuAndFunction,
+	)
+	// cannot be null
+	err := g.MySQL.Exec(updateSQL, menu.ParentId, menu.ParentId, menu.Level, menu.MfName, menu.MenuRoute, menu.MenuDisplay, menu.SortNum, menu.MfId).Error
+	if err != nil && strings.Contains(err.Error(), "cannot be null") {
+		// There might get error that is "column 'path' cannot be null", it means parent_id is not found.
+		return errors.Wrap(cerror.ErrParams, fmt.Sprintf("parent_id %d not found", menu.ParentId))
+	}
+	return err
+}
+
+func GetMenuFuncList() ([]*model.MenuAndFunction, error) {
+	var rows []*model.MenuAndFunction
+	querySQL := fmt.Sprintf(`
+		SELECT *
+		FROM %s
+		WHERE deleted_at IS NULL
+		ORDER BY sort_num, created_at
+		`, TN.MenuAndFunction,
+	)
+	err := g.MySQL.Raw(querySQL).Scan(&rows).Error
+	return rows, err
 }

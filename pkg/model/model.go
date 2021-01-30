@@ -30,7 +30,7 @@ func (*User) TableName() string {
 }
 
 type UserBase struct {
-	Uid          int32
+	Uid          int32 `gorm:"primary_key"` // Set gorm tag could write back this field when insert
 	AccountId    string
 	EncryptedPwd string
 	Salt         string
@@ -56,9 +56,11 @@ func (u *UserBase) Check() error {
 }
 
 type UserGroupRef struct {
-	gorm.Model
-	Uid     int32
-	GroupId int32
+	Id        int32
+	Uid       int32
+	GroupId   int32
+	CreatedAt time.Time
+	UpdatedAt time.Time
 }
 
 func (*UserGroupRef) TableName() string {
@@ -87,9 +89,11 @@ func (*Role) TableName() string {
 }
 
 type RoleMfRef struct {
-	gorm.Model
-	RoleId int32
-	MfId   int32
+	Id        int32
+	RoleId    int32
+	MfId      int32
+	CreatedAt time.Time
+	UpdatedAt time.Time
 }
 
 func (*RoleMfRef) TableName() string {
@@ -114,19 +118,19 @@ func (*MenuAndFunction) TableName() string {
 }
 func (r *MenuAndFunction) Check() error {
 	switch r.Type {
-	case cproto.MENU:
+	case cproto.Menu:
 		if !(r.Level > 0 && r.Level <= MaxMenuLevel) {
 			return errors.New("invalid menu level")
 		}
 		if r.Level != 1 && r.ParentId == MenuRootId {
-			return errors.New("parent_id can be 100 only when level is 1")
+			return errors.New("parent_id could be 100 only when level is 1")
 		}
 		routeUTF8Len := len([]rune(r.MenuRoute))
 		min, max := 1, 100
 		if !(routeUTF8Len >= 1 && routeUTF8Len <= 100) {
 			return fmt.Errorf("invalid menu route length, valid range is [%d,%d]", min, max)
 		}
-	case cproto.FUNCTION:
+	case cproto.Function:
 		if r.Level != 0 {
 			return errors.New("function's level must be 0")
 		}
