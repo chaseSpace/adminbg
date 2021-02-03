@@ -29,3 +29,27 @@ func GetMenuList(c *gin.Context) {
 	rsp, err := GetMenuListLogic(&req)
 	common.SetRsp(c, err, rsp)
 }
+
+func DeleteMenus(c *gin.Context) {
+	var req cproto.DeleteMenusReq
+	common.MustExtractReqParams(c, &req)
+
+	rsp, err := DeleteMenusLogic(&req)
+	common.SetRsp(c, err, rsp)
+}
+
+func NewFunction(c *gin.Context) {
+	var req cproto.NewFunctionReq
+	common.MustExtractReqParams(c, &req)
+
+	rsp, err := NewFunctionLogic(&req)
+	common.SetRsp(c, err, rsp)
+}
+
+func UpdateFunction(c *gin.Context) {
+	var req cproto.UpdateFunctionReq
+	common.MustExtractReqParams(c, &req)
+
+	rsp, err := UpdateFunctionLogic(&req)
+	common.SetRsp(c, err, rsp)
+}

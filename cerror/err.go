@@ -16,6 +16,7 @@ var (
 	ErrUnauthorized     = errors.New("[unauthorized request]")
 	ErrNotAllowed       = errors.New("[operation is not allowed]")
 	ErrResourceNotFound = errors.New("[resource not found]")
+	ErrNothingUpdated   = errors.New("[nothing updated(may be some invalid params)]")
 )
 
 // Business error

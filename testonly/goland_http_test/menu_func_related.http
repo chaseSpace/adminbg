@@ -3,7 +3,7 @@ Content-Type: application/json
 Authorization: BEARER {{admin_token}}
 
 {
-  "parent_id": 100,
+  "parent_id": 2000,
   "level": 1,
   "name": "m1",
   "route": "/XXX",
@@ -17,8 +17,8 @@ Content-Type: application/json
 Authorization: BEARER {{admin_token}}
 
 {
-  "id": 2002,
-  "parent_id": 2005,
+  "id": 2004,
+  "parent_id": 2000,
   "level": 2,
   "name": "m11",
   "route": "/XXX1",
@@ -30,3 +30,37 @@ Authorization: BEARER {{admin_token}}
 GET {{addr}}/web/v1/GetMenuList
 Content-Type: application/json
 Authorization: BEARER {{admin_token}}
+
+###
+DELETE {{addr}}/web/v1/DeleteMenus
+Content-Type: application/json
+Authorization: BEARER {{admin_token}}
+
+{
+  "menu_ids": [
+    2005
+  ]
+}
+
+###
+POST {{addr}}/web/v1/NewFunction
+Content-Type: application/json
+Authorization: BEARER {{admin_token}}
+
+{
+  "menu_id": 2000,
+  "name": "fff",
+  "sort_num": 111
+}
+
+###
+POST {{addr}}/web/v1/UpdateFunction
+Content-Type: application/json
+Authorization: BEARER {{admin_token}}
+
+{
+  "id": 2006,
+  "menu_id": 2004,
+  "name": "m111",
+  "sort_num": 1
+}

@@ -57,6 +57,8 @@ func SetRsp(c *gin.Context, err error, data ...interface{}) {
 			code = http.StatusUnauthorized
 		} else if errors.Is(err, cerror.ErrNotAllowed) {
 			code = http.StatusForbidden
+		} else if errors.Is(err, cerror.ErrNothingUpdated) {
+			// Keep 200 OK
 		} else { // It can be expanded here
 			code = http.StatusInternalServerError
 		}

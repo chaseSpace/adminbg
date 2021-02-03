@@ -134,6 +134,9 @@ func (r *MenuAndFunction) Check() error {
 		if r.Level != 0 {
 			return errors.New("function's level must be 0")
 		}
+		if r.ParentId == MenuRootId {
+			return errors.New("function's parent_id can't be 100(this is root menu ID)")
+		}
 	}
 	min, max := 1, 50
 	nameUTF8Len := len([]rune(r.MfName))

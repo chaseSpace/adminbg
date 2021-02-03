@@ -111,3 +111,38 @@ func setChildWithRecursive(menu *cproto.OneMenu, menuMap map[int32][]*cproto.One
 	}
 	menu.ChildFuncs = funcMap[menu.Id]
 }
+
+func DeleteMenusLogic(req *cproto.DeleteMenusReq) (*cproto.DeleteMenusRsp, error) {
+	err := crud.DeleteMenus(req.MenuIds)
+	return new(cproto.DeleteMenusRsp), err
+}
+
+func NewFunctionLogic(req *cproto.NewFunctionReq) (*cproto.NewFunctionRsp, error) {
+	row := model.MenuAndFunction{
+		MfName: req.Name,
+		//Path:        "",  insert by crud layer
+		//Type:        "",  set by crud layer
+		//Level:    0,
+		//MenuRoute:   "",
+		MenuDisplay: cproto.NotDisplay, // For check pass
+		ParentId:    req.MenuId,
+		SortNum:     req.SortNum,
+	}
+	err := crud.InsertNewFunc(&row)
+	return new(cproto.NewFunctionRsp), err
+}
+
+func UpdateFunctionLogic(req *cproto.UpdateFunctionReq) (*cproto.UpdateFunctionRsp, error) {
+	if req.Id == 0 {
+		return nil, errors.Wrap(cerror.ErrParams, "need an valid id")
+	}
+	row := model.MenuAndFunction{
+		MfId:        req.Id,
+		MfName:      req.Name,
+		ParentId:    req.MenuId,
+		SortNum:     req.SortNum,
+		MenuDisplay: cproto.Display,
+	}
+	err := crud.UpdateFunction(&row)
+	return new(cproto.UpdateFunctionRsp), err
+}

@@ -6,9 +6,7 @@ import (
 	"adminbg/pkg/g"
 	"adminbg/pkg/model"
 	"fmt"
-	"github.com/pkg/errors"
 	"gorm.io/gorm"
-	"strings"
 )
 
 func InsertNewMenu(menu *model.MenuAndFunction) error {
@@ -25,7 +23,7 @@ func InsertNewMenu(menu *model.MenuAndFunction) error {
 		WHERE EXISTS(
 					  SELECT 1
 					  FROM %s
-					  WHERE parent_id = ?
+					  WHERE mf_id = ?
 				  )
 	`, TN.MenuAndFunction, TN.MenuAndFunction)
 	updateSQL := fmt.Sprintf(`
@@ -63,7 +61,7 @@ func UpdateMenu(menu *model.MenuAndFunction) error {
 	}
 	updateSQL := fmt.Sprintf(`
 		UPDATE %s a
-			LEFT JOIN %s b ON b.mf_id = ?
+			JOIN %s b
 		SET a.path = concat(b.path, a.mf_id, '/'), 
 			a.parent_id = ?, 
 			a.level = ?, 
@@ -72,15 +70,18 @@ func UpdateMenu(menu *model.MenuAndFunction) error {
 			a.menu_display = ?, 
 			a.sort_num = ?
 		WHERE a.mf_id = ?
+		AND b.mf_id = ?
 		`, TN.MenuAndFunction, TN.MenuAndFunction,
 	)
-	// cannot be null
-	err := g.MySQL.Exec(updateSQL, menu.ParentId, menu.ParentId, menu.Level, menu.MfName, menu.MenuRoute, menu.MenuDisplay, menu.SortNum, menu.MfId).Error
-	if err != nil && strings.Contains(err.Error(), "cannot be null") {
-		// There might get error that is "column 'path' cannot be null", it means parent_id is not found.
-		return errors.Wrap(cerror.ErrParams, fmt.Sprintf("parent_id %d not found", menu.ParentId))
+	update := g.MySQL.Exec(updateSQL, menu.ParentId, menu.Level, menu.MfName, menu.MenuRoute, menu.MenuDisplay,
+		menu.SortNum, menu.MfId, menu.ParentId)
+	if update.Error != nil {
+		return update.Error
 	}
-	return err
+	if update.RowsAffected == 0 {
+		return cerror.ErrNothingUpdated
+	}
+	return nil
 }
 
 func GetMenuFuncList() ([]*model.MenuAndFunction, error) {
@@ -94,4 +95,93 @@ func GetMenuFuncList() ([]*model.MenuAndFunction, error) {
 	)
 	err := g.MySQL.Raw(querySQL).Scan(&rows).Error
 	return rows, err
+}
+
+func DeleteMenus(ids []int32) error {
+	updateSQL := fmt.Sprintf(`
+		UPDATE %s a
+			JOIN %s b
+			ON b.mf_id in ?
+		SET a.deleted_at = NOW()
+		WHERE a.deleted_at IS NULL
+			AND a.path LIKE concat(b.path, '%%');
+	`, TN.MenuAndFunction, TN.MenuAndFunction)
+	err := g.MySQL.Exec(updateSQL, ids).Error
+
+	return err
+}
+
+func InsertNewFunc(fc *model.MenuAndFunction) error {
+	fc.Type = cproto.Function
+	if err := fc.Check(); err != nil {
+		return err
+	}
+	// Functions must be created under the leaf-menu, so we must limit menu's level
+	insertSQL := fmt.Sprintf(`
+		INSERT INTO %s (mf_name, type, parent_id, sort_num, path)
+		SELECT ?, ?, ?, ?, ''
+		WHERE EXISTS (
+			SELECT 1
+			FROM %s
+			WHERE deleted_at IS NULL
+				AND mf_id = ?
+				AND type = 'MENU'
+				AND level = ?
+		)
+	`, TN.MenuAndFunction, TN.MenuAndFunction)
+	updateSQL := fmt.Sprintf(`
+		UPDATE %s a
+			JOIN %s b
+		SET a.path = concat(b.path, a.mf_id, '/')
+		WHERE a.mf_id = ?
+			AND b.mf_id = ?
+	`, TN.MenuAndFunction, TN.MenuAndFunction)
+
+	var err error
+	err = g.MySQL.Transaction(func(tx *gorm.DB) error {
+		insert := tx.Exec(insertSQL, fc.MfName, fc.Type, fc.ParentId, fc.SortNum, fc.ParentId, model.MaxMenuLevel)
+		if insert.Error != nil {
+			return insert.Error
+		}
+		if insert.RowsAffected == 0 {
+			// Check `insertSQL` above for how `RowsAffected` is 0
+			return fmt.Errorf("invalid parent_id %d", fc.ParentId)
+		}
+		id, err := LastInsertId(tx)
+		if err != nil {
+			return err
+		}
+		err = tx.Exec(updateSQL, id, fc.ParentId).Error
+		return err
+	})
+	return err
+}
+
+func UpdateFunction(fc *model.MenuAndFunction) error {
+	fc.Type = cproto.Function
+	if err := fc.Check(); err != nil {
+		return err
+	}
+	updateSQL := fmt.Sprintf(`
+		UPDATE %s a
+			JOIN %s b
+		SET a.path = concat(b.path, a.mf_id, '/'), 
+			a.parent_id = ?, 
+			a.mf_name = ?, 
+			a.sort_num = ?
+		WHERE a.mf_id = ?
+		AND a.type = 'FUNCTION'
+		AND b.mf_id = ?
+		AND b.level = ?
+		`, TN.MenuAndFunction, TN.MenuAndFunction,
+	)
+	// cannot be null
+	update := g.MySQL.Exec(updateSQL, fc.ParentId, fc.MfName, fc.SortNum, fc.MfId, fc.ParentId, model.MaxMenuLevel)
+	if update.Error != nil {
+		return update.Error
+	}
+	if update.RowsAffected == 0 {
+		return cerror.ErrNothingUpdated
+	}
+	return nil
 }

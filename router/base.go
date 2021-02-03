@@ -28,4 +28,7 @@ func Init(engine *gin.Engine) {
 	v1AuthContainsApi.POST("/NewMenu", handler.NewMenu)
 	v1AuthContainsApi.GET("/GetMenuList", handler.GetMenuList)
 	v1AuthContainsApi.POST("/UpdateMenu", handler.UpdateMenu)
+	v1AuthContainsApi.DELETE("/DeleteMenus", handler.DeleteMenus)
+	v1AuthContainsApi.POST("/NewFunction", handler.NewFunction)
+	v1AuthContainsApi.POST("/UpdateFunction", handler.UpdateFunction)
 }

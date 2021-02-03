@@ -74,10 +74,9 @@ Detailed:
         -   ✔️ /NewMenu
         -   ✔️ /GetMenuList(Contain child-menus && functions of leaf-menus)
         -   ✔️ /UpdateMenu
-        -   /DeleteMenus(It's better to give a prompt to delete all child-menus at front end)
-        -   /NewFunction
-        -   /UpdateFunction
-        -   /DeleteFunctions
+        -   ✔️ /DeleteMenus(It's better to give a prompt to delete all child-menus and all child -functions at front end)
+        -   ✔️ /NewFunction
+        -   ✔️ /UpdateFunction
         -   /GetAPIList(Filter by params)
         -   /UpdateFuncAndAPIBindInfo(Bind/Unbind depends on params)
     -   API management

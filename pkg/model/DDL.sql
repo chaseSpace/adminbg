@@ -70,6 +70,7 @@ CREATE TABLE adminbg_user_group
     created_at DATETIME(3) NOT NULL DEFAULT CURRENT_TIMESTAMP(3),
     updated_at DATETIME(3) NOT NULL DEFAULT CURRENT_TIMESTAMP(3) ON UPDATE CURRENT_TIMESTAMP(3),
     deleted_at DATETIME(3) NULL,
+    KEY `idx_deleteAt` (deleted_at),
     KEY `idx_roleId` (role_id)
 )
     ENGINE = InnoDB
@@ -92,6 +93,7 @@ CREATE TABLE adminbg_role
     created_at DATETIME(3)               NOT NULL DEFAULT CURRENT_TIMESTAMP(3),
     updated_at DATETIME(3)               NOT NULL DEFAULT CURRENT_TIMESTAMP(3) ON UPDATE CURRENT_TIMESTAMP(3),
     deleted_at DATETIME(3)               NULL,
+    KEY `idx_deleteAt` (deleted_at),
     KEY `idx_status` (status)
 )
     ENGINE = InnoDB
@@ -126,14 +128,15 @@ CREATE TABLE adminbg_menu_and_function
     mf_name      VARCHAR(50)               NOT NULL,
     path         VARCHAR(50)               NOT NULL,
     parent_id    INT                       NOT NULL DEFAULT 100,
-    level        TINYINT                   NOT NULL,
+    level        TINYINT                   NOT NULL DEFAULT 0,
     type         ENUM ('MENU', 'FUNCTION') NOT NULL,
-    menu_route   VARCHAR(100)              NOT NULL COMMENT 'Be used in the frontend',
-    menu_display ENUM ('Y','N')            NOT NULL COMMENT 'Be used in the frontend',
+    menu_route   VARCHAR(100)              NOT NULL DEFAULT '' COMMENT 'Be used in the frontend',
+    menu_display ENUM ('Y','N')            NOT NULL DEFAULT 'Y' COMMENT 'Be used in the frontend',
     sort_num     SMALLINT UNSIGNED         NOT NULL,
     created_at   DATETIME(3)               NOT NULL DEFAULT CURRENT_TIMESTAMP(3),
     updated_at   DATETIME(3)               NOT NULL DEFAULT CURRENT_TIMESTAMP(3) ON UPDATE CURRENT_TIMESTAMP(3),
     deleted_at   DATETIME(3)               NULL,
+    KEY `idx_deleteAt` (deleted_at),
     KEY `idx_level` (level),
     KEY `idx_type` (type)
 )
@@ -169,6 +172,7 @@ CREATE TABLE adminbg_api
     created_at DATETIME(3) NOT NULL DEFAULT CURRENT_TIMESTAMP(3),
     updated_at DATETIME(3) NOT NULL DEFAULT CURRENT_TIMESTAMP(3) ON UPDATE CURRENT_TIMESTAMP(3),
     deleted_at DATETIME(3) NULL,
+    KEY `idx_deleteAt` (deleted_at),
     UNIQUE KEY `idx_identity` (identity)
 )
     ENGINE = InnoDB

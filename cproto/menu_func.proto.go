@@ -19,7 +19,7 @@ type OneMenu struct {
 }
 
 type OneFunc struct {
-	Id      int32  `json:"id"`                         // Func id, that does not need to appear at /NewFunc request
+	Id      int32  `json:"id"`                         // Func id, that does not need to appear at /NewFunction request
 	MenuId  int32  `json:"menu_id" binding:"required"` // Which menu to belong
 	Name    string `json:"name" binding:"required"`
 	SortNum uint16 `json:"sort_num"`
@@ -77,3 +77,24 @@ func (t MenuDisplay) Check() error {
 	}
 	return fmt.Errorf("invalid MenuDisplay value:%s", t)
 }
+
+// DELETE /web/v1/DeleteMenus
+type DeleteMenusReq struct {
+	MenuIds []int32 `json:"menu_ids" binding:"required"`
+}
+
+type DeleteMenusRsp struct{}
+
+// POST /web/v1/NewFunction
+type NewFunctionReq struct {
+	OneFunc
+}
+
+type NewFunctionRsp struct{}
+
+// POST /web/v1/UpdateFunction
+type UpdateFunctionReq struct {
+	OneFunc
+}
+
+type UpdateFunctionRsp struct{}
