@@ -164,9 +164,9 @@ func (*MfApiRef) TableName() string {
 
 type Api struct {
 	BaseModel
-	ApiId    int32
-	Identity string
-	MfId     int32
+	ApiId  int32
+	Name   string
+	Remark string
 }
 
 func (*Api) TableName() string {

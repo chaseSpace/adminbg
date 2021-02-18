@@ -31,4 +31,5 @@ func Init(engine *gin.Engine) {
 	v1AuthContainsApi.DELETE("/DeleteMenus", handler.DeleteMenus)
 	v1AuthContainsApi.POST("/NewFunction", handler.NewFunction)
 	v1AuthContainsApi.POST("/UpdateFunction", handler.UpdateFunction)
+	v1AuthContainsApi.GET("/GetAPIList", handler.GetAPIList)
 }

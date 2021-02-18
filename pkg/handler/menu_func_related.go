@@ -53,3 +53,11 @@ func UpdateFunction(c *gin.Context) {
 	rsp, err := UpdateFunctionLogic(&req)
 	common.SetRsp(c, err, rsp)
 }
+
+func GetAPIList(c *gin.Context) {
+	var req cproto.GetAPIListReq
+	common.MustExtractReqParams(c, &req)
+
+	rsp, err := GetAPIListLogic(&req)
+	common.SetRsp(c, err, rsp)
+}

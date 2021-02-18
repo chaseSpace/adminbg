@@ -168,12 +168,13 @@ CREATE TABLE adminbg_api
 (
 
     api_id     INT PRIMARY KEY AUTO_INCREMENT,
-    identity   VARCHAR(50) NOT NULL,
-    created_at DATETIME(3) NOT NULL DEFAULT CURRENT_TIMESTAMP(3),
-    updated_at DATETIME(3) NOT NULL DEFAULT CURRENT_TIMESTAMP(3) ON UPDATE CURRENT_TIMESTAMP(3),
-    deleted_at DATETIME(3) NULL,
+    name       VARCHAR(50)  NOT NULL,
+    created_at DATETIME(3)  NOT NULL DEFAULT CURRENT_TIMESTAMP(3),
+    updated_at DATETIME(3)  NOT NULL DEFAULT CURRENT_TIMESTAMP(3) ON UPDATE CURRENT_TIMESTAMP(3),
+    deleted_at DATETIME(3)  NULL,
+    remark     VARCHAR(100) NOT NULL DEFAULT '',
     KEY `idx_deleteAt` (deleted_at),
-    UNIQUE KEY `idx_identity` (identity)
+    UNIQUE KEY `idx_name` (name)
 )
     ENGINE = InnoDB
     DEFAULT CHARSET = utf8mb4;

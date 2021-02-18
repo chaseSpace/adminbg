@@ -1,6 +1,8 @@
 package cproto
 
-import "fmt"
+import (
+	"fmt"
+)
 
 type OneMenu struct {
 	ParentId    int32  `json:"parent_id" binding:"required"`    // Set to 100 if is first class menu
@@ -41,7 +43,8 @@ type UpdateMenuReq struct {
 }
 type UpdateMenuRsp struct{}
 
-// POST /web/v1/GetMenuList
+// GET /web/v1/GetMenuList
+// NOTE: This API only was used administrator.
 type GetMenuListReq struct{}
 
 type GetMenuListRsp struct {
@@ -98,3 +101,21 @@ type UpdateFunctionReq struct {
 }
 
 type UpdateFunctionRsp struct{}
+
+// GET /web/v1//GetAPIList
+type GetAPIListReq struct {
+	// all below are optional params.
+	BindFunctionId       int32  `form:"bind_function_id"`        // if not provided(default is zero), server will return all APIs' info
+	FuzzySearchByAPIName string `form:"fuzzy_search_by_name"`    // Fuzzy search APIs by name
+	SortByCreatedAtDesc  bool   `form:"sort_by_created_at_desc"` // Sort params, `Desc` means sort in descending order, default is sort by `created_at` field in ascending order
+}
+
+type GetAPIListRsp struct {
+	List []*OneAPI `json:"list"`
+}
+
+type OneAPI struct {
+	Id        int32  `json:"id"`
+	Name      string `json:"name"`
+	CreatedAt string `json:"created_at"`
+}

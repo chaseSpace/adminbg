@@ -2,6 +2,12 @@ package util
 
 import "time"
 
+const (
+	TimeLayout             = "2006-01-02 15:04:05"
+	TimeLayoutYMS          = "2006-01-02"
+	TimeLayoutYMSCompacted = "20060102150405"
+)
+
 // Get days start time via start-time to end-time args
 // e.g. input: st="2020-09-01 xx:xx:xx"  et="2020-09-03 xx:xx:xx"
 // return []{"2020-09-01 00:00:00", "2020-09-02 00:00:00", "2020-09-03 00:00:00"}

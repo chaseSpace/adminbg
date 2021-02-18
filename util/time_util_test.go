@@ -49,23 +49,19 @@ func Test_GetEachDayZeroClockFromStToEt(t *testing.T) {
 	}
 }
 
-const (
-	StdDateTimeLayout = "2006-01-02 15:04:05"
-)
-
 func TestGetMonthList(t *testing.T) {
-	t1, _ := time.Parse(StdDateTimeLayout, "2020-11-01 00:00:00")
-	t2, _ := time.Parse(StdDateTimeLayout, "2020-11-01 01:00:00")
+	t1, _ := time.Parse(TimeLayout, "2020-11-01 00:00:00")
+	t2, _ := time.Parse(TimeLayout, "2020-11-01 01:00:00")
 	args1 := []time.Time{t1, t2}
 	want1 := []string{"2020-11-01 00:00:00"}
 
-	t3, _ := time.Parse(StdDateTimeLayout, "2020-11-30 00:00:00")
-	t4, _ := time.Parse(StdDateTimeLayout, "2020-12-01 00:00:00")
+	t3, _ := time.Parse(TimeLayout, "2020-11-30 00:00:00")
+	t4, _ := time.Parse(TimeLayout, "2020-12-01 00:00:00")
 	args2 := []time.Time{t3, t4}
 	want2 := []string{"2020-11-01 00:00:00", "2020-12-01 00:00:00"}
 
-	t5, _ := time.Parse(StdDateTimeLayout, "2020-11-01 00:00:00")
-	t6, _ := time.Parse(StdDateTimeLayout, "2021-01-02 00:00:00")
+	t5, _ := time.Parse(TimeLayout, "2020-11-01 00:00:00")
+	t6, _ := time.Parse(TimeLayout, "2021-01-02 00:00:00")
 	args3 := []time.Time{t5, t6}
 	want3 := []string{"2020-11-01 00:00:00", "2020-12-01 00:00:00", "2021-01-01 00:00:00"}
 
@@ -96,7 +92,7 @@ func TestGetMonthList(t *testing.T) {
 			ret := GetMonthList(tt.args[0], tt.args[1])
 			var comp []string
 			for _, t := range ret {
-				comp = append(comp, t.Format(StdDateTimeLayout))
+				comp = append(comp, t.Format(TimeLayout))
 			}
 			if !reflect.DeepEqual(comp, tt.want) {
 				t.Errorf("got:%+v not want:%+v", comp, tt.want)

@@ -42,15 +42,19 @@ Coming...
 	    -   增删查改（普通账户不应被授予API的任何管理权限）
 	-	日志管理
             -	操作日志(包含登录相关)
+    -   通用API
+        -   获取当前用户可访问的菜单信息（包含子菜单，不包含也不需要功能）
 -->
 
 ## Develop progress
 It's been a few weeks.
 
-Detailed:
+Detailed APIs:
 -   SignIn related
     -   ✔️ /SignIn 
     -   ✔️ /SignOut 
+-   Common APIs
+    -   /GetAvailableMenuList(Contain child-menus, not contain child-functions.)
 -   System management
     -   User management related
         -   ✔️ /NewUser 
@@ -77,7 +81,7 @@ Detailed:
         -   ✔️ /DeleteMenus(It's better to give a prompt to delete all child-menus and all child -functions at front end)
         -   ✔️ /NewFunction
         -   ✔️ /UpdateFunction
-        -   /GetAPIList(Filter by params)
+        -   ✔️ /GetAPIList(Filter by params)
         -   /UpdateFuncAndAPIBindInfo(Bind/Unbind depends on params)
     -   API management
         -   /NewAPI
@@ -92,18 +96,7 @@ Detailed:
 Note: 
 -   By default, system would not expose an API that can delete operation log(But it would be implemented).
 -   In addition to the specific comments, almost all the Delete-APIs mentioned above are logical deletions.
- 
-<!-- 
-详细
--   登录相关
-    -   ✔️ /SignIn 
-    -   ✔️ /SignOut 
--   用户管理相关
-    -   /NewUser √
-    -   /ModifyUser √
--->
 
-<!-- 
 
 ## 二次开发说明
 

@@ -64,3 +64,7 @@ Authorization: BEARER {{admin_token}}
   "name": "m111",
   "sort_num": 1
 }
+
+###
+GET {{addr}}/web/v1/GetAPIList/?bind_function_id=1&fuzzy_search_by_name=&sort_by_created_at_desc=
+Authorization: BEARER {{admin_token}}

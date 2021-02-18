@@ -5,6 +5,7 @@ import (
 	"adminbg/cproto"
 	"adminbg/pkg/crud"
 	"adminbg/pkg/model"
+	"adminbg/util"
 	"github.com/pkg/errors"
 )
 
@@ -41,7 +42,7 @@ func UpdateMenuLogic(req *cproto.UpdateMenuReq) (*cproto.UpdateMenuRsp, error) {
 }
 
 func GetMenuListLogic(_ *cproto.GetMenuListReq) (*cproto.GetMenuListRsp, error) {
-	// Get all menus and funcs, then restructure them on memory.
+	// Get all menus and functions, then restructure them on memory.
 	menuFuncList, err := crud.GetMenuFuncList()
 	if err != nil {
 		return nil, err
@@ -145,4 +146,20 @@ func UpdateFunctionLogic(req *cproto.UpdateFunctionReq) (*cproto.UpdateFunctionR
 	}
 	err := crud.UpdateFunction(&row)
 	return new(cproto.UpdateFunctionRsp), err
+}
+
+func GetAPIListLogic(req *cproto.GetAPIListReq) (*cproto.GetAPIListRsp, error) {
+	apis, err := crud.GetAPIList(req.BindFunctionId, req.FuzzySearchByAPIName, req.SortByCreatedAtDesc)
+	if err != nil {
+		return nil, err
+	}
+	rsp := new(cproto.GetAPIListRsp)
+	for _, api := range apis {
+		rsp.List = append(rsp.List, &cproto.OneAPI{
+			Id:        api.ApiId,
+			Name:      api.Name,
+			CreatedAt: api.CreatedAt.Format(util.TimeLayout),
+		})
+	}
+	return rsp, nil
 }
