@@ -163,3 +163,8 @@ func GetAPIListLogic(req *cproto.GetAPIListReq) (*cproto.GetAPIListRsp, error) {
 	}
 	return rsp, nil
 }
+
+// TODO
+func UpdateFuncAndAPIBindInfoLogic(req *cproto.UpdateFuncAndAPIBindInfoReq) (*cproto.UpdateFuncAndAPIBindInfoRsp, error) {
+	return nil, nil
+}

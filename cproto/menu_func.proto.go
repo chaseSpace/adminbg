@@ -102,7 +102,7 @@ type UpdateFunctionReq struct {
 
 type UpdateFunctionRsp struct{}
 
-// GET /web/v1//GetAPIList
+// GET /web/v1/GetAPIList
 type GetAPIListReq struct {
 	// all below are optional params.
 	BindFunctionId       int32  `form:"bind_function_id"`        // if not provided(default is zero), server will return all APIs' info
@@ -119,3 +119,13 @@ type OneAPI struct {
 	Name      string `json:"name"`
 	CreatedAt string `json:"created_at"`
 }
+
+// POST /web/v1/UpdateFuncAndAPIBindInfo
+type UpdateFuncAndAPIBindInfoReq struct {
+	BindOp       bool    `json:"bind_op"` // bind operation if true, or unbind if false
+	FunctionId   int32   `json:"function_id" binding:"required"`
+	BindApiIds   []int32 `json:"bind_api_ids"`
+	UnbindRefIds []int32 `json:"unbind_ref_ids"`
+}
+
+type UpdateFuncAndAPIBindInfoRsp struct{}

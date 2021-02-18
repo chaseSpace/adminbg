@@ -61,3 +61,11 @@ func GetAPIList(c *gin.Context) {
 	rsp, err := GetAPIListLogic(&req)
 	common.SetRsp(c, err, rsp)
 }
+
+func UpdateFuncAndAPIBindInfo(c *gin.Context) {
+	var req cproto.UpdateFuncAndAPIBindInfoReq
+	common.MustExtractReqParams(c, &req)
+
+	rsp, err := UpdateFuncAndAPIBindInfoLogic(&req)
+	common.SetRsp(c, err, rsp)
+}
