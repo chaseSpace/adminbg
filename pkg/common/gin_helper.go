@@ -14,7 +14,7 @@ const (
 
 type HttpRsp struct {
 	Data interface{} `json:"data"`
-	Tip  string      `json:"tip"`
+	Tip  string      `json:"tip"` // common msg
 }
 
 func ExtractReqParams(c *gin.Context, req interface{}) (*HttpRsp, error) {
@@ -49,6 +49,8 @@ func SetRsp(c *gin.Context, err error, data ...interface{}) {
 	if len(data) > 0 {
 		r.Data = data[0]
 	}
+	// If code=200, frontend make a green tip popup, otherwise, make a rea warn tip popup;
+	// the content of popup is rsp.Tip field.
 	code := http.StatusOK
 	if err != nil {
 		if errors.Is(err, cerror.ErrParams) {
@@ -57,10 +59,11 @@ func SetRsp(c *gin.Context, err error, data ...interface{}) {
 			code = http.StatusUnauthorized
 		} else if errors.Is(err, cerror.ErrNotAllowed) {
 			code = http.StatusForbidden
-		} else if errors.Is(err, cerror.ErrNothingUpdated) {
+		} else if errors.Is(err, cerror.ErrNothingUpdated) ||
+			errors.Is(err, cerror.ErrNothingDeleted) {
 			// Keep 200 OK
 		} else { // It can be expanded here
-			code = http.StatusInternalServerError
+			code = http.StatusBadRequest
 		}
 		r.Tip = err.Error()
 	} else {

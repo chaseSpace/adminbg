@@ -157,14 +157,25 @@ func GetAPIListLogic(req *cproto.GetAPIListReq) (*cproto.GetAPIListRsp, error) {
 	for _, api := range apis {
 		rsp.List = append(rsp.List, &cproto.OneAPI{
 			Id:        api.ApiId,
-			Name:      api.Name,
+			Identity:  api.Identity,
 			CreatedAt: api.CreatedAt.Format(util.TimeLayout),
 		})
 	}
 	return rsp, nil
 }
 
-// TODO
 func UpdateFuncAndAPIBindInfoLogic(req *cproto.UpdateFuncAndAPIBindInfoReq) (*cproto.UpdateFuncAndAPIBindInfoRsp, error) {
-	return nil, nil
+	if req.IsBind {
+		if len(req.BindApiIds) == 0 {
+			return nil, errors.Wrap(cerror.ErrParams, "bind_api_ids is empty")
+		}
+		err := crud.BindApiIdsToFunction(req.FuncId, req.BindApiIds)
+		return new(cproto.UpdateFuncAndAPIBindInfoRsp), err
+	}
+	// Unbind
+	if len(req.UnbindApiIds) == 0 {
+		return nil, errors.Wrap(cerror.ErrParams, "unbind_api_ids is empty")
+	}
+	err := crud.UnbindApiIdsFromFunction(req.FuncId, req.UnbindApiIds)
+	return new(cproto.UpdateFuncAndAPIBindInfoRsp), err
 }

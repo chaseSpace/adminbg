@@ -1,5 +1,7 @@
 package cproto
 
+import "time"
+
 // POST /web/v1/SignIn
 type SignInReq struct {
 	AccountId string `json:"account_id" binding:"required"`
@@ -15,11 +17,10 @@ type SignOutReq struct{}
 
 type SignOutRsp struct{}
 
-// POST /web/v1/NewUser
-type NewUserReq struct {
+type User struct {
 	Name      string        `json:"name" binding:"required"`
-	AccountId string        `json:"account_id" binding:"required"`
-	Pwd       string        `json:"pwd" binding:"required"`
+	AccountId string        `json:"account_id"` // if is update action, `account_id` is unused field
+	Pwd       string        `json:"pwd"`        // if is query action, `pwd` is unused field
 	Phone     string        `json:"phone"`
 	Email     string        `json:"email"`
 	Sex       SexTyp        `json:"sex" binding:"required"`    // string type, search `SexTyp` at this file
@@ -27,6 +28,13 @@ type NewUserReq struct {
 	RoleId    int16         `json:"role_id"`
 	GroupId   int16         `json:"group_id"`
 	Remark    string        `json:"remark"`
+	CreatedAt time.Time     `json:"created_at"` // only be used at query action
+	UpdatedAt time.Time     `json:"updated_at"` // only be used at query action
+}
+
+// POST /web/v1/NewUser
+type NewUserReq struct {
+	User
 }
 
 type NewUserRsp struct {
@@ -67,17 +75,18 @@ func (sta UserStatusTyp) IsValid() bool {
 
 // POST /web/v1/ModifyUser
 type UpdateUserReq struct {
-	Delete  bool          `json:"delete"` // if true, server will delete user for this uid, other params would be ignored.
-	Uid     int32         `json:"uid" binding:"required"`
-	Name    string        `json:"name" binding:"required"`
-	Pwd     string        `json:"pwd"` // if empty, it would be ignored.
-	Phone   string        `json:"phone"`
-	Email   string        `json:"email"`
-	Sex     SexTyp        `json:"sex" binding:"required"`    // string type, search `SexTyp` at this file
-	Status  UserStatusTyp `json:"status" binding:"required"` // string type, search `UserStatusTyp` at this file
-	RoleId  int16         `json:"role_id"`
-	GroupId int16         `json:"group_id"`
-	Remark  string        `json:"remark"`
+	Delete bool  `json:"delete"` // if true, server will delete user for this uid, other params would be ignored.
+	Uid    int32 `json:"uid" binding:"required"`
+	User
 }
 
 type UpdateUserRsp struct{}
+
+// GET /web/v1/GetUser
+type GetUserReq struct {
+	Uid int32 `json:"uid" binding:"required"`
+}
+
+type GetUserRsp struct {
+	User
+}

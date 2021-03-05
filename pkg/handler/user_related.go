@@ -38,10 +38,10 @@ func UpdateUser(c *gin.Context) {
 	common.SetRsp(c, err, rsp)
 }
 
-//func NewUser(c *gin.Context) {
-//	var req cproto.NewUserReq
-//	common.MustExtractReqParams(c, &req)
-//
-//	rsp, err := NewUserLogic(&req)
-//	common.SetRsp(c, err, rsp)
-//}
+func GetUser(c *gin.Context) {
+	var req cproto.GetUserReq
+	common.MustExtractReqParams(c, &req)
+
+	rsp, err := GetUserLogic(&req)
+	common.SetRsp(c, err, rsp)
+}

@@ -6,6 +6,7 @@ import (
 	"adminbg/pkg/g"
 	"adminbg/pkg/model"
 	"fmt"
+	"github.com/pkg/errors"
 	"gorm.io/gorm"
 	"gorm.io/gorm/clause"
 )
@@ -41,14 +42,19 @@ func CheckUserPassport(accountId string, plainPwd string) (*model.User, error) {
 	return &row, cerror.WrapMysqlErr(err)
 }
 
+func GetUserByUid(uid int32) (*model.User, error) {
+	row := model.User{}
+	err := g.MySQL.Take(&row, "uid=?", uid).Error
+	return &row, cerror.WrapMysqlErr(err)
+}
+
 func GetUserByAccountId(accountId string) (*model.User, error) {
 	row := model.User{}
 	err := g.MySQL.Take(&row, "account_id=?", accountId).Error
 	return &row, cerror.WrapMysqlErr(err)
 }
 
-// Return (InsertedOK, error), if not InsertedOK, this means account_id duplicated.
-func InsertUser(entity *model.UserBase) (bool, error) {
+func InsertUser(entity *model.UserBase) error {
 	// Any validation should be completed in outside.
 	sql := fmt.Sprintf(`
 		INSERT INTO %s (account_id, encrypted_pwd, salt, nick_name, phone
@@ -65,7 +71,10 @@ func InsertUser(entity *model.UserBase) (bool, error) {
 	ret := g.MySQL.Exec(sql, entity.AccountId, entity.EncryptedPwd, entity.Salt, entity.Salt, entity.NickName, entity.Phone, entity.Email,
 		entity.Sex, entity.Remark, entity.Status, entity.AccountId)
 	// todo: insert into user_group_ref
-	return ret.RowsAffected == 1, ret.Error
+	if ret.RowsAffected == 0 {
+		return errors.Wrap(cerror.ErrParams, "account_id exists")
+	}
+	return ret.Error
 }
 
 func DeleteUser(userIdt UserIdentity) (bool, error) {
@@ -81,7 +90,7 @@ func DeleteUser(userIdt UserIdentity) (bool, error) {
 }
 
 // Update user info, that is not permitted to modify account_id by default.
-func UpdateUser(userIdt UserIdentity, alter *cproto.UpdateUserReq) (bool, error) {
+func UpdateUser(userIdt UserIdentity, alter *cproto.UpdateUserReq) error {
 	sql := `
 		UPDATE adminbg_user
 		SET nick_name = ?, phone = ?, email = ?, sex = ?, status = ?, group_id = ?, remark = ?, 
@@ -102,13 +111,15 @@ func UpdateUser(userIdt UserIdentity, alter *cproto.UpdateUserReq) (bool, error)
 		expr.SQL += "account_id=?"
 		expr.Vars = append(expr.Vars, userIdt.AccountId)
 	} else {
-		return false, nil
+		return nil
 	}
 
 	if !userIdt.ContainsDeleted {
 		expr.SQL += " AND deleted_at IS NULL"
 	}
 	ret := g.MySQL.Exec(expr.SQL, expr.Vars...)
-
-	return ret.RowsAffected == 1, ret.Error
+	if ret.RowsAffected == 0 {
+		return cerror.ErrNothingUpdated
+	}
+	return ret.Error
 }

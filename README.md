@@ -61,7 +61,6 @@ Detailed APIs:
         -   ✔️ /UpdateUser 
         -   /GetUser(user-info)
         -   /GetUserList(user-info)
-        -   /DeleteUsers
     -   UserGroup management
         -   /NewUserGroup
         -   /UpdateUserGroup
@@ -82,15 +81,14 @@ Detailed APIs:
         -   ✔️ /NewFunction
         -   ✔️ /UpdateFunction
         -   ✔️ /GetAPIList(Filter by params)
-        -   /UpdateFuncAndAPIBindInfo(Bind/Unbind depends on params)
+        -   ✔️ /UpdateFuncAndAPIBindInfo(Bind/Unbind depends on params)
     -   API management
-        -   /NewAPI
-        -   /UpdateAPI
-        -   /GetAPIList(As mentioned above)
-        -   /DeleteAPI
+        -   ✔️ /NewAPI
+        -   ✔️ /UpdateAPI(Update/Delete depends on params)
+        -   ✔️ /GetAPIList(**Same as mentioned above**)
     -   Logging management
-        -   /GetLoggingList
-        -   /DeleteLogging(_Not Expose_)
+        -   /GetLogs
+        -   /DeleteLogs(_Not Expose_)
         
         
 Note: 

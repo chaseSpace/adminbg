@@ -7,7 +7,7 @@ import (
 type OneMenu struct {
 	ParentId    int32  `json:"parent_id" binding:"required"`    // Set to 100 if is first class menu
 	Level       int8   `json:"level" binding:"required"`        // Set to 1 or 2...
-	Name        string `json:"name" binding:"required"`         // Name of menu or function
+	Name        string `json:"name" binding:"required"`         // Identity of menu or function
 	Route       string `json:"route" binding:"required"`        // It was used at frontend eventually
 	MenuDisplay string `json:"menu_display" binding:"required"` // Take Y|N, means display or not for menu. It was used at frontend eventually
 	Id          int32  `json:"id"`                              // Menu id, that does **not need** to appear at /NewMenu request
@@ -116,16 +116,16 @@ type GetAPIListRsp struct {
 
 type OneAPI struct {
 	Id        int32  `json:"id"`
-	Name      string `json:"name"`
+	Identity  string `json:"name"`
 	CreatedAt string `json:"created_at"`
 }
 
 // POST /web/v1/UpdateFuncAndAPIBindInfo
 type UpdateFuncAndAPIBindInfoReq struct {
-	BindOp       bool    `json:"bind_op"` // bind operation if true, or unbind if false
-	FunctionId   int32   `json:"function_id" binding:"required"`
+	IsBind       bool    `json:"is_bind"` // do bind action if true, or unbind if false
+	FuncId       int32   `json:"func_id" binding:"required"`
 	BindApiIds   []int32 `json:"bind_api_ids"`
-	UnbindRefIds []int32 `json:"unbind_ref_ids"`
+	UnbindApiIds []int32 `json:"unbind_api_ids"`
 }
 
 type UpdateFuncAndAPIBindInfoRsp struct{}

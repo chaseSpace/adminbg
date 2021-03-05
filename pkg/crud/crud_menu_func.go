@@ -185,3 +185,35 @@ func UpdateFunction(fc *model.MenuAndFunction) error {
 	}
 	return nil
 }
+
+func BindApiIdsToFunction(funcId int32, bindApiIds []int32) error {
+	sql := fmt.Sprintf(`INSERT INTO %s (mf_id, api_id)
+			SELECT ?,?
+			WHERE EXISTS (
+				SELECT 1
+				FROM %s
+				WHERE mf_id = ?
+				)
+			AND EXISTS (
+				SELECT 1
+				FROM %s
+				WHERE api_id = ?
+			)
+			ON DUPLICATE KEY UPDATE updated_at = now();`, TN.MfApiRef, TN.MenuAndFunction, TN.Api)
+	var exec *gorm.DB
+	for _, apiId := range bindApiIds {
+		exec = g.MySQL.Exec(sql, funcId, apiId, funcId, apiId)
+		if exec.Error != nil {
+			return exec.Error
+		}
+		if exec.RowsAffected == 0 { // may be 2, so dont use  `xxx != 1`
+			return cerror.ErrResourceNotFound
+		}
+	}
+	return nil
+}
+
+func UnbindApiIdsFromFunction(funcId int32, unbindApiIds []int32) error {
+	sql := fmt.Sprintf(`DELETE FROM %s WHERE mf_id = ? AND api_id IN (?)`, TN.MfApiRef)
+	return g.MySQL.Exec(sql, funcId, unbindApiIds).Error
+}

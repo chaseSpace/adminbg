@@ -42,6 +42,21 @@ type UserBase struct {
 	Status       cproto.UserStatusTyp
 }
 
+func (u *User) Proto() *cproto.User {
+	return &cproto.User{
+		Name:      u.NickName,
+		AccountId: u.AccountId,
+		//Pwd:       ,
+		Phone:  u.Phone,
+		Email:  u.Email,
+		Sex:    u.Sex,
+		Status: u.Status,
+		//RoleId:    ,
+		//GroupId:   ,
+		Remark: u.Remark,
+	}
+}
+
 func (u *UserBase) Check() error {
 	if u.Uid == 0 {
 		return errors.Wrap(cerror.ErrParams, "invalid uid")
@@ -164,9 +179,9 @@ func (*MfApiRef) TableName() string {
 
 type Api struct {
 	BaseModel
-	ApiId  int32
-	Name   string
-	Remark string
+	ApiId    int32
+	Identity string
+	Remark   string
 }
 
 func (*Api) TableName() string {

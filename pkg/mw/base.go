@@ -10,13 +10,13 @@ import (
 
 func Recovery(c *gin.Context) {
 	defer func() {
-		recovered := recover()
-		if recovered == nil {
+		r := recover()
+		if r == nil {
 			return
 		}
-		err, ok := recovered.(error)
+		err, ok := r.(error)
 		if !ok {
-			PANIC := fmt.Sprintf("unknown panic -> %v", recovered)
+			PANIC := fmt.Sprintf("unknown panic -> %v", r)
 			log.Errorf("[gin-middleware: Recovery] %s", PANIC)
 			common.SetRsp(c, errors.New(PANIC))
 			return

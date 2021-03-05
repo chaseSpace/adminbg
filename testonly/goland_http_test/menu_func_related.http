@@ -68,3 +68,22 @@ Authorization: BEARER {{admin_token}}
 ###
 GET {{addr}}/web/v1/GetAPIList/?bind_function_id=1&fuzzy_search_by_name=&sort_by_created_at_desc=
 Authorization: BEARER {{admin_token}}
+
+###
+POST {{addr}}/web/v1/UpdateFuncAndAPIBindInfo
+Authorization: BEARER {{admin_token}}
+Content-Type: application/json
+
+{
+  "is_bind": false,
+  "func_id": 2007,
+  "bind_api_ids": [
+    1,
+    2
+  ],
+  "unbind_api_ids": [
+    1,
+    2,
+    3
+  ]
+}

@@ -4,6 +4,7 @@ import (
 	"adminbg/cerror"
 	"adminbg/pkg/g"
 	"adminbg/pkg/model"
+	"errors"
 	"fmt"
 )
 
@@ -34,4 +35,45 @@ func GetAPIList(bindFuncId int32, searchName string, orderByCreateAtDesc bool) (
 	var ret []*model.Api
 	err := g.MySQL.Raw(sql).Scan(&ret).Error
 	return ret, cerror.WrapMysqlErr(err)
+}
+
+func NewAPI(identity, remark string) error {
+	sql := fmt.Sprintf(`
+			INSERT INTO %s (identity, remark)
+			VALUES (?, ?)
+			ON DUPLICATE KEY UPDATE identity = identity`, TN.Api)
+	exec := g.MySQL.Exec(sql, identity, remark)
+	if exec.Error != nil {
+		return exec.Error
+	}
+	if exec.RowsAffected == 0 {
+		return errors.New("api exists")
+	}
+	return nil
+}
+
+func UpdateAPI(id int32, identity, remark string) error {
+	entity := &model.Api{
+		Identity: identity,
+		Remark:   remark,
+	}
+	exec := g.MySQL.Where("api_id=?", id).Select([]string{"identity", "remark"}).Updates(entity)
+	if exec.Error != nil {
+		return exec.Error
+	}
+	if exec.RowsAffected == 0 {
+		return cerror.ErrNothingUpdated
+	}
+	return nil
+}
+
+func DeleteAPIs(id ...int32) error {
+	exec := g.MySQL.Delete(new(model.Api), "api_id in (?)", id)
+	if exec.Error != nil {
+		return exec.Error
+	}
+	if exec.RowsAffected == 0 {
+		return cerror.ErrNothingDeleted
+	}
+	return nil
 }

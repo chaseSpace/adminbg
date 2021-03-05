@@ -54,9 +54,15 @@ func NewUserLogic(req *cproto.NewUserReq) (*cproto.NewUserRsp, error) {
 	if err != nil {
 		return nil, err
 	}
+	if req.Pwd == "" {
+		return nil, errors.Wrap(cerror.ErrParams, "`pwd` is required") // No way to return clear err info
+	}
 	plainPwd, err := base64.StdEncoding.DecodeString(req.Pwd)
 	if err != nil {
-		return nil, errors.Wrap(cerror.ErrParams, "invalid pwd") // No way to return clear err info
+		return nil, errors.Wrap(cerror.ErrParams, "invalid params `pwd`, decode err") // No way to return clear err info
+	}
+	if req.AccountId == "" {
+		return nil, errors.Wrap(cerror.ErrParams, "`account_id` is required")
 	}
 	ubase := &model.UserBase{
 		AccountId:    req.AccountId,
@@ -70,14 +76,8 @@ func NewUserLogic(req *cproto.NewUserReq) (*cproto.NewUserRsp, error) {
 		Status:       req.Status,
 		//GroupId:      req.GroupId,
 	}
-	ok, err := crud.InsertUser(ubase)
-	if err != nil {
-		return nil, err
-	}
-	if !ok {
-		return nil, errors.Wrap(cerror.ErrParams, "account_id exists")
-	}
-	return &cproto.NewUserRsp{}, nil
+	err = crud.InsertUser(ubase)
+	return new(cproto.NewUserRsp), err
 }
 
 func UpdateUserLogic(req *cproto.UpdateUserReq) (*cproto.UpdateUserRsp, error) {
@@ -110,12 +110,16 @@ func UpdateUserLogic(req *cproto.UpdateUserReq) (*cproto.UpdateUserRsp, error) {
 	if err != nil {
 		return nil, err
 	}
-	ok, err := crud.UpdateUser(crud.UserIdentity{Uid: req.Uid, ContainsDeleted: true}, req)
+	err = crud.UpdateUser(crud.UserIdentity{Uid: req.Uid, ContainsDeleted: true}, req)
+	return rsp, err
+}
+
+func GetUserLogic(req *cproto.GetUserReq) (*cproto.GetUserRsp, error) {
+	user, err := crud.GetUserByUid(req.Uid)
 	if err != nil {
 		return nil, err
 	}
-	if !ok {
-		return nil, errors.Wrap(cerror.ErrParams, "nothing changed or invalid uid")
-	}
+	// todo: get role, group
+	rsp := &cproto.GetUserRsp{User: *user.Proto()}
 	return rsp, nil
 }

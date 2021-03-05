@@ -115,7 +115,7 @@ func (c *Clogger) Errorln(v ...interface{}) {
 	}
 }
 
-// Panic不受level管控，与标准库log.Panic行为一致
+// Panicf is not controlled by level and is consistent with the standard library log.Panic behavior
 func (c *Clogger) Panicf(format string, v ...interface{}) {
 	format = fmt.Sprintf("[PANIC] %s %s", c.withCallerLoc(), format)
 	c.LoopDo(func(l *log.Logger) {
@@ -123,7 +123,7 @@ func (c *Clogger) Panicf(format string, v ...interface{}) {
 	})
 }
 
-// Panic不受level管控，与标准库log.Panic行为一致
+// Panicln is not controlled by level and is consistent with the standard library log.Panic behavior
 func (c *Clogger) Panicln(v ...interface{}) {
 	v = append([]interface{}{"[PANIC]", c.withCallerLoc()}, v...)
 	c.LoopDo(func(l *log.Logger) {
@@ -158,7 +158,7 @@ func validLevel(level string) Level {
 	case "error":
 		return ERROR
 	default:
-		println(fmt.Sprintf("/pkg/log: invalid level str:%s; set to DEBUG", level))
+		println(fmt.Sprintf("/adminbg/log: invalid level str:%s; set to DEBUG", level))
 		return DEBUG
 	}
 }

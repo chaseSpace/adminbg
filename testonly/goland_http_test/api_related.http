@@ -1,0 +1,27 @@
+POST {{addr}}/web/v1/NewAPI
+Content-Type: application/json
+Authorization: BEARER {{admin_token}}
+
+{
+  "identity": "/x/x/",
+  "remark": "x"
+}
+
+###
+POST {{addr}}/web/v1/UpdateAPI
+Content-Type: application/json
+Authorization: BEARER {{admin_token}}
+
+#{
+#  "api_id": 1,
+#  "identity": "/x/x/",
+#  "remark": "2123"
+#}
+{
+  "delete": true,
+  "delete_api_ids": [
+    1,
+    2
+  ]
+}
+
