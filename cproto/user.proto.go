@@ -1,7 +1,5 @@
 package cproto
 
-import "time"
-
 // POST /web/v1/SignIn
 type SignInReq struct {
 	AccountId string `json:"account_id" binding:"required"`
@@ -19,6 +17,7 @@ type SignOutRsp struct{}
 
 type User struct {
 	Name      string        `json:"name" binding:"required"`
+	Uid       int32         `json:"uid"`        // only be used at query action
 	AccountId string        `json:"account_id"` // if is update action, `account_id` is unused field
 	Pwd       string        `json:"pwd"`        // if is query action, `pwd` is unused field
 	Phone     string        `json:"phone"`
@@ -28,8 +27,8 @@ type User struct {
 	RoleId    int16         `json:"role_id"`
 	GroupId   int16         `json:"group_id"`
 	Remark    string        `json:"remark"`
-	CreatedAt time.Time     `json:"created_at"` // only be used at query action
-	UpdatedAt time.Time     `json:"updated_at"` // only be used at query action
+	CreatedAt string        `json:"created_at"` // yyyy-MM-dd HH:mm:SS; only be used at query action
+	UpdatedAt string        `json:"updated_at"` // yyyy-MM-dd HH:mm:SS; only be used at query action
 }
 
 // POST /web/v1/NewUser
@@ -82,11 +81,18 @@ type UpdateUserReq struct {
 
 type UpdateUserRsp struct{}
 
-// GET /web/v1/GetUser
-type GetUserReq struct {
-	Uid int32 `json:"uid" binding:"required"`
+// GET /web/v1/QueryUser
+type QueryUserReq struct {
+	Uid int32 `form:"uid" binding:"required"`
 }
 
-type GetUserRsp struct {
-	User
+type QueryUserRsp struct {
+	*User // *XXX means this field is pointer type, it's value may be null.
+}
+
+// GET /web/v1/GetUserList
+type GetUserListReq struct{}
+
+type GetUserListRsp struct {
+	Users []*User `json:"users"` // Order by CreatedAt by default.
 }

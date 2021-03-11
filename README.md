@@ -59,7 +59,7 @@ Detailed APIs:
     -   User management related
         -   ✔️ /NewUser 
         -   ✔️ /UpdateUser 
-        -   /GetUser(user-info)
+        -   ✔️ /GetUser(user-info)
         -   /GetUserList(user-info)
     -   UserGroup management
         -   /NewUserGroup
@@ -87,10 +87,10 @@ Detailed APIs:
         -   ✔️ /UpdateAPI(Update/Delete depends on params)
         -   ✔️ /GetAPIList(**Same as mentioned above**)
     -   Logging management
-        -   /GetLogs
-        -   /DeleteLogs(_Not Expose_)
-        
-        
+        -   /GetLog
+        -   /DeleteLog(_Not Expose_)
+
+
 Note: 
 -   By default, system would not expose an API that can delete operation log(But it would be implemented).
 -   In addition to the specific comments, almost all the Delete-APIs mentioned above are logical deletions.

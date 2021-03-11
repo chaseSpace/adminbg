@@ -3,6 +3,7 @@ package model
 import (
 	"adminbg/cerror"
 	"adminbg/cproto"
+	"adminbg/util"
 	"fmt"
 	"github.com/pkg/errors"
 	"gorm.io/gorm"
@@ -40,20 +41,25 @@ type UserBase struct {
 	Sex          cproto.SexTyp
 	Remark       string
 	Status       cproto.UserStatusTyp
+	RoleId       int16 `gorm:"->"` // read-only field
+	GroupId      int16 `gorm:"->"` // read-only field
 }
 
 func (u *User) Proto() *cproto.User {
 	return &cproto.User{
 		Name:      u.NickName,
 		AccountId: u.AccountId,
+		Uid:       u.Uid,
 		//Pwd:       ,
-		Phone:  u.Phone,
-		Email:  u.Email,
-		Sex:    u.Sex,
-		Status: u.Status,
-		//RoleId:    ,
-		//GroupId:   ,
-		Remark: u.Remark,
+		Phone:     u.Phone,
+		Email:     u.Email,
+		Sex:       u.Sex,
+		Status:    u.Status,
+		RoleId:    u.RoleId,
+		GroupId:   u.GroupId,
+		Remark:    u.Remark,
+		CreatedAt: u.CreatedAt.Format(util.TimeLayout),
+		UpdatedAt: u.UpdatedAt.Format(util.TimeLayout),
 	}
 }
 

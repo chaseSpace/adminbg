@@ -24,4 +24,3 @@ Authorization: BEARER {{admin_token}}
     2
   ]
 }
-

@@ -5,6 +5,7 @@ import (
 	"adminbg/cproto"
 	"adminbg/pkg/g"
 	"adminbg/pkg/model"
+	"adminbg/util/_gorm"
 	"fmt"
 	"github.com/pkg/errors"
 	"gorm.io/gorm"
@@ -54,6 +55,25 @@ func GetUserByAccountId(accountId string) (*model.User, error) {
 	return &row, cerror.WrapMysqlErr(err)
 }
 
+// Get a valid user's basic info(contains roleID,groupID)
+func GetUserBase(uid int32) (*cproto.User, error) {
+	sql := fmt.Sprintf(`
+		SELECT a.*, b.group_id, c.role_id
+		FROM %s a, %s b, %s c
+		WHERE a.uid = ?
+			AND a.uid = b.uid
+			AND b.group_id = c.group_id`, TN.User, TN.UserGroupRef, TN.UserGroup)
+	row := new(model.User)
+	exec := g.MySQL.Raw(sql, uid).Scan(row)
+	if _gorm.IsDBErr(exec.Error) {
+		return nil, exec.Error
+	}
+	if exec.RowsAffected == 0 {
+		return nil, errors.New(fmt.Sprintf("uid:%d not found", uid))
+	}
+	return row.Proto(), nil
+}
+
 func InsertUser(entity *model.UserBase) error {
 	// Any validation should be completed in outside.
 	sql := fmt.Sprintf(`
@@ -68,9 +88,9 @@ func InsertUser(entity *model.UserBase) error {
 				WHERE account_id = ?
 			);
 		`, TN.User, TN.User)
-	ret := g.MySQL.Exec(sql, entity.AccountId, entity.EncryptedPwd, entity.Salt, entity.Salt, entity.NickName, entity.Phone, entity.Email,
-		entity.Sex, entity.Remark, entity.Status, entity.AccountId)
-	// todo: insert into user_group_ref
+	ret := g.MySQL.Exec(sql, entity.AccountId, entity.EncryptedPwd, entity.Salt, entity.Salt, entity.NickName,
+		entity.Phone, entity.Email, entity.Sex, entity.Remark, entity.Status, entity.AccountId)
+	// We don't have to insert row to table `YOUR_TABLE_PREFIX_user_group_ref` here.
 	if ret.RowsAffected == 0 {
 		return errors.Wrap(cerror.ErrParams, "account_id exists")
 	}

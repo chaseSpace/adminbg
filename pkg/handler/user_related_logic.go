@@ -64,7 +64,7 @@ func NewUserLogic(req *cproto.NewUserReq) (*cproto.NewUserRsp, error) {
 	if req.AccountId == "" {
 		return nil, errors.Wrap(cerror.ErrParams, "`account_id` is required")
 	}
-	ubase := &model.UserBase{
+	userBase := &model.UserBase{
 		AccountId:    req.AccountId,
 		EncryptedPwd: string(plainPwd),
 		Salt:         uuid.New().String()[24:],
@@ -74,9 +74,8 @@ func NewUserLogic(req *cproto.NewUserReq) (*cproto.NewUserRsp, error) {
 		Sex:          req.Sex,
 		Remark:       req.Remark,
 		Status:       req.Status,
-		//GroupId:      req.GroupId,
 	}
-	err = crud.InsertUser(ubase)
+	err = crud.InsertUser(userBase)
 	return new(cproto.NewUserRsp), err
 }
 
@@ -114,12 +113,11 @@ func UpdateUserLogic(req *cproto.UpdateUserReq) (*cproto.UpdateUserRsp, error) {
 	return rsp, err
 }
 
-func GetUserLogic(req *cproto.GetUserReq) (*cproto.GetUserRsp, error) {
-	user, err := crud.GetUserByUid(req.Uid)
+func QueryUserLogic(req *cproto.QueryUserReq) (*cproto.QueryUserRsp, error) {
+	userBase, err := crud.GetUserBase(req.Uid)
 	if err != nil {
 		return nil, err
 	}
-	// todo: get role, group
-	rsp := &cproto.GetUserRsp{User: *user.Proto()}
+	rsp := &cproto.QueryUserRsp{User: userBase}
 	return rsp, nil
 }

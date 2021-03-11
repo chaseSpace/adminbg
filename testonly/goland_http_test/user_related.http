@@ -50,3 +50,8 @@ Authorization: BEARER eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVSUQiOjEsImV4cCI6M
   "status": "NORMAL",
   "pwd": "{{admin_base64_pass}}"
 }
+
+###
+GET {{addr}}/web/v1/GetUser?uid=1
+Content-Type: application/json
+Authorization: BEARER {{admin_token}}
