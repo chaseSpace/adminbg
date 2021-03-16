@@ -60,7 +60,7 @@ Detailed APIs:
         -   ✔️ /NewUser 
         -   ✔️ /UpdateUser 
         -   ✔️ /QueryUser
-        -   ✔️ /GetUserList(Only super administrator is permitted)
+        -   ✔️ /GetUserList(Only super administrator can call it in general.)
     -   UserGroup management
         -   /NewUserGroup
         -   /UpdateUserGroup
