@@ -91,8 +91,12 @@ type QueryUserRsp struct {
 }
 
 // GET /web/v1/GetUserList
-type GetUserListReq struct{}
+type GetUserListReq struct {
+	PageNum  uint16 `form:"pn"`
+	PageSize uint16 `form:"ps"`
+}
 
 type GetUserListRsp struct {
-	Users []*User `json:"users"` // Order by CreatedAt by default.
+	List  []*User `json:"list"` // Order by CreatedAt by default.
+	Total int64   `json:"total"`
 }

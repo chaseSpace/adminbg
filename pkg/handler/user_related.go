@@ -45,3 +45,11 @@ func QueryUser(c *gin.Context) {
 	rsp, err := QueryUserLogic(&req)
 	common.SetRsp(c, err, rsp)
 }
+
+func GetUserList(c *gin.Context) {
+	var req cproto.GetUserListReq
+	common.MustExtractReqParams(c, &req)
+
+	rsp, err := GetUserListLogic(&req)
+	common.SetRsp(c, err, rsp)
+}

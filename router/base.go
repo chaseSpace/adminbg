@@ -14,27 +14,39 @@ func Init(engine *gin.Engine) {
 	/*
 		v1OnlyAuth sub-router hold handle-funcs(APIs) that can only be requested by authenticated users.
 	*/
-	v1OnlyAuth := v1Free.Use(mw.IfAuthenticated)
+	v1OnlyAuth := engine.Group("/web/v1").Use(mw.IfAuthenticated)
 	v1OnlyAuth.POST("/SignOut", handler.SignOut) // same as logout
 
 	/*
-		v1AuthContainsApi sub-router hold handle-funcs(APIs) that can only be requested by authenticated users,
+		v1AuthAPI sub-router hold handle-funcs(APIs) that can only be requested by authenticated users,
 		and the users who can call these APIs.
 	*/
-	v1AuthContainsApi := v1OnlyAuth.Use(mw.IfCanCallThisAPI)
-	v1AuthContainsApi.POST("/NewUser", handler.NewUser)
-	v1AuthContainsApi.POST("/UpdateUser", handler.UpdateUser)
-	v1AuthContainsApi.GET("/QueryUser", handler.QueryUser)
+	v1AuthAPI := engine.Group("/web/v1").
+		Use(mw.IfAuthenticated).
+		Use(mw.CanCallThisAPI(mw.SimpleRole_Comm))
 
-	v1AuthContainsApi.POST("/NewMenu", handler.NewMenu)
-	v1AuthContainsApi.GET("/GetMenuList", handler.GetMenuList)
-	v1AuthContainsApi.POST("/UpdateMenu", handler.UpdateMenu)
-	v1AuthContainsApi.DELETE("/DeleteMenus", handler.DeleteMenus)
-	v1AuthContainsApi.POST("/NewFunction", handler.NewFunction)
-	v1AuthContainsApi.POST("/UpdateFunction", handler.UpdateFunction)
-	v1AuthContainsApi.GET("/GetAPIList", handler.GetAPIList)
-	v1AuthContainsApi.POST("/UpdateFuncAndAPIBindInfo", handler.UpdateFuncAndAPIBindInfo)
+	{
+		v1AuthAPI.POST("/NewUser", handler.NewUser)
+		v1AuthAPI.POST("/UpdateUser", handler.UpdateUser)
+		v1AuthAPI.GET("/QueryUser", handler.QueryUser)
 
-	v1AuthContainsApi.POST("/NewAPI", handler.NewAPI)
-	v1AuthContainsApi.POST("/UpdateAPI", handler.UpdateAPI)
+		v1AuthAPI.POST("/NewMenu", handler.NewMenu)
+		v1AuthAPI.GET("/GetMenuList", handler.GetMenuList)
+		v1AuthAPI.POST("/UpdateMenu", handler.UpdateMenu)
+		v1AuthAPI.DELETE("/DeleteMenus", handler.DeleteMenus)
+		v1AuthAPI.POST("/NewFunction", handler.NewFunction)
+		v1AuthAPI.POST("/UpdateFunction", handler.UpdateFunction)
+		v1AuthAPI.GET("/GetAPIList", handler.GetAPIList)
+		v1AuthAPI.POST("/UpdateFuncAndAPIBindInfo", handler.UpdateFuncAndAPIBindInfo)
+		v1AuthAPI.POST("/NewAPI", handler.NewAPI)
+		v1AuthAPI.POST("/UpdateAPI", handler.UpdateAPI)
+	}
+
+	// v1AuthOnlySuperAdmin sub-router hold handle-funcs(APIs) that can only be requested by Administrator(the lonly one).
+	v1AuthOnlySuperAdmin := engine.Group("/web/v1").
+		Use(mw.IfAuthenticated).
+		Use(mw.CanCallThisAPI(mw.SimpleRole_SuperAdmin))
+	{
+		v1AuthOnlySuperAdmin.GET("/GetUserList", handler.GetUserList)
+	}
 }

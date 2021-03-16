@@ -5,13 +5,16 @@ import (
 	"fmt"
 	"log"
 	"os"
+	"path/filepath"
 	"runtime/debug"
+	"strings"
 )
 
 // 直接基于标准库log封装
 type Clogger struct {
-	writers []*log.Logger
-	level   Level
+	writers   []*log.Logger
+	level     Level
+	shortPath bool
 }
 
 type Level int8
@@ -25,7 +28,8 @@ const (
 
 func NewClogger(logPath string, level string, toStdout bool) *Clogger {
 	cl := &Clogger{
-		level: validLevel(level),
+		level:     validLevel(level),
+		shortPath: true,
 	}
 
 	f, err := os.OpenFile(logPath, os.O_CREATE|os.O_APPEND, 0755)
@@ -134,7 +138,17 @@ func (c *Clogger) Panicln(v ...interface{}) {
 // =================== util ==========================
 
 func (c *Clogger) withCallerLoc() string {
-	return util.FileWithLineNum(4)
+	fpath := util.FileWithLineNum(4)
+	if !c.shortPath {
+		return fpath
+	}
+	ss := strings.Split(fpath, "/")
+	rootPath, _ := filepath.Abs(".")
+	if os.PathSeparator == '\\' { // windows
+		rootPath = strings.Replace(rootPath, "\\", "/", -1)
+	}
+	s := strings.Join(ss, "/")
+	return strings.TrimPrefix(s, rootPath)
 }
 
 func (c *Clogger) AddWriter(writer *log.Logger) {

@@ -121,3 +121,15 @@ func QueryUserLogic(req *cproto.QueryUserReq) (*cproto.QueryUserRsp, error) {
 	rsp := &cproto.QueryUserRsp{User: userBase}
 	return rsp, nil
 }
+
+func GetUserListLogic(req *cproto.GetUserListReq) (*cproto.GetUserListRsp, error) {
+	list, total, err := crud.GetUserList(req.PageNum, req.PageSize, crud.CreatedAtAsc, crud.UpdatedAtAsc)
+	if err != nil {
+		return nil, err
+	}
+	rsp := &cproto.GetUserListRsp{Total: total}
+	for _, item := range list {
+		rsp.List = append(rsp.List, item.Proto())
+	}
+	return rsp, nil
+}

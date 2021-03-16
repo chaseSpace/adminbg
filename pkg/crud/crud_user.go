@@ -5,19 +5,13 @@ import (
 	"adminbg/cproto"
 	"adminbg/pkg/g"
 	"adminbg/pkg/model"
+	"adminbg/util"
 	"adminbg/util/_gorm"
 	"fmt"
 	"github.com/pkg/errors"
 	"gorm.io/gorm"
 	"gorm.io/gorm/clause"
 )
-
-/*
-	For sometimes, we need coding a raw SQL at working, at this time,
-we shouldn't directly write table name within code, that's a tight-coupling way.
-Here we created a struct variable `TN` to control all tables' name, for convenience,
-and beauty.
-*/
 
 type UserIdentity struct {
 	Uid             int32
@@ -66,7 +60,7 @@ func GetUserBase(uid int32) (*cproto.User, error) {
 	row := new(model.User)
 	exec := g.MySQL.Raw(sql, uid).Scan(row)
 	if _gorm.IsDBErr(exec.Error) {
-		return nil, exec.Error
+		return nil, cerror.WrapMysqlErr(exec.Error)
 	}
 	if exec.RowsAffected == 0 {
 		return nil, errors.New(fmt.Sprintf("uid:%d not found", uid))
@@ -94,7 +88,7 @@ func InsertUser(entity *model.UserBase) error {
 	if ret.RowsAffected == 0 {
 		return errors.Wrap(cerror.ErrParams, "account_id exists")
 	}
-	return ret.Error
+	return cerror.WrapMysqlErr(ret.Error)
 }
 
 func DeleteUser(userIdt UserIdentity) (bool, error) {
@@ -106,7 +100,7 @@ func DeleteUser(userIdt UserIdentity) (bool, error) {
 	} else {
 		return false, nil
 	}
-	return ret.RowsAffected == 1, ret.Error
+	return ret.RowsAffected == 1, cerror.WrapMysqlErr(ret.Error)
 }
 
 // Update user info, that is not permitted to modify account_id by default.
@@ -141,5 +135,32 @@ func UpdateUser(userIdt UserIdentity, alter *cproto.UpdateUserReq) error {
 	if ret.RowsAffected == 0 {
 		return cerror.ErrNothingUpdated
 	}
-	return ret.Error
+	return cerror.WrapMysqlErr(ret.Error)
+}
+
+// Used by only administrator
+func GetUserList(pageNum, pageSize uint16, orderByParams ...OrderByOption) ([]*model.User, int64, error) {
+	if err := util.CheckSplitPageParams(pageNum, pageSize); err != nil {
+		return nil, 0, err
+	}
+	var total int64
+	err := g.MySQL.Model(new(model.User)).Count(&total).Error
+	if err != nil {
+		return nil, 0, cerror.WrapMysqlErr(err)
+	}
+	if total <= int64((pageNum-1)*pageSize) {
+		return nil, total, nil
+	}
+	list := make([]*model.User, 0)
+	offset := (pageNum - 1) * pageSize
+
+	order := "created_at desc"
+	if len(orderByParams) > 0 {
+		order = GenOrderByClause(orderByParams...)
+	}
+	err = g.MySQL.Order(order).Offset(int(offset)).Limit(int(pageSize)).Find(&list).Error
+	if err != nil {
+		return nil, 0, cerror.WrapMysqlErr(err)
+	}
+	return list, total, nil
 }

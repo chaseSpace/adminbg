@@ -1,8 +1,11 @@
 package util
 
 import (
+	"adminbg/cerror"
 	"fmt"
+	"reflect"
 	"runtime"
+	"strings"
 )
 
 func If(condition bool, then func(), _else ...func()) {
@@ -42,4 +45,34 @@ func Must(condition bool, err error) {
 func FileWithLineNum(skip int) string {
 	_, file, line, _ := runtime.Caller(skip)
 	return fmt.Sprintf("%v:%v", file, line)
+}
+
+func CheckSplitPageParams(pn, ps uint16) error {
+	if pn == 0 || ps == 0 || ps > 100 {
+		return cerror.ErrInvalidSplitPageParams
+	}
+	return nil
+}
+
+// split args pass with `.` or `/`
+func GetFuncName(funcObj interface{}, split ...string) string {
+	fn := runtime.FuncForPC(reflect.ValueOf(funcObj).Pointer()).Name()
+	if len(split) > 0 {
+		fs := strings.Split(fn, split[0])
+		return fs[len(fs)-1]
+	}
+	return fn
+}
+
+// split args pass with `.` or `/`
+func GetRunningFuncName(split ...string) string {
+	pc := make([]uintptr, 1)
+	runtime.Callers(2, pc)
+	fn := runtime.FuncForPC(pc[0]).Name()
+
+	if len(split) > 0 {
+		fs := strings.Split(fn, split[0])
+		return fs[len(fs)-1]
+	}
+	return fn
 }

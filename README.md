@@ -59,8 +59,8 @@ Detailed APIs:
     -   User management related
         -   ✔️ /NewUser 
         -   ✔️ /UpdateUser 
-        -   ✔️ /GetUser(user-info)
-        -   /GetUserList(user-info)
+        -   ✔️ /QueryUser
+        -   ✔️ /GetUserList(Only super administrator is permitted)
     -   UserGroup management
         -   /NewUserGroup
         -   /UpdateUserGroup

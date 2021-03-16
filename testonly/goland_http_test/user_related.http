@@ -3,8 +3,8 @@ POST {{addr}}/web/v1/SignIn
 Content-Type: application/json
 
 {
-  "account_id": "{{admin_account_id}}",
-  "pwd": "{{admin_base64_pass}}"
+  "account_id": "{{comm_uid}}",
+  "pwd": "{{comm_b64_pass}}"
 }
 
 
@@ -52,6 +52,9 @@ Authorization: BEARER eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVSUQiOjEsImV4cCI6M
 }
 
 ###
-GET {{addr}}/web/v1/GetUser?uid=1
-Content-Type: application/json
+GET {{addr}}/web/v1/QueryUser?uid=1
+Authorization: BEARER {{admin_token}}
+
+###
+GET {{addr}}/web/v1/GetUserList?pn=1&ps=5
 Authorization: BEARER {{admin_token}}
