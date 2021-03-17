@@ -55,7 +55,7 @@ func NewUserLogic(req *cproto.NewUserReq) (*cproto.NewUserRsp, error) {
 		return nil, err
 	}
 	if req.Pwd == "" {
-		return nil, errors.Wrap(cerror.ErrParams, "`pwd` is required") // No way to return clear err info
+		return nil, errors.Wrap(cerror.ErrParams, "password is required")
 	}
 	plainPwd, err := base64.StdEncoding.DecodeString(req.Pwd)
 	if err != nil {

@@ -27,8 +27,8 @@ type User struct {
 	RoleId    int16         `json:"role_id"`
 	GroupId   int16         `json:"group_id"`
 	Remark    string        `json:"remark"`
-	CreatedAt string        `json:"created_at"` // yyyy-MM-dd HH:mm:SS; only be used at query action
-	UpdatedAt string        `json:"updated_at"` // yyyy-MM-dd HH:mm:SS; only be used at query action
+	CreatedAt string        `json:"created_at"` // YYYY-MM-dd HH:mm:SS; only be used at query action
+	UpdatedAt string        `json:"updated_at"` // YYYY-MM-dd HH:mm:SS; only be used at query action
 }
 
 // POST /web/v1/NewUser
@@ -44,14 +44,14 @@ type NewUserRsp struct {
 type SexTyp string
 
 const (
-	Man     SexTyp = "MAN"
-	Woman   SexTyp = "WOMAN"
-	Unknown SexTyp = "UNKNOWN"
+	Man        SexTyp = "MAN"
+	Woman      SexTyp = "WOMAN"
+	SexUnknown SexTyp = "UNKNOWN"
 )
 
 func (sex SexTyp) IsValid() bool {
 	switch sex {
-	case Man, Woman, Unknown:
+	case Man, Woman, SexUnknown:
 		return true
 	}
 	return false

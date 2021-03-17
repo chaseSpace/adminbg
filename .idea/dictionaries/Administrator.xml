@@ -17,6 +17,7 @@
       <w>panicln</w>
       <w>rtime</w>
       <w>stdlogger</w>
+      <w>usergroup</w>
       <w>warnf</w>
       <w>warnln</w>
       <w>webv</w>

@@ -61,8 +61,8 @@ CREATE TABLE adminbg_user_group_ref
 
 
 # Group
-DROP TABLE IF EXISTS adminbg_user_group;
-CREATE TABLE adminbg_user_group
+DROP TABLE IF EXISTS adminbg_usergroup;
+CREATE TABLE adminbg_usergroup
 (
     group_id   INT PRIMARY KEY AUTO_INCREMENT,
     group_name VARCHAR(50) NOT NULL,
@@ -77,9 +77,9 @@ CREATE TABLE adminbg_user_group
     DEFAULT CHARSET = utf8mb4;
 
 # You have to execute this two SQLs to insert a zero-value AUTO_INCREMENT column.
-INSERT INTO adminbg_user_group(group_name, role_id)
+INSERT INTO adminbg_usergroup(group_name, role_id)
 VALUES ('DefaultGroup', 0);
-UPDATE adminbg_user_group
+UPDATE adminbg_usergroup
 SET group_id=0
 WHERE group_id = LAST_INSERT_ID();
 

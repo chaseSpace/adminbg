@@ -96,7 +96,7 @@ type UserGroup struct {
 }
 
 func (*UserGroup) TableName() string {
-	return TablePrefix + "user_group"
+	return TablePrefix + "usergroup"
 }
 
 type Role struct {

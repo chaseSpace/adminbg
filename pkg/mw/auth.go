@@ -48,7 +48,7 @@ TODO:
 	This mw func will execute two db operations, read five tables in total,
 	may be an optimizable point.
 */
-func CanCallThisAPI(sr SimpleRole) gin.HandlerFunc {
+func IfCanCallThisAPI(sr SimpleRole) gin.HandlerFunc {
 	return func(c *gin.Context) {
 		v, _ := c.Get(common.GinCtxKey_UID)
 		uid, ok := v.(int32)
