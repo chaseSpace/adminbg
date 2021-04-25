@@ -1,8 +1,19 @@
-POST {{addr}}/web/v1/NewUserGroup?pn=1&ps=5
+POST {{addr}}/web/v1/NewUserGroup
 Content-Type: application/json
 Authorization: BEARER {{admin_token}}
 
 {
   "group_name": "xx",
+  "role_id": 0
+}
+
+###
+POST {{addr}}/web/v1/UpdateUserGroup
+Content-Type: application/json
+Authorization: BEARER {{admin_token}}
+
+{
+  "group_id": 1,
+  "group_name": "x1",
   "role_id": 0
 }

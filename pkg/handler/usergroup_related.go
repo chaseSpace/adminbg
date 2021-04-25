@@ -13,3 +13,11 @@ func NewUserGroup(c *gin.Context) {
 	rsp, err := NewUserGroupLogic(&req)
 	common.SetRsp(c, err, rsp)
 }
+
+func UpdateUserGroup(c *gin.Context) {
+	var req cproto.UpdateUserGroupReq
+	common.MustExtractReqParams(c, &req)
+
+	rsp, err := UpdateUserGroupLogic(&req)
+	common.SetRsp(c, err, rsp)
+}

@@ -3,8 +3,8 @@ POST {{addr}}/web/v1/SignIn
 Content-Type: application/json
 
 {
-  "account_id": "{{comm_uid}}",
-  "pwd": "{{comm_b64_pass}}"
+  "account_id": "{{admin_account_id}}",
+  "pwd": "{{admin_base64_pass}}"
 }
 
 

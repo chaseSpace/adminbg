@@ -65,11 +65,11 @@ DROP TABLE IF EXISTS adminbg_usergroup;
 CREATE TABLE adminbg_usergroup
 (
     group_id   INT PRIMARY KEY AUTO_INCREMENT,
-    group_name VARCHAR(50) NOT NULL,
-    role_id    INT         NOT NULL DEFAULT 0,
-    created_at DATETIME(3) NOT NULL DEFAULT CURRENT_TIMESTAMP(3),
-    updated_at DATETIME(3) NOT NULL DEFAULT CURRENT_TIMESTAMP(3) ON UPDATE CURRENT_TIMESTAMP(3),
-    deleted_at DATETIME(3) NULL,
+    group_name VARCHAR(50) UNIQUE NOT NULL,
+    role_id    INT                NOT NULL DEFAULT 0,
+    created_at DATETIME(3)        NOT NULL DEFAULT CURRENT_TIMESTAMP(3),
+    updated_at DATETIME(3)        NOT NULL DEFAULT CURRENT_TIMESTAMP(3) ON UPDATE CURRENT_TIMESTAMP(3),
+    deleted_at DATETIME(3)        NULL,
     KEY `idx_deleteAt` (deleted_at),
     KEY `idx_roleId` (role_id)
 )

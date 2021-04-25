@@ -62,8 +62,8 @@ Detailed APIs:
         -   ✔️ /QueryUser
         -   ✔️ /GetUserList(Only super administrator can call it in general.)
     -   UserGroup management
-        -   /NewUserGroup
-        -   /UpdateUserGroup
+        -   ✔️ /NewUserGroup
+        -   ✔️ /UpdateUserGroup
         -   /GetUserGroup
         -   /GetUserGroupList
         -   /DeleteUserGroup(Zero group-id group would be reserved)
