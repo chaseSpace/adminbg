@@ -66,13 +66,13 @@ Detailed APIs:
         -   ✔️ /UpdateUserGroup
         -   ✔️ /QueryUserGroup
         -   /GetUserGroupList
-        -   /DeleteUserGroup(Zero group-id group would be reserved)
+        -   /DeleteUserGroup(Default Group can't be deleted)
     -   Role management
         -   /NewRole
         -   /UpdateRole
         -   /GetRole
         -   /GetRoleList
-        -   /DeleteRole(Zero role-id role would be reserved)
+        -   /DeleteRole(Default Role can't be deleted)
     -   Menu&Function management(Contains Binding management of functions and APIs)
         -   ✔️ /NewMenu
         -   ✔️ /GetMenuList(Contain child-menus && functions of leaf-menus)
