@@ -4,13 +4,13 @@ import (
 	"errors"
 )
 
-// Core error
+// Basic error
 var (
 	ErrSys                    = errors.New("[system err]")
-	ErrMysql                  = errors.New("[system err 001]")
-	ErrRedis                  = errors.New("[system err 002]")
-	ErrSySConfig              = errors.New("[system config err]")
-	ErrJsonUnmarshal          = errors.New("[json unmarshal err]")
+	ErrMysql                  = errors.New("[system err: mysql]")
+	ErrRedis                  = errors.New("[system err: redis]")
+	ErrSysConfig              = errors.New("[system err: config]")
+	ErrJsonUnmarshal          = errors.New("[data err: json unmarshal err]")
 	ErrExtractReqParams       = errors.New("[extract req params err]")
 	ErrParams                 = errors.New("[params err]")
 	ErrUnauthorized           = errors.New("[unauthorized request]")

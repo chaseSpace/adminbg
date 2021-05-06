@@ -64,7 +64,7 @@ Detailed APIs:
     -   UserGroup management
         -   ✔️ /NewUserGroup
         -   ✔️ /UpdateUserGroup
-        -   /GetUserGroup
+        -   ✔️ /QueryUserGroup
         -   /GetUserGroupList
         -   /DeleteUserGroup(Zero group-id group would be reserved)
     -   Role management

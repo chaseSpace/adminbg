@@ -87,7 +87,7 @@ type QueryUserReq struct {
 }
 
 type QueryUserRsp struct {
-	*User // *XXX means this field is pointer type, it's value may be null.
+	*User // *XXX means this field is pointer type, it might be null.
 }
 
 // GET /web/v1/GetUserList

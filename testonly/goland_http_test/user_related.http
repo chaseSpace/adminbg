@@ -52,7 +52,7 @@ Authorization: BEARER eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVSUQiOjEsImV4cCI6M
 }
 
 ###
-GET {{addr}}/web/v1/QueryUser?uid=1
+GET {{addr}}/web/v1/QueryUser?uid=111
 Authorization: BEARER {{admin_token}}
 
 ###

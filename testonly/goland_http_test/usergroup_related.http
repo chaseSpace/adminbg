@@ -17,3 +17,7 @@ Authorization: BEARER {{admin_token}}
   "group_name": "x1",
   "role_id": 0
 }
+
+###
+GET {{addr}}/web/v1/QueryUserGroup?group_id=11
+Authorization: BEARER {{admin_token}}

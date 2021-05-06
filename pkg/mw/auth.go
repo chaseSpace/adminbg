@@ -88,7 +88,7 @@ func IfCanCallThisAPI(sr SimpleRole) gin.HandlerFunc {
 			common.SetRsp(c, errors.Wrap(err, "mw"))
 			return
 		}
-		if api.ApiId == 0 {
+		if api.ApiId < 1 {
 			common.SetRsp(c, errors.Wrap(cerror.ErrNotAllowed, "mw"))
 			return
 		}

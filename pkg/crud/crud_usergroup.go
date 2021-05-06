@@ -4,6 +4,8 @@ import (
 	"adminbg/cerror"
 	"adminbg/cproto"
 	"adminbg/pkg/g"
+	"adminbg/pkg/model"
+	"adminbg/util/_gorm"
 	"fmt"
 	"github.com/pkg/errors"
 	"strings"
@@ -56,4 +58,17 @@ func UpdateUserGroup(group *cproto.Group) error {
 		return cerror.ErrNothingUpdated
 	}
 	return nil
+}
+
+func QueryUserGroup(gid int32) (*cproto.Group, error) {
+	sql := fmt.Sprintf("SELECT * FROM %s WHERE deleted_at is null and group_id=?", TN.UserGroup)
+	row := new(model.UserGroup)
+	err := g.MySQL.Raw(sql, gid).Scan(row).Error
+	if _gorm.IsDBErr(err) {
+		return nil, err
+	}
+	if row.GroupId < 1 {
+		return nil, fmt.Errorf("group_id:%d not found", gid)
+	}
+	return row.Proto(), nil
 }

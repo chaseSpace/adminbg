@@ -7,7 +7,6 @@ import (
 )
 
 func Init(engine *gin.Engine) {
-
 	v1Free := engine.Group("/web/v1")
 	v1Free.POST("/SignIn", handler.SignIn) // same as login
 
@@ -18,7 +17,7 @@ func Init(engine *gin.Engine) {
 	v1OnlyAuth.POST("/SignOut", handler.SignOut) // same as logout
 
 	/*
-		v1AuthAPI sub-router hold handle-funcs(APIs) that can only be requested by authenticated users,
+		v1AuthAPI sub-router hold handle-functions(APIs) that can only be requested by authenticated users,
 		and the users who can call these APIs.
 	*/
 	v1AuthAPI := engine.Group("/web/v1").
@@ -33,6 +32,7 @@ func Init(engine *gin.Engine) {
 
 		v1AuthAPI.POST("/NewUserGroup", handler.NewUserGroup)
 		v1AuthAPI.POST("/UpdateUserGroup", handler.UpdateUserGroup)
+		v1AuthAPI.GET("/QueryUserGroup", handler.QueryUserGroup)
 
 		v1AuthAPI.POST("/NewMenu", handler.NewMenu)
 		v1AuthAPI.GET("/GetMenuList", handler.GetMenuList)
@@ -47,7 +47,7 @@ func Init(engine *gin.Engine) {
 		v1AuthAPI.POST("/UpdateAPI", handler.UpdateAPI)
 	}
 
-	// v1AuthOnlySuperAdmin sub-router hold handle-funcs(APIs) that can only be requested by Administrator(the only one).
+	// v1AuthOnlySuperAdmin sub-router hold handle-functions(APIs) that can only be requested by Administrator(the only one).
 	v1AuthOnlySuperAdmin := engine.Group("/web/v1").
 		Use(mw.IfAuthenticated).
 		Use(mw.IfCanCallThisAPI(mw.SimpleRole_SuperAdmin))

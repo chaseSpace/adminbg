@@ -62,7 +62,7 @@ func GetUserBase(uid int32) (*cproto.User, error) {
 	if _gorm.IsDBErr(exec.Error) {
 		return nil, cerror.WrapMysqlErr(exec.Error)
 	}
-	if exec.RowsAffected == 0 {
+	if row.Uid < 1 {
 		return nil, errors.New(fmt.Sprintf("uid:%d not found", uid))
 	}
 	return row.Proto(), nil

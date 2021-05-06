@@ -90,13 +90,22 @@ func (*UserGroupRef) TableName() string {
 
 type UserGroup struct {
 	BaseModel
-	GroupId   int16
+	GroupId   int32
 	GroupName string
 	RoleId    int16
 }
 
 func (*UserGroup) TableName() string {
 	return TablePrefix + "usergroup"
+}
+func (g *UserGroup) Proto() *cproto.Group {
+	return &cproto.Group{
+		GroupId:   g.GroupId,
+		GroupName: g.GroupName,
+		RoleId:    g.RoleId,
+		CreatedAt: g.CreatedAt.Format(util.TimeLayout),
+		UpdatedAt: g.UpdatedAt.Format(util.TimeLayout),
+	}
 }
 
 type Role struct {

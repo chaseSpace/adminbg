@@ -65,23 +65,20 @@ DROP TABLE IF EXISTS adminbg_usergroup;
 CREATE TABLE adminbg_usergroup
 (
     group_id   INT PRIMARY KEY AUTO_INCREMENT,
-    group_name VARCHAR(50) UNIQUE NOT NULL,
-    role_id    INT                NOT NULL DEFAULT 0,
-    created_at DATETIME(3)        NOT NULL DEFAULT CURRENT_TIMESTAMP(3),
-    updated_at DATETIME(3)        NOT NULL DEFAULT CURRENT_TIMESTAMP(3) ON UPDATE CURRENT_TIMESTAMP(3),
-    deleted_at DATETIME(3)        NULL,
-    KEY `idx_deleteAt` (deleted_at),
+    group_name VARCHAR(50) NOT NULL,
+    role_id    INT         NOT NULL DEFAULT 0,
+    created_at DATETIME(3) NOT NULL DEFAULT CURRENT_TIMESTAMP(3),
+    updated_at DATETIME(3) NOT NULL DEFAULT CURRENT_TIMESTAMP(3) ON UPDATE CURRENT_TIMESTAMP(3),
+    deleted_at DATETIME(3) NULL,
+    UNIQUE KEY `idx_deleteAt_groupName` (deleted_at, group_name),
     KEY `idx_roleId` (role_id)
 )
     ENGINE = InnoDB
     DEFAULT CHARSET = utf8mb4;
 
-# You have to execute this two SQLs to insert a zero-value AUTO_INCREMENT column.
-INSERT INTO adminbg_usergroup(group_name, role_id)
-VALUES ('DefaultGroup', 0);
-UPDATE adminbg_usergroup
-SET group_id=0
-WHERE group_id = LAST_INSERT_ID();
+# You have to execute this two SQLs to insert a id=1 AUTO_INCREMENT column.
+INSERT INTO adminbg_usergroup(group_id, group_name, role_id)
+VALUES (1, 'DefaultGroup', 1);
 
 # Role
 DROP TABLE IF EXISTS adminbg_role;
@@ -98,12 +95,9 @@ CREATE TABLE adminbg_role
 )
     ENGINE = InnoDB
     DEFAULT CHARSET = utf8mb4;
-# You have to execute this two SQLs to insert a zero-value AUTO_INCREMENT column.
-INSERT INTO adminbg_role(role_name, status)
-VALUES ('DefaultRole', 'NORMAL');
-UPDATE adminbg_role
-SET role_id=0
-WHERE role_id = LAST_INSERT_ID();
+# You have to execute this two SQLs to insert a id=1 AUTO_INCREMENT column.
+INSERT INTO adminbg_role(role_id, role_name, status)
+VALUES (1, 'DefaultRole', 'NORMAL');
 
 # Role_mf_ref
 DROP TABLE IF EXISTS adminbg_role_mf_ref;
