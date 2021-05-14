@@ -88,7 +88,7 @@ Detailed APIs:
         -   ✔️ /GetAPIList(**Same as mentioned above**)
     -   Logging management
         -   /GetLog
-        -   /DeleteLog(_Not Expose_)
+        -   /DeleteLog(_Not Expose To Frontend_)
 
 
 Note: 
