@@ -123,6 +123,9 @@ func QueryUserLogic(req *cproto.QueryUserReq) (*cproto.QueryUserRsp, error) {
 }
 
 func GetUserListLogic(req *cproto.GetUserListReq) (*cproto.GetUserListRsp, error) {
+	if err := util.CheckSplitPageParams(req.PageNum, req.PageSize); err != nil {
+		return nil, err
+	}
 	list, total, err := crud.GetUserList(req.PageNum, req.PageSize, crud.CreatedAtAsc, crud.UpdatedAtAsc)
 	if err != nil {
 		return nil, err

@@ -13,11 +13,16 @@ Content-Type: application/json
 Authorization: BEARER {{admin_token}}
 
 {
-  "group_id": 1,
+  "delete": true,
+  "group_id": 2,
   "group_name": "x1",
   "role_id": 0
 }
 
 ###
 GET {{addr}}/web/v1/QueryUserGroup?group_id=11
+Authorization: BEARER {{admin_token}}
+
+###
+GET {{addr}}/web/v1/GetUserGroupList?pn=3&ps=2
 Authorization: BEARER {{admin_token}}

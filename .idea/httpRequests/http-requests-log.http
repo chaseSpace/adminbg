@@ -1,0 +1,538 @@
+POST http://localhost:6600/web/v1/UpdateUserGroup
+Content-Type: application/json
+Authorization: BEARER eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVSUQiOjEsImV4cCI6MTYyMjk0NzAwOCwiaXNzIjoiaHR0cHM6Ly9naXRodWIuY29tL2NoYXNlU3BhY2UvYWRtaW5iZyJ9.eJLm17Os_drdiccVpazKIKELckOacqAQsuxbS1SYEXs
+
+{
+  "delete": true,
+  "group_id": 2,
+  "group_name": "x1",
+  "role_id": 0
+}
+
+<> 2021-05-14T071400.400.json
+
+###
+
+POST http://localhost:6600/web/v1/UpdateUserGroup
+Content-Type: application/json
+Authorization: BEARER eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVSUQiOjEsImV4cCI6MTYyMjk0NzAwOCwiaXNzIjoiaHR0cHM6Ly9naXRodWIuY29tL2NoYXNlU3BhY2UvYWRtaW5iZyJ9.eJLm17Os_drdiccVpazKIKELckOacqAQsuxbS1SYEXs
+
+{
+  "delete": true,
+  "group_id": 2,
+  "group_name": "x1",
+  "role_id": 0
+}
+
+<> 2021-05-14T071358.200.json
+
+###
+
+POST http://localhost:6600/web/v1/UpdateUserGroup
+Content-Type: application/json
+Authorization: BEARER eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVSUQiOjEsImV4cCI6MTYyMjk0NzAwOCwiaXNzIjoiaHR0cHM6Ly9naXRodWIuY29tL2NoYXNlU3BhY2UvYWRtaW5iZyJ9.eJLm17Os_drdiccVpazKIKELckOacqAQsuxbS1SYEXs
+
+{
+  "delete": true,
+  "group_id": 2,
+  "group_name": "x1",
+  "role_id": 0
+}
+
+<> 2021-05-14T071304.400.json
+
+###
+
+POST http://localhost:6600/web/v1/UpdateUserGroup
+Content-Type: application/json
+Authorization: BEARER eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVSUQiOjEsImV4cCI6MTYyMjk0NzAwOCwiaXNzIjoiaHR0cHM6Ly9naXRodWIuY29tL2NoYXNlU3BhY2UvYWRtaW5iZyJ9.eJLm17Os_drdiccVpazKIKELckOacqAQsuxbS1SYEXs
+
+{
+  "delete": true,
+  "group_id": 1,
+  "group_name": "x1",
+  "role_id": 0
+}
+
+<> 2021-05-14T071257.400.json
+
+###
+
+GET http://localhost:6600/web/v1/GetUserGroupList?pn=3&ps=2
+Authorization: BEARER eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVSUQiOjEsImV4cCI6MTYyMjk0NzAwOCwiaXNzIjoiaHR0cHM6Ly9naXRodWIuY29tL2NoYXNlU3BhY2UvYWRtaW5iZyJ9.eJLm17Os_drdiccVpazKIKELckOacqAQsuxbS1SYEXs
+
+<> 2021-05-14T071250.200.json
+
+###
+
+GET http://localhost:6600/web/v1/GetUserGroupList?pn=3&ps=2
+Authorization: BEARER eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVSUQiOjEsImV4cCI6MTYyMjk0NzAwOCwiaXNzIjoiaHR0cHM6Ly9naXRodWIuY29tL2NoYXNlU3BhY2UvYWRtaW5iZyJ9.eJLm17Os_drdiccVpazKIKELckOacqAQsuxbS1SYEXs
+
+<> 2021-05-14T065357.200.json
+
+###
+
+GET http://localhost:6600/web/v1/GetUserGroupList?pn=2&ps=2
+Authorization: BEARER eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVSUQiOjEsImV4cCI6MTYyMjk0NzAwOCwiaXNzIjoiaHR0cHM6Ly9naXRodWIuY29tL2NoYXNlU3BhY2UvYWRtaW5iZyJ9.eJLm17Os_drdiccVpazKIKELckOacqAQsuxbS1SYEXs
+
+<> 2021-05-14T065343.200.json
+
+###
+
+GET http://localhost:6600/web/v1/GetUserGroupList?pn=1&ps=2
+Authorization: BEARER eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVSUQiOjEsImV4cCI6MTYyMjk0NzAwOCwiaXNzIjoiaHR0cHM6Ly9naXRodWIuY29tL2NoYXNlU3BhY2UvYWRtaW5iZyJ9.eJLm17Os_drdiccVpazKIKELckOacqAQsuxbS1SYEXs
+
+<> 2021-05-14T065325.200.json
+
+###
+
+GET http://localhost:6600/web/v1/GetUserGroupList?pn=1&ps=2
+Authorization: BEARER eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVSUQiOjEsImV4cCI6MTYyMjk0NzAwOCwiaXNzIjoiaHR0cHM6Ly9naXRodWIuY29tL2NoYXNlU3BhY2UvYWRtaW5iZyJ9.eJLm17Os_drdiccVpazKIKELckOacqAQsuxbS1SYEXs
+
+<> 2021-05-14T065316.200.json
+
+###
+
+GET http://localhost:6600/web/v1/GetUserGroupList?pn=1&ps=2
+Authorization: BEARER eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVSUQiOjEsImV4cCI6MTYyMjk0NzAwOCwiaXNzIjoiaHR0cHM6Ly9naXRodWIuY29tL2NoYXNlU3BhY2UvYWRtaW5iZyJ9.eJLm17Os_drdiccVpazKIKELckOacqAQsuxbS1SYEXs
+
+<> 2021-05-14T065233.200.json
+
+###
+
+GET http://localhost:6600/web/v1/GetUserGroupList
+Authorization: BEARER eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVSUQiOjEsImV4cCI6MTYyMjk0NzAwOCwiaXNzIjoiaHR0cHM6Ly9naXRodWIuY29tL2NoYXNlU3BhY2UvYWRtaW5iZyJ9.eJLm17Os_drdiccVpazKIKELckOacqAQsuxbS1SYEXs
+
+<> 2021-05-14T065201.400.json
+
+###
+
+GET http://localhost:6600/web/v1/QueryUserGroup?group_id=11
+Authorization: BEARER eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVSUQiOjEsImV4cCI6MTYyMjk0NzAwOCwiaXNzIjoiaHR0cHM6Ly9naXRodWIuY29tL2NoYXNlU3BhY2UvYWRtaW5iZyJ9.eJLm17Os_drdiccVpazKIKELckOacqAQsuxbS1SYEXs
+
+###
+
+GET http://localhost:6600/web/v1/QueryUserGroup?group_id=11
+Authorization: BEARER eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVSUQiOjEsImV4cCI6MTYyMjk0NzAwOCwiaXNzIjoiaHR0cHM6Ly9naXRodWIuY29tL2NoYXNlU3BhY2UvYWRtaW5iZyJ9.eJLm17Os_drdiccVpazKIKELckOacqAQsuxbS1SYEXs
+
+<> 2021-05-06T112357.400.json
+
+###
+
+GET http://localhost:6600/web/v1/QueryUserGroup?group_id=11
+Authorization: BEARER eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVSUQiOjEsImV4cCI6MTYyMjk0NzAwOCwiaXNzIjoiaHR0cHM6Ly9naXRodWIuY29tL2NoYXNlU3BhY2UvYWRtaW5iZyJ9.eJLm17Os_drdiccVpazKIKELckOacqAQsuxbS1SYEXs
+
+<> 2021-05-06T112342.404.txt
+
+###
+
+GET http://localhost:6600/web/v1/QueryUserGroup?group_id=11
+Authorization: BEARER eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVSUQiOjEsImV4cCI6MTYyMjk0NzAwOCwiaXNzIjoiaHR0cHM6Ly9naXRodWIuY29tL2NoYXNlU3BhY2UvYWRtaW5iZyJ9.eJLm17Os_drdiccVpazKIKELckOacqAQsuxbS1SYEXs
+
+<> 2021-05-06T112340.404.txt
+
+###
+
+POST http://localhost:6600/web/v1/QueryUserGroup?group_id=11
+Authorization: BEARER eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVSUQiOjEsImV4cCI6MTYyMjk0NzAwOCwiaXNzIjoiaHR0cHM6Ly9naXRodWIuY29tL2NoYXNlU3BhY2UvYWRtaW5iZyJ9.eJLm17Os_drdiccVpazKIKELckOacqAQsuxbS1SYEXs
+
+<> 2021-05-06T112313.400.json
+
+###
+
+POST http://localhost:6600/web/v1/QueryUserGroup?group_id=11
+Authorization: BEARER eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVSUQiOjEsImV4cCI6MTYyMjk0NzAwOCwiaXNzIjoiaHR0cHM6Ly9naXRodWIuY29tL2NoYXNlU3BhY2UvYWRtaW5iZyJ9.eJLm17Os_drdiccVpazKIKELckOacqAQsuxbS1SYEXs
+
+<> 2021-05-06T112028.400.json
+
+###
+
+POST http://localhost:6600/web/v1/QueryUserGroup?group_id=1
+Authorization: BEARER eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVSUQiOjEsImV4cCI6MTYyMjk0NzAwOCwiaXNzIjoiaHR0cHM6Ly9naXRodWIuY29tL2NoYXNlU3BhY2UvYWRtaW5iZyJ9.eJLm17Os_drdiccVpazKIKELckOacqAQsuxbS1SYEXs
+
+<> 2021-05-06T111822.200.json
+
+###
+
+POST http://localhost:6600/web/v1/QueryUserGroup?group_id=1
+Authorization: BEARER eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVSUQiOjEsImV4cCI6MTYyMjk0NzAwOCwiaXNzIjoiaHR0cHM6Ly9naXRodWIuY29tL2NoYXNlU3BhY2UvYWRtaW5iZyJ9.eJLm17Os_drdiccVpazKIKELckOacqAQsuxbS1SYEXs
+
+<> 2021-05-06T111801.400.json
+
+###
+
+POST http://localhost:6600/web/v1/QueryUserGroup
+Content-Type: application/json
+Authorization: BEARER eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVSUQiOjEsImV4cCI6MTYyMjk0NzAwOCwiaXNzIjoiaHR0cHM6Ly9naXRodWIuY29tL2NoYXNlU3BhY2UvYWRtaW5iZyJ9.eJLm17Os_drdiccVpazKIKELckOacqAQsuxbS1SYEXs
+
+{
+  "group_id": 1
+}
+
+<> 2021-05-06T111741.400.json
+
+###
+
+GET http://localhost:6600/web/v1/QueryUser?uid=111
+Authorization: BEARER eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVSUQiOjEsImV4cCI6MTYyMjk0NzAwOCwiaXNzIjoiaHR0cHM6Ly9naXRodWIuY29tL2NoYXNlU3BhY2UvYWRtaW5iZyJ9.eJLm17Os_drdiccVpazKIKELckOacqAQsuxbS1SYEXs
+
+<> 2021-05-06T104112.400.json
+
+###
+
+GET http://localhost:6600/web/v1/QueryUser?uid=111
+Authorization: BEARER eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVSUQiOjEsImV4cCI6MTYyMjk0NzAwOCwiaXNzIjoiaHR0cHM6Ly9naXRodWIuY29tL2NoYXNlU3BhY2UvYWRtaW5iZyJ9.eJLm17Os_drdiccVpazKIKELckOacqAQsuxbS1SYEXs
+
+<> 2021-05-06T103930.200.json
+
+###
+
+GET http://localhost:6600/web/v1/QueryUser?uid=11
+Authorization: BEARER eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVSUQiOjEsImV4cCI6MTYyMjk0NzAwOCwiaXNzIjoiaHR0cHM6Ly9naXRodWIuY29tL2NoYXNlU3BhY2UvYWRtaW5iZyJ9.eJLm17Os_drdiccVpazKIKELckOacqAQsuxbS1SYEXs
+
+<> 2021-05-06T103836.200.json
+
+###
+
+POST http://localhost:6600/web/v1/UpdateUserGroup
+Content-Type: application/json
+Authorization: BEARER eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVSUQiOjEsImV4cCI6MTYyMjk0NzAwOCwiaXNzIjoiaHR0cHM6Ly9naXRodWIuY29tL2NoYXNlU3BhY2UvYWRtaW5iZyJ9.eJLm17Os_drdiccVpazKIKELckOacqAQsuxbS1SYEXs
+
+{
+  "group_id": 1,
+  "group_name": "x1",
+  "role_id": 0
+}
+
+<> 2021-05-06T102116.200.json
+
+###
+
+POST http://localhost:6600/web/v1/UpdateUserGroup
+Content-Type: application/json
+Authorization: BEARER eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVSUQiOjEsImV4cCI6MTYyMjk0NzAwOCwiaXNzIjoiaHR0cHM6Ly9naXRodWIuY29tL2NoYXNlU3BhY2UvYWRtaW5iZyJ9.eJLm17Os_drdiccVpazKIKELckOacqAQsuxbS1SYEXs
+
+{
+  "group_id": 1,
+  "group_name": "x1",
+  "role_id": 0
+}
+
+<> 2021-04-25T074148.200.json
+
+###
+
+POST http://localhost:6600/web/v1/UpdateUserGroup
+Content-Type: application/json
+Authorization: BEARER eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVSUQiOjEsImV4cCI6MTYyMjk0NzAwOCwiaXNzIjoiaHR0cHM6Ly9naXRodWIuY29tL2NoYXNlU3BhY2UvYWRtaW5iZyJ9.eJLm17Os_drdiccVpazKIKELckOacqAQsuxbS1SYEXs
+
+{
+  "group_id": 1,
+  "group_name": "x1",
+  "role_id": 0
+}
+
+<> 2021-04-25T074022.400.json
+
+###
+
+POST http://localhost:6600/web/v1/UpdateUserGroup
+Content-Type: application/json
+Authorization: BEARER eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVSUQiOjEsImV4cCI6MTYyMjk0NzAwOCwiaXNzIjoiaHR0cHM6Ly9naXRodWIuY29tL2NoYXNlU3BhY2UvYWRtaW5iZyJ9.eJLm17Os_drdiccVpazKIKELckOacqAQsuxbS1SYEXs
+
+{
+  "group_id": 1,
+  "group_name": "x1",
+  "role_id": 0
+}
+
+<> 2021-04-25T074019.200.json
+
+###
+
+POST http://localhost:6600/web/v1/UpdateUserGroup
+Content-Type: application/json
+Authorization: BEARER eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVSUQiOjEsImV4cCI6MTYyMjk0NzAwOCwiaXNzIjoiaHR0cHM6Ly9naXRodWIuY29tL2NoYXNlU3BhY2UvYWRtaW5iZyJ9.eJLm17Os_drdiccVpazKIKELckOacqAQsuxbS1SYEXs
+
+{
+  "group_name": "xx",
+  "role_id": 0
+}
+
+<> 2021-04-25T073937.400.json
+
+###
+
+POST http://localhost:6600/web/v1/UpdateUserGroup
+Content-Type: application/json
+Authorization: BEARER eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVSUQiOjEsImV4cCI6MTYyMjk0NzAwOCwiaXNzIjoiaHR0cHM6Ly9naXRodWIuY29tL2NoYXNlU3BhY2UvYWRtaW5iZyJ9.eJLm17Os_drdiccVpazKIKELckOacqAQsuxbS1SYEXs
+
+{
+  "group_name": "xx",
+  "role_id": 0
+}
+
+<> 2021-04-25T073802.400.json
+
+###
+
+POST http://localhost:6600/web/v1/UpdateUserGroup
+Content-Type: application/json
+Authorization: BEARER eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVSUQiOjEsImV4cCI6MTYyMjk0NzAwOCwiaXNzIjoiaHR0cHM6Ly9naXRodWIuY29tL2NoYXNlU3BhY2UvYWRtaW5iZyJ9.eJLm17Os_drdiccVpazKIKELckOacqAQsuxbS1SYEXs
+
+{
+  "group_name": "xx",
+  "role_id": 0
+}
+
+<> 2021-04-25T073316.400.json
+
+###
+
+POST http://localhost:6600/web/v1/UpdateUserGroup
+Content-Type: application/json
+Authorization: BEARER eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVSUQiOjEsImV4cCI6MTYyMjk0NzAwOCwiaXNzIjoiaHR0cHM6Ly9naXRodWIuY29tL2NoYXNlU3BhY2UvYWRtaW5iZyJ9.eJLm17Os_drdiccVpazKIKELckOacqAQsuxbS1SYEXs
+
+{
+  "group_name": "xx",
+  "role_id": 0
+}
+
+<> 2021-04-25T073036.400.json
+
+###
+
+POST http://localhost:6600/web/v1/UpdateUserGroup
+Content-Type: application/json
+Authorization: BEARER eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVSUQiOjEsImV4cCI6MTYyMjk0NzAwOCwiaXNzIjoiaHR0cHM6Ly9naXRodWIuY29tL2NoYXNlU3BhY2UvYWRtaW5iZyJ9.eJLm17Os_drdiccVpazKIKELckOacqAQsuxbS1SYEXs
+
+{
+  "group_name": "xx",
+  "role_id": 0
+}
+
+<> 2021-04-25T072138.400.json
+
+###
+
+POST http://localhost:6600/web/v1/NewUserGroup
+Content-Type: application/json
+Authorization: BEARER eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVSUQiOjEsImV4cCI6MTYyMjk0NzAwOCwiaXNzIjoiaHR0cHM6Ly9naXRodWIuY29tL2NoYXNlU3BhY2UvYWRtaW5iZyJ9.eJLm17Os_drdiccVpazKIKELckOacqAQsuxbS1SYEXs
+
+{
+  "group_name": "xx",
+  "role_id": 0
+}
+
+<> 2021-04-25T072121.400.json
+
+###
+
+POST http://localhost:6600/web/v1/NewUserGroup?pn=1&ps=5
+Content-Type: application/json
+Authorization: BEARER eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVSUQiOjEsImV4cCI6MTYyMjk0NzAwOCwiaXNzIjoiaHR0cHM6Ly9naXRodWIuY29tL2NoYXNlU3BhY2UvYWRtaW5iZyJ9.eJLm17Os_drdiccVpazKIKELckOacqAQsuxbS1SYEXs
+
+{
+  "group_name": "xx",
+  "role_id": 0
+}
+
+<> 2021-04-25T064355.400.json
+
+###
+
+POST http://localhost:6600/web/v1/NewUserGroup?pn=1&ps=5
+Content-Type: application/json
+Authorization: BEARER eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVSUQiOjEsImV4cCI6MTYyMjk0NzAwOCwiaXNzIjoiaHR0cHM6Ly9naXRodWIuY29tL2NoYXNlU3BhY2UvYWRtaW5iZyJ9.eJLm17Os_drdiccVpazKIKELckOacqAQsuxbS1SYEXs
+
+{
+  "group_name": "xx",
+  "role_id": 0
+}
+
+<> 2021-04-25T064044.400.json
+
+###
+
+POST http://localhost:6600/web/v1/NewUserGroup?pn=1&ps=5
+Content-Type: application/json
+Authorization: BEARER eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVSUQiOjEsImV4cCI6MTYyMjk0NzAwOCwiaXNzIjoiaHR0cHM6Ly9naXRodWIuY29tL2NoYXNlU3BhY2UvYWRtaW5iZyJ9.eJLm17Os_drdiccVpazKIKELckOacqAQsuxbS1SYEXs
+
+{
+  "group_name": "xx",
+  "role_id": 0
+}
+
+<> 2021-04-25T064043.200.json
+
+###
+
+POST http://localhost:6600/web/v1/NewUserGroup?pn=1&ps=5
+Content-Type: application/json
+Authorization: BEARER eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVSUQiOjEsImV4cCI6MTYyMjk0NzAwOCwiaXNzIjoiaHR0cHM6Ly9naXRodWIuY29tL2NoYXNlU3BhY2UvYWRtaW5iZyJ9.eJLm17Os_drdiccVpazKIKELckOacqAQsuxbS1SYEXs
+
+{
+  "group_name": "xx",
+  "role_id": 0
+}
+
+<> 2021-04-25T063710.200.json
+
+###
+
+POST http://localhost:6600/web/v1/NewUserGroup?pn=1&ps=5
+Content-Type: application/json
+Authorization: BEARER eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVSUQiOjEsImV4cCI6MTYyMjk0NzAwOCwiaXNzIjoiaHR0cHM6Ly9naXRodWIuY29tL2NoYXNlU3BhY2UvYWRtaW5iZyJ9.eJLm17Os_drdiccVpazKIKELckOacqAQsuxbS1SYEXs
+
+{
+  "group_name": "xx",
+  "role_id": 0
+}
+
+<> 2021-04-25T063706.200.json
+
+###
+
+POST http://localhost:6600/web/v1/SignIn
+Content-Type: application/json
+
+{
+  "account_id": "admin",
+  "pwd": "MTIz"
+}
+
+<> 2021-04-25T063648.200.json
+
+###
+
+POST http://localhost:6600/web/v1/NewUserGroup?pn=1&ps=5
+Content-Type: application/json
+Authorization: BEARER eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVSUQiOjEsImV4cCI6MTYxODUzNTE1NSwiaXNzIjoiaHR0cHM6Ly9naXRodWIuY29tL2NoYXNlU3BhY2UvYWRtaW5iZyJ9.DButaa2r7Orkd2S7a5YAod_0ieY9v9AT9DRVf6CVZuw
+
+{
+  "group_name": "xx",
+  "role_id": 0
+}
+
+<> 2021-04-25T063450.401.json
+
+###
+
+POST http://localhost:6600/web/v1/NewUserGroup?pn=1&ps=5
+Content-Type: application/json
+Authorization: BEARER eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVSUQiOjEsImV4cCI6MTYxODUzNTE1NSwiaXNzIjoiaHR0cHM6Ly9naXRodWIuY29tL2NoYXNlU3BhY2UvYWRtaW5iZyJ9.DButaa2r7Orkd2S7a5YAod_0ieY9v9AT9DRVf6CVZuw
+
+{
+  "group_name": "xx",
+  "role_id": 0
+}
+
+<> 2021-03-17T014249.200.json
+
+###
+
+POST http://localhost:6600/web/v1/NewUserGroup?pn=1&ps=5
+Content-Type: application/json
+Authorization: BEARER eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVSUQiOjEsImV4cCI6MTYxODUzNTE1NSwiaXNzIjoiaHR0cHM6Ly9naXRodWIuY29tL2NoYXNlU3BhY2UvYWRtaW5iZyJ9.DButaa2r7Orkd2S7a5YAod_0ieY9v9AT9DRVf6CVZuw
+
+{
+  "group_name": "xx",
+  "role_id": 1
+}
+
+<> 2021-03-17T014242.400.json
+
+###
+
+POST http://localhost:6600/web/v1/NewUserGroup?pn=1&ps=5
+Content-Type: application/json
+Authorization: BEARER eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVSUQiOjEsImV4cCI6MTYxODUzNTE1NSwiaXNzIjoiaHR0cHM6Ly9naXRodWIuY29tL2NoYXNlU3BhY2UvYWRtaW5iZyJ9.DButaa2r7Orkd2S7a5YAod_0ieY9v9AT9DRVf6CVZuw
+
+{
+  "group_name": "xx",
+  "role_id": 1
+}
+
+<> 2021-03-17T014235.400.json
+
+###
+
+POST http://localhost:6600/web/v1/NewUserGroup?pn=1&ps=5
+Content-Type: application/json
+Authorization: BEARER eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVSUQiOjEsImV4cCI6MTYxODUzNTE1NSwiaXNzIjoiaHR0cHM6Ly9naXRodWIuY29tL2NoYXNlU3BhY2UvYWRtaW5iZyJ9.DButaa2r7Orkd2S7a5YAod_0ieY9v9AT9DRVf6CVZuw
+
+{
+  "group_name": "xx",
+  "role_id": 1
+}
+
+<> 2021-03-17T014051.400.json
+
+###
+
+POST http://localhost:6600/web/v1/NewUserGroup?pn=1&ps=5
+Content-Type: application/json
+Authorization: BEARER eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVSUQiOjEsImV4cCI6MTYxODUzNTE1NSwiaXNzIjoiaHR0cHM6Ly9naXRodWIuY29tL2NoYXNlU3BhY2UvYWRtaW5iZyJ9.DButaa2r7Orkd2S7a5YAod_0ieY9v9AT9DRVf6CVZuw
+
+{
+  "group_name": "xx",
+  "role_id": 0
+}
+
+<> 2021-03-17T014036.200.json
+
+###
+
+POST http://localhost:6600/web/v1/NewUserGroup?pn=1&ps=5
+Content-Type: application/json
+Authorization: BEARER eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVSUQiOjEsImV4cCI6MTYxODUzNTE1NSwiaXNzIjoiaHR0cHM6Ly9naXRodWIuY29tL2NoYXNlU3BhY2UvYWRtaW5iZyJ9.DButaa2r7Orkd2S7a5YAod_0ieY9v9AT9DRVf6CVZuw
+
+{
+  "group_name": "xx",
+  "role_id": 11
+}
+
+<> 2021-03-17T014026.400.json
+
+###
+
+POST http://localhost:6600/web/v1/NewUserGroup?pn=1&ps=5
+Content-Type: application/json
+Authorization: BEARER eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVSUQiOjEsImV4cCI6MTYxODUzNTE1NSwiaXNzIjoiaHR0cHM6Ly9naXRodWIuY29tL2NoYXNlU3BhY2UvYWRtaW5iZyJ9.DButaa2r7Orkd2S7a5YAod_0ieY9v9AT9DRVf6CVZuw
+
+{
+  "group_name": "xx",
+  "role_id": 11
+}
+
+<> 2021-03-17T013917.400.json
+
+###
+
+POST http://localhost:6600/web/v1/NewUserGroup?pn=1&ps=5
+Content-Type: application/json
+Authorization: BEARER eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVSUQiOjMsImV4cCI6MTYxOTQ2ODkyMiwiaXNzIjoiaHR0cHM6Ly9naXRodWIuY29tL2NoYXNlU3BhY2UvYWRtaW5iZyJ9.tsq2qCKp2pj35YJokJkq9-oSgZl1xgsuOGBT-94yEX4
+
+{
+  "group_name": "xx",
+  "role_id": 11
+}
+
+<> 2021-03-17T013907.403.json
+
+###
+
+GET http://localhost:6600/web/v1/GetUserList?pn=1&ps=5
+Authorization: BEARER eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVSUQiOjEsImV4cCI6MTYxODUzNTE1NSwiaXNzIjoiaHR0cHM6Ly9naXRodWIuY29tL2NoYXNlU3BhY2UvYWRtaW5iZyJ9.DButaa2r7Orkd2S7a5YAod_0ieY9v9AT9DRVf6CVZuw
+
+<> 2021-03-16T023406.200.json
+
+###
+
+GET http://localhost:6600/web/v1/GetUserList?pn=1&ps=5
+Authorization: BEARER eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVSUQiOjMsImV4cCI6MTYxOTQ2ODkyMiwiaXNzIjoiaHR0cHM6Ly9naXRodWIuY29tL2NoYXNlU3BhY2UvYWRtaW5iZyJ9.tsq2qCKp2pj35YJokJkq9-oSgZl1xgsuOGBT-94yEX4
+
+<> 2021-03-16T023239.403.json
+
+###
+

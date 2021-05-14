@@ -47,7 +47,7 @@ Coming...
 -->
 
 ## Develop progress
-It's been a few months.
+It's started at 2020/12/10.
 
 Detailed APIs:
 -   SignIn related
@@ -61,18 +61,18 @@ Detailed APIs:
         -   ✔️ /UpdateUser 
         -   ✔️ /QueryUser
         -   ✔️ /GetUserList(Only super administrator can call it in general.)
+        -   /DeleteUser(But the data will remain.)
     -   UserGroup management
         -   ✔️ /NewUserGroup
-        -   ✔️ /UpdateUserGroup
+        -   ✔️ /UpdateUserGroup(Support editing and deleting. Be careful Default-Group can't be deleted)
         -   ✔️ /QueryUserGroup
-        -   /GetUserGroupList
-        -   /DeleteUserGroup(Default Group can't be deleted)
+        -   ✔️ /GetUserGroupList(Only super administrator can call it in general.)
     -   Role management
         -   /NewRole
         -   /UpdateRole
         -   /GetRole
         -   /GetRoleList
-        -   /DeleteRole(Default Role can't be deleted)
+        -   /DeleteRole(Default-Role can't be deleted)
     -   Menu&Function management(Contains Binding management of functions and APIs)
         -   ✔️ /NewMenu
         -   ✔️ /GetMenuList(Contain child-menus && functions of leaf-menus)

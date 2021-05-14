@@ -19,6 +19,7 @@ var (
 	ErrNothingUpdated         = errors.New("[nothing updated(:may be some invalid params)]")
 	ErrNothingDeleted         = errors.New("[nothing deleted]")
 	ErrInvalidSplitPageParams = errors.New("[invalid split page params]")
+	ErrReservedResource       = errors.New("[warning: reserved resource]")
 )
 
 // Business error

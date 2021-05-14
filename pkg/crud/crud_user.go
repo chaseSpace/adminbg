@@ -5,7 +5,6 @@ import (
 	"adminbg/cproto"
 	"adminbg/pkg/g"
 	"adminbg/pkg/model"
-	"adminbg/util"
 	"adminbg/util/_gorm"
 	"fmt"
 	"github.com/pkg/errors"
@@ -140,9 +139,6 @@ func UpdateUser(userIdt UserIdentity, alter *cproto.UpdateUserReq) error {
 
 // Used by only administrator
 func GetUserList(pageNum, pageSize uint16, orderByParams ...OrderByOption) ([]*model.User, int64, error) {
-	if err := util.CheckSplitPageParams(pageNum, pageSize); err != nil {
-		return nil, 0, err
-	}
 	var total int64
 	err := g.MySQL.Model(new(model.User)).Count(&total).Error
 	if err != nil {

@@ -33,6 +33,7 @@ func Init(engine *gin.Engine) {
 		v1AuthAPI.POST("/NewUserGroup", handler.NewUserGroup)
 		v1AuthAPI.POST("/UpdateUserGroup", handler.UpdateUserGroup)
 		v1AuthAPI.GET("/QueryUserGroup", handler.QueryUserGroup)
+		v1AuthAPI.GET("/GetUserGroupList", handler.GetUserGroupList)
 
 		v1AuthAPI.POST("/NewMenu", handler.NewMenu)
 		v1AuthAPI.GET("/GetMenuList", handler.GetMenuList)

@@ -21,14 +21,14 @@ type AdminBgServer struct {
 
 func (a *AdminBgServer) Init() {
 	log.Infoln("<------------  ADMIN BG is initiating  ----------->")
-	ginEngine := gin.New()
-	ginEngine.Use(gin.Logger(), mw.Recovery)
+	eng := gin.New()
+	eng.Use(gin.Logger(), mw.Recovery)
 
-	router.Init(ginEngine)
+	router.Init(eng)
 
 	a.httpSrv = &http.Server{
 		Addr:    fmt.Sprintf("%s:%d", g.Conf.AppAdminbg.Host, g.Conf.AppAdminbg.Port),
-		Handler: ginEngine,
+		Handler: eng,
 	}
 }
 

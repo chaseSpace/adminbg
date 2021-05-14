@@ -16,6 +16,7 @@ type Group struct {
 }
 
 type UpdateUserGroupReq struct {
+	Delete bool `json:"delete"` // if true, server will delete usergroup for this group_id, other params would be ignored.
 	Group
 }
 
@@ -28,4 +29,17 @@ type QueryUserGroupReq struct {
 
 type QueryUserGroupRsp struct {
 	*Group // *XXX means this field is pointer type, it might be null.
+}
+
+type GetUserGroupListReq struct {
+	PageNum  uint16 `form:"pn"`
+	PageSize uint16 `form:"ps"`
+}
+
+type GetUserGroupListRsp struct {
+	List  []*Group `json:"list"` // Order by CreatedAt by default.
+	Total int64    `json:"total"`
+}
+
+type DeleteUserGroupReq struct {
 }

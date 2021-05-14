@@ -29,3 +29,11 @@ func QueryUserGroup(c *gin.Context) {
 	rsp, err := QueryUserGroupLogic(&req)
 	common.SetRsp(c, err, rsp)
 }
+
+func GetUserGroupList(c *gin.Context) {
+	var req cproto.GetUserGroupListReq
+	common.MustExtractReqParams(c, &req)
+
+	rsp, err := GetUserGroupListLogic(&req)
+	common.SetRsp(c, err, rsp)
+}

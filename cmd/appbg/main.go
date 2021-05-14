@@ -11,7 +11,7 @@ import (
 )
 
 var (
-	cfgFile = flag.String("cfgFile", "deploy/config/conf.dev.yml", "")
+	cfgFile = flag.String("cfgFile", "deployment/dev/conf.yml", "")
 )
 
 func init() {

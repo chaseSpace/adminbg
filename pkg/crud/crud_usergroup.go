@@ -34,6 +34,20 @@ func InsertUserGroup(group *cproto.Group) error {
 	return nil
 }
 
+func DelUserGroup(gid int32) error {
+	if gid == model.DefaultUserGroupId {
+		return cerror.ErrReservedResource
+	}
+	exec := g.MySQL.Delete(&model.UserGroup{}, "group_id=?", gid)
+	if exec.Error != nil {
+		return cerror.WrapMysqlErr(exec.Error)
+	}
+	if exec.RowsAffected == 0 {
+		return cerror.ErrResourceNotFound
+	}
+	return nil
+}
+
 func UpdateUserGroup(group *cproto.Group) error {
 	role, err := QueryRole(group.RoleId)
 	if err != nil {
@@ -71,4 +85,28 @@ func QueryUserGroup(gid int32) (*cproto.Group, error) {
 		return nil, fmt.Errorf("group_id:%d not found", gid)
 	}
 	return row.Proto(), nil
+}
+
+// Used by only administrator
+func GetUserGroupList(pageNum, pageSize uint16, orderByParams ...OrderByOption) ([]*model.UserGroup, int64, error) {
+	var total int64
+	err := g.MySQL.Model(new(model.UserGroup)).Count(&total).Error
+	if err != nil {
+		return nil, 0, cerror.WrapMysqlErr(err)
+	}
+	if total <= int64((pageNum-1)*pageSize) {
+		return nil, total, nil
+	}
+	list := make([]*model.UserGroup, 0)
+	offset := (pageNum - 1) * pageSize
+
+	order := "created_at desc"
+	if len(orderByParams) > 0 {
+		order = GenOrderByClause(orderByParams...)
+	}
+	err = g.MySQL.Order(order).Offset(int(offset)).Limit(int(pageSize)).Find(&list).Error
+	if err != nil {
+		return nil, 0, cerror.WrapMysqlErr(err)
+	}
+	return list, total, nil
 }
