@@ -11,7 +11,7 @@ import (
 
 func InsertNewMenu(menu *model.MenuAndFunction) error {
 	menu.Type = cproto.Menu
-	if err := menu.Check(); err != nil {
+	if err := menu.AttrCheck(); err != nil {
 		return err
 	}
 	// The premise of insert data is either parent_id equal to 100 or an
@@ -56,7 +56,7 @@ func InsertNewMenu(menu *model.MenuAndFunction) error {
 
 func UpdateMenu(menu *model.MenuAndFunction) error {
 	menu.Type = cproto.Menu
-	if err := menu.Check(); err != nil {
+	if err := menu.AttrCheck(); err != nil {
 		return err
 	}
 	updateSQL := fmt.Sprintf(`
@@ -113,7 +113,7 @@ func DeleteMenus(ids []int32) error {
 
 func InsertNewFunc(fc *model.MenuAndFunction) error {
 	fc.Type = cproto.Function
-	if err := fc.Check(); err != nil {
+	if err := fc.AttrCheck(); err != nil {
 		return err
 	}
 	// Functions must be created under the leaf-menu, so we must limit menu's level
@@ -144,7 +144,7 @@ func InsertNewFunc(fc *model.MenuAndFunction) error {
 			return insert.Error
 		}
 		if insert.RowsAffected == 0 {
-			// Check `insertSQL` above for how `RowsAffected` is 0
+			// AttrCheck `insertSQL` above for how `RowsAffected` is 0
 			return fmt.Errorf("invalid parent_id %d", fc.ParentId)
 		}
 		id, err := LastInsertId(tx)
@@ -159,7 +159,7 @@ func InsertNewFunc(fc *model.MenuAndFunction) error {
 
 func UpdateFunction(fc *model.MenuAndFunction) error {
 	fc.Type = cproto.Function
-	if err := fc.Check(); err != nil {
+	if err := fc.AttrCheck(); err != nil {
 		return err
 	}
 	updateSQL := fmt.Sprintf(`

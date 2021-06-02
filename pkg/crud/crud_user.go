@@ -8,7 +8,6 @@ import (
 	"adminbg/util/_gorm"
 	"fmt"
 	"github.com/pkg/errors"
-	"gorm.io/gorm"
 	"gorm.io/gorm/clause"
 )
 
@@ -91,15 +90,15 @@ func InsertUser(entity *model.UserBase) error {
 }
 
 func DeleteUser(userIdt UserIdentity) (bool, error) {
-	var ret *gorm.DB
+	var exec = g.MySQL
 	if userIdt.Uid != 0 {
-		ret = g.MySQL.Delete(new(model.User), "uid=?", userIdt.Uid)
+		exec = exec.Delete(new(model.User), "uid=?", userIdt.Uid)
 	} else if userIdt.AccountId != "" {
-		ret = g.MySQL.Delete(new(model.User), "account_id=?", userIdt.AccountId)
+		exec = g.MySQL.Delete(new(model.User), "account_id=?", userIdt.AccountId)
 	} else {
-		return false, nil
+		return false, cerror.ErrParams
 	}
-	return ret.RowsAffected == 1, cerror.WrapMysqlErr(ret.Error)
+	return exec.RowsAffected == 1, cerror.WrapMysqlErr(exec.Error)
 }
 
 // Update user info, that is not permitted to modify account_id by default.

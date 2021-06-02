@@ -37,7 +37,7 @@ func SignInLogic(req *cproto.SignInReq) (*cproto.SignInRsp, error) {
 	return rsp, nil
 }
 
-func SignOutLogic(req *cproto.SignOutReq) (*cproto.SignOutRsp, error) {
+func SignOutLogic(_ *cproto.SignOutReq) (*cproto.SignOutRsp, error) {
 	// Doing some sign-out operations, but note:
 	// In backend, we can't make jwt token expired manually, except that we store it in the cache.
 	// With that, we lose the advantage of jwt.
@@ -50,7 +50,7 @@ func NewUserLogic(req *cproto.NewUserReq) (*cproto.NewUserRsp, error) {
 		Uid:    999,
 		Sex:    req.Sex,
 		Status: req.Status,
-	}).Check()
+	}).AttrCheck()
 	if err != nil {
 		return nil, err
 	}
@@ -83,11 +83,11 @@ func UpdateUserLogic(req *cproto.UpdateUserReq) (*cproto.UpdateUserRsp, error) {
 	rsp := new(cproto.UpdateUserRsp)
 
 	if req.Delete {
-		foundAndDeleted, err := crud.DeleteUser(crud.UserIdentity{Uid: req.Uid})
+		hits, err := crud.DeleteUser(crud.UserIdentity{Uid: req.Uid})
 		if err != nil {
 			return nil, err
 		}
-		if !foundAndDeleted {
+		if !hits {
 			return nil, errors.Wrap(cerror.ErrParams, fmt.Sprintf("uid:%d not found", req.Uid))
 		}
 		return rsp, nil
@@ -105,7 +105,7 @@ func UpdateUserLogic(req *cproto.UpdateUserReq) (*cproto.UpdateUserRsp, error) {
 		Uid:    999, // feel free, the key is below fields.
 		Sex:    req.Sex,
 		Status: req.Status,
-	}).Check()
+	}).AttrCheck()
 	if err != nil {
 		return nil, err
 	}

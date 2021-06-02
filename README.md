@@ -61,7 +61,7 @@ Detailed APIs:
         -   ✔️ /UpdateUser 
         -   ✔️ /QueryUser
         -   ✔️ /GetUserList(Only super administrator can call it in general.)
-        -   /DeleteUser(But the data will remain.)
+        -   /DeleteUser(But the data will remain in the DB.)
     -   UserGroup management
         -   ✔️ /NewUserGroup
         -   ✔️ /UpdateUserGroup(Support editing and deleting. Be careful Default-Group can't be deleted)

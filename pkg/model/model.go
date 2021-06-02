@@ -63,7 +63,7 @@ func (u *User) Proto() *cproto.User {
 	}
 }
 
-func (u *UserBase) Check() error {
+func (u *UserBase) AttrCheck() error {
 	if u.Uid == 0 {
 		return errors.Wrap(cerror.ErrParams, "invalid uid")
 	}
@@ -146,7 +146,7 @@ type MenuAndFunction struct {
 func (*MenuAndFunction) TableName() string {
 	return TablePrefix + "menu_and_function"
 }
-func (r *MenuAndFunction) Check() error {
+func (r *MenuAndFunction) AttrCheck() error {
 	switch r.Type {
 	case cproto.Menu:
 		if !(r.Level > 0 && r.Level <= MaxMenuLevel) {
@@ -217,6 +217,6 @@ func (*OperationLog) TableName() string {
 	return TablePrefix + "operation_log"
 }
 
-func MustInit(db *gorm.DB) {
+func MustInit(_ *gorm.DB) {
 	// We should execute `DDL.sql` to migrate tables' schema, not in runtime.
 }
