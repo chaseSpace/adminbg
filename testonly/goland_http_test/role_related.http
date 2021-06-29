@@ -1,0 +1,18 @@
+POST {{addr}}/web/v1/NewRole
+Content-Type: application/json
+Authorization: BEARER {{admin_token}}
+
+{
+  "role_name": "x"
+}
+
+###
+POST {{addr}}/web/v1/UpdateRole
+Content-Type: application/json
+Authorization: BEARER {{admin_token}}
+
+{
+  "role_id": 2,
+  "role_name": "x1",
+  "delete": true
+}

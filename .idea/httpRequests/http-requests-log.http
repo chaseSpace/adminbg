@@ -1,3 +1,368 @@
+POST http://localhost:6600/web/v1/UpdateRole
+Content-Type: application/json
+Authorization: BEARER eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVSUQiOjEsImV4cCI6MTYyODU1Mzc5NCwiaXNzIjoiaHR0cHM6Ly9naXRodWIuY29tL2NoYXNlU3BhY2UvYWRtaW5iZyJ9.rWklqvOuDpWnubPxj9uh6Aq1RxdoOx4vS6zlKmEsH9M
+
+{
+  "role_id": 2,
+  "role_name": "x1",
+  "delete": true
+}
+
+<> 2021-06-29T064359.200.json
+
+###
+
+POST http://localhost:6600/web/v1/UpdateRole
+Content-Type: application/json
+Authorization: BEARER eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVSUQiOjEsImV4cCI6MTYyODU1Mzc5NCwiaXNzIjoiaHR0cHM6Ly9naXRodWIuY29tL2NoYXNlU3BhY2UvYWRtaW5iZyJ9.rWklqvOuDpWnubPxj9uh6Aq1RxdoOx4vS6zlKmEsH9M
+
+{
+  "role_id": 2,
+  "role_name": "x1",
+  "delete": true
+}
+
+<> 2021-06-29T064358.200.json
+
+###
+
+POST http://localhost:6600/web/v1/UpdateRole
+Content-Type: application/json
+Authorization: BEARER eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVSUQiOjEsImV4cCI6MTYyODU1Mzc5NCwiaXNzIjoiaHR0cHM6Ly9naXRodWIuY29tL2NoYXNlU3BhY2UvYWRtaW5iZyJ9.rWklqvOuDpWnubPxj9uh6Aq1RxdoOx4vS6zlKmEsH9M
+
+{
+  "role_id": 2,
+  "role_name": "x1",
+  "delete": true
+}
+
+<> 2021-06-29T064357.200.json
+
+###
+
+POST http://localhost:6600/web/v1/UpdateRole
+Content-Type: application/json
+Authorization: BEARER eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVSUQiOjEsImV4cCI6MTYyODU1Mzc5NCwiaXNzIjoiaHR0cHM6Ly9naXRodWIuY29tL2NoYXNlU3BhY2UvYWRtaW5iZyJ9.rWklqvOuDpWnubPxj9uh6Aq1RxdoOx4vS6zlKmEsH9M
+
+{
+  "role_id": 2,
+  "role_name": "x1",
+  "delete": true
+}
+
+<> 2021-06-29T064334.400.json
+
+###
+
+POST http://localhost:6600/web/v1/UpdateRole
+Content-Type: application/json
+Authorization: BEARER eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVSUQiOjEsImV4cCI6MTYyODU1Mzc5NCwiaXNzIjoiaHR0cHM6Ly9naXRodWIuY29tL2NoYXNlU3BhY2UvYWRtaW5iZyJ9.rWklqvOuDpWnubPxj9uh6Aq1RxdoOx4vS6zlKmEsH9M
+
+{
+  "role_id": 2,
+  "role_name": "x1",
+  "delete": false
+}
+
+<> 2021-06-29T063911.200.json
+
+###
+
+POST http://localhost:6600/web/v1/UpdateRole
+Content-Type: application/json
+Authorization: BEARER eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVSUQiOjEsImV4cCI6MTYyODU1Mzc5NCwiaXNzIjoiaHR0cHM6Ly9naXRodWIuY29tL2NoYXNlU3BhY2UvYWRtaW5iZyJ9.rWklqvOuDpWnubPxj9uh6Aq1RxdoOx4vS6zlKmEsH9M
+
+{
+  "role_id": 2,
+  "role_name": "x1",
+  "delete": false
+}
+
+<> 2021-06-29T063838.200.json
+
+###
+
+POST http://localhost:6600/web/v1/UpdateRole
+Content-Type: application/json
+Authorization: BEARER eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVSUQiOjEsImV4cCI6MTYyODU1Mzc5NCwiaXNzIjoiaHR0cHM6Ly9naXRodWIuY29tL2NoYXNlU3BhY2UvYWRtaW5iZyJ9.rWklqvOuDpWnubPxj9uh6Aq1RxdoOx4vS6zlKmEsH9M
+
+{
+  "role_id": 2,
+  "role_name": "x1",
+  "delete": false
+}
+
+<> 2021-06-29T063836.200.json
+
+###
+
+POST http://localhost:6600/web/v1/UpdateRole
+Content-Type: application/json
+Authorization: BEARER eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVSUQiOjEsImV4cCI6MTYyODU1Mzc5NCwiaXNzIjoiaHR0cHM6Ly9naXRodWIuY29tL2NoYXNlU3BhY2UvYWRtaW5iZyJ9.rWklqvOuDpWnubPxj9uh6Aq1RxdoOx4vS6zlKmEsH9M
+
+{
+  "role_id": 11,
+  "role_name": "x",
+  "delete": false
+}
+
+<> 2021-06-29T063507.200.json
+
+###
+
+POST http://localhost:6600/web/v1/UpdateRole
+Content-Type: application/json
+Authorization: BEARER eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVSUQiOjEsImV4cCI6MTYyODU1Mzc5NCwiaXNzIjoiaHR0cHM6Ly9naXRodWIuY29tL2NoYXNlU3BhY2UvYWRtaW5iZyJ9.rWklqvOuDpWnubPxj9uh6Aq1RxdoOx4vS6zlKmEsH9M
+
+{
+  "role_id": 11,
+  "role_name": "x",
+  "delete": false
+}
+
+<> 2021-06-29T063302.200.json
+
+###
+
+POST http://localhost:6600/web/v1/UpdateRole
+Content-Type: application/json
+Authorization: BEARER eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVSUQiOjEsImV4cCI6MTYyODU1Mzc5NCwiaXNzIjoiaHR0cHM6Ly9naXRodWIuY29tL2NoYXNlU3BhY2UvYWRtaW5iZyJ9.rWklqvOuDpWnubPxj9uh6Aq1RxdoOx4vS6zlKmEsH9M
+
+{
+  "role_id": 11,
+  "role_name": "x",
+  "delete": false
+}
+
+<> 2021-06-29T062932.200.json
+
+###
+
+POST http://localhost:6600/web/v1/UpdateRole
+Content-Type: application/json
+Authorization: BEARER eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVSUQiOjEsImV4cCI6MTYyODU1Mzc5NCwiaXNzIjoiaHR0cHM6Ly9naXRodWIuY29tL2NoYXNlU3BhY2UvYWRtaW5iZyJ9.rWklqvOuDpWnubPxj9uh6Aq1RxdoOx4vS6zlKmEsH9M
+
+{
+  "role_id": 11,
+  "role_name": "x",
+  "delete": false
+}
+
+<> 2021-06-29T062924.200.json
+
+###
+
+POST http://localhost:6600/web/v1/UpdateRole
+Content-Type: application/json
+Authorization: BEARER eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVSUQiOjEsImV4cCI6MTYyODU1Mzc5NCwiaXNzIjoiaHR0cHM6Ly9naXRodWIuY29tL2NoYXNlU3BhY2UvYWRtaW5iZyJ9.rWklqvOuDpWnubPxj9uh6Aq1RxdoOx4vS6zlKmEsH9M
+
+{
+  "role_id": 11,
+  "role_name": "x",
+  "delete": true
+}
+
+<> 2021-06-29T062910.200.json
+
+###
+
+POST http://localhost:6600/web/v1/UpdateRole
+Content-Type: application/json
+Authorization: BEARER eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVSUQiOjEsImV4cCI6MTYyODU1Mzc5NCwiaXNzIjoiaHR0cHM6Ly9naXRodWIuY29tL2NoYXNlU3BhY2UvYWRtaW5iZyJ9.rWklqvOuDpWnubPxj9uh6Aq1RxdoOx4vS6zlKmEsH9M
+
+{
+  "role_id": 1,
+  "role_name": "x",
+  "delete": true
+}
+
+<> 2021-06-29T062905.400.json
+
+###
+
+POST http://localhost:6600/web/v1/UpdateRole
+Content-Type: application/json
+Authorization: BEARER eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVSUQiOjEsImV4cCI6MTYyODU1Mzc5NCwiaXNzIjoiaHR0cHM6Ly9naXRodWIuY29tL2NoYXNlU3BhY2UvYWRtaW5iZyJ9.rWklqvOuDpWnubPxj9uh6Aq1RxdoOx4vS6zlKmEsH9M
+
+{
+  "role_id": 1,
+  "role_name": "x",
+  "delete": true
+}
+
+<> 2021-06-29T062717.400.json
+
+###
+
+POST http://localhost:6600/web/v1/UpdateRole
+Content-Type: application/json
+Authorization: BEARER eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVSUQiOjEsImV4cCI6MTYyODU1Mzc5NCwiaXNzIjoiaHR0cHM6Ly9naXRodWIuY29tL2NoYXNlU3BhY2UvYWRtaW5iZyJ9.rWklqvOuDpWnubPxj9uh6Aq1RxdoOx4vS6zlKmEsH9M
+
+{
+  "role_id": 1,
+  "role_name": "x",
+  "delete": true
+}
+
+<> 2021-06-29T062716.400.json
+
+###
+
+POST http://localhost:6600/web/v1/UpdateRole
+Content-Type: application/json
+Authorization: BEARER eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVSUQiOjEsImV4cCI6MTYyODU1Mzc5NCwiaXNzIjoiaHR0cHM6Ly9naXRodWIuY29tL2NoYXNlU3BhY2UvYWRtaW5iZyJ9.rWklqvOuDpWnubPxj9uh6Aq1RxdoOx4vS6zlKmEsH9M
+
+{
+  "role_id": 1,
+  "role_name": "x",
+  "delete": true
+}
+
+<> 2021-06-29T062708.400.json
+
+###
+
+POST http://localhost:6600/web/v1/UpdateRole
+Content-Type: application/json
+Authorization: BEARER eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVSUQiOjEsImV4cCI6MTYyODU1Mzc5NCwiaXNzIjoiaHR0cHM6Ly9naXRodWIuY29tL2NoYXNlU3BhY2UvYWRtaW5iZyJ9.rWklqvOuDpWnubPxj9uh6Aq1RxdoOx4vS6zlKmEsH9M
+
+{
+  "role_id": 1,
+  "role_name": "x",
+  "delete": true
+}
+
+<> 2021-06-29T062449.200.json
+
+###
+
+POST http://localhost:6600/web/v1/UpdateRole
+Content-Type: application/json
+Authorization: BEARER eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVSUQiOjEsImV4cCI6MTYyODU1Mzc5NCwiaXNzIjoiaHR0cHM6Ly9naXRodWIuY29tL2NoYXNlU3BhY2UvYWRtaW5iZyJ9.rWklqvOuDpWnubPxj9uh6Aq1RxdoOx4vS6zlKmEsH9M
+
+{
+  "role_id": 1,
+  "role_name": "x",
+  "delete": true
+}
+
+<> 2021-06-29T062446.200.json
+
+###
+
+POST http://localhost:6600/web/v1/UpdateRole
+Content-Type: application/json
+Authorization: BEARER eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVSUQiOjEsImV4cCI6MTYyODU1Mzc5NCwiaXNzIjoiaHR0cHM6Ly9naXRodWIuY29tL2NoYXNlU3BhY2UvYWRtaW5iZyJ9.rWklqvOuDpWnubPxj9uh6Aq1RxdoOx4vS6zlKmEsH9M
+
+{
+  "role_id": 1,
+  "role_name": "x",
+  "Delete": false
+}
+
+<> 2021-06-29T062309.400.json
+
+###
+
+POST http://localhost:6600/web/v1/UpdateRole
+Content-Type: application/json
+Authorization: BEARER eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVSUQiOjEsImV4cCI6MTYyODU1Mzc5NCwiaXNzIjoiaHR0cHM6Ly9naXRodWIuY29tL2NoYXNlU3BhY2UvYWRtaW5iZyJ9.rWklqvOuDpWnubPxj9uh6Aq1RxdoOx4vS6zlKmEsH9M
+
+{
+  "role_id": 1,
+  "role_name": "x",
+  "delete": false
+}
+
+<> 2021-06-29T062216.400.json
+
+###
+
+POST http://localhost:6600/web/v1/UpdateRole
+Content-Type: application/json
+Authorization: BEARER eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVSUQiOjEsImV4cCI6MTYyODU1Mzc5NCwiaXNzIjoiaHR0cHM6Ly9naXRodWIuY29tL2NoYXNlU3BhY2UvYWRtaW5iZyJ9.rWklqvOuDpWnubPxj9uh6Aq1RxdoOx4vS6zlKmEsH9M
+
+{
+  "role_id": 1,
+  "role_name": "x"
+}
+
+<> 2021-06-29T062149.400.json
+
+###
+
+POST http://localhost:6600/web/v1/NewRole
+Content-Type: application/json
+Authorization: BEARER eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVSUQiOjEsImV4cCI6MTYyODU1Mzc5NCwiaXNzIjoiaHR0cHM6Ly9naXRodWIuY29tL2NoYXNlU3BhY2UvYWRtaW5iZyJ9.rWklqvOuDpWnubPxj9uh6Aq1RxdoOx4vS6zlKmEsH9M
+
+{
+  "role_name": ""
+}
+
+<> 2021-06-29T040921.400.json
+
+###
+
+POST http://localhost:6600/web/v1/NewRole
+Content-Type: application/json
+Authorization: BEARER eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVSUQiOjEsImV4cCI6MTYyODU1Mzc5NCwiaXNzIjoiaHR0cHM6Ly9naXRodWIuY29tL2NoYXNlU3BhY2UvYWRtaW5iZyJ9.rWklqvOuDpWnubPxj9uh6Aq1RxdoOx4vS6zlKmEsH9M
+
+{
+  "role_name": "x"
+}
+
+<> 2021-06-29T040512.200.json
+
+###
+
+POST http://localhost:6600/web/v1/NewRole
+Content-Type: application/json
+Authorization: BEARER eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVSUQiOjEsImV4cCI6MTYyODU1Mzc5NCwiaXNzIjoiaHR0cHM6Ly9naXRodWIuY29tL2NoYXNlU3BhY2UvYWRtaW5iZyJ9.rWklqvOuDpWnubPxj9uh6Aq1RxdoOx4vS6zlKmEsH9M
+
+{
+  "role_name": "x"
+}
+
+<> 2021-06-29T040342.400.json
+
+###
+
+POST http://localhost:6600/web/v1/SignIn
+Content-Type: application/json
+
+{
+  "account_id": "admin",
+  "pwd": "MTIz"
+}
+
+<> 2021-06-29T040331.200.json
+
+###
+
+POST http://localhost:6600/web/v1/SignIn
+Content-Type: application/json
+
+{
+  "account_id": "admin",
+  "pwd": "MTIz"
+}
+
+<> 2021-06-29T040314.200.json
+
+###
+
+POST http://localhost:6600/web/v1/NewRole
+Content-Type: application/json
+Authorization: BEARER eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVSUQiOjEsImV4cCI6MTYyMjk0NzAwOCwiaXNzIjoiaHR0cHM6Ly9naXRodWIuY29tL2NoYXNlU3BhY2UvYWRtaW5iZyJ9.eJLm17Os_drdiccVpazKIKELckOacqAQsuxbS1SYEXs
+
+{
+  "role_name": "x"
+}
+
+<> 2021-06-29T040154.401.json
+
+###
+
 POST http://localhost:6600/web/v1/UpdateUserGroup
 Content-Type: application/json
 Authorization: BEARER eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVSUQiOjEsImV4cCI6MTYyMjk0NzAwOCwiaXNzIjoiaHR0cHM6Ly9naXRodWIuY29tL2NoYXNlU3BhY2UvYWRtaW5iZyJ9.eJLm17Os_drdiccVpazKIKELckOacqAQsuxbS1SYEXs
@@ -191,348 +556,6 @@ GET http://localhost:6600/web/v1/QueryUser?uid=11
 Authorization: BEARER eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVSUQiOjEsImV4cCI6MTYyMjk0NzAwOCwiaXNzIjoiaHR0cHM6Ly9naXRodWIuY29tL2NoYXNlU3BhY2UvYWRtaW5iZyJ9.eJLm17Os_drdiccVpazKIKELckOacqAQsuxbS1SYEXs
 
 <> 2021-05-06T103836.200.json
-
-###
-
-POST http://localhost:6600/web/v1/UpdateUserGroup
-Content-Type: application/json
-Authorization: BEARER eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVSUQiOjEsImV4cCI6MTYyMjk0NzAwOCwiaXNzIjoiaHR0cHM6Ly9naXRodWIuY29tL2NoYXNlU3BhY2UvYWRtaW5iZyJ9.eJLm17Os_drdiccVpazKIKELckOacqAQsuxbS1SYEXs
-
-{
-  "group_id": 1,
-  "group_name": "x1",
-  "role_id": 0
-}
-
-<> 2021-05-06T102116.200.json
-
-###
-
-POST http://localhost:6600/web/v1/UpdateUserGroup
-Content-Type: application/json
-Authorization: BEARER eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVSUQiOjEsImV4cCI6MTYyMjk0NzAwOCwiaXNzIjoiaHR0cHM6Ly9naXRodWIuY29tL2NoYXNlU3BhY2UvYWRtaW5iZyJ9.eJLm17Os_drdiccVpazKIKELckOacqAQsuxbS1SYEXs
-
-{
-  "group_id": 1,
-  "group_name": "x1",
-  "role_id": 0
-}
-
-<> 2021-04-25T074148.200.json
-
-###
-
-POST http://localhost:6600/web/v1/UpdateUserGroup
-Content-Type: application/json
-Authorization: BEARER eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVSUQiOjEsImV4cCI6MTYyMjk0NzAwOCwiaXNzIjoiaHR0cHM6Ly9naXRodWIuY29tL2NoYXNlU3BhY2UvYWRtaW5iZyJ9.eJLm17Os_drdiccVpazKIKELckOacqAQsuxbS1SYEXs
-
-{
-  "group_id": 1,
-  "group_name": "x1",
-  "role_id": 0
-}
-
-<> 2021-04-25T074022.400.json
-
-###
-
-POST http://localhost:6600/web/v1/UpdateUserGroup
-Content-Type: application/json
-Authorization: BEARER eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVSUQiOjEsImV4cCI6MTYyMjk0NzAwOCwiaXNzIjoiaHR0cHM6Ly9naXRodWIuY29tL2NoYXNlU3BhY2UvYWRtaW5iZyJ9.eJLm17Os_drdiccVpazKIKELckOacqAQsuxbS1SYEXs
-
-{
-  "group_id": 1,
-  "group_name": "x1",
-  "role_id": 0
-}
-
-<> 2021-04-25T074019.200.json
-
-###
-
-POST http://localhost:6600/web/v1/UpdateUserGroup
-Content-Type: application/json
-Authorization: BEARER eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVSUQiOjEsImV4cCI6MTYyMjk0NzAwOCwiaXNzIjoiaHR0cHM6Ly9naXRodWIuY29tL2NoYXNlU3BhY2UvYWRtaW5iZyJ9.eJLm17Os_drdiccVpazKIKELckOacqAQsuxbS1SYEXs
-
-{
-  "group_name": "xx",
-  "role_id": 0
-}
-
-<> 2021-04-25T073937.400.json
-
-###
-
-POST http://localhost:6600/web/v1/UpdateUserGroup
-Content-Type: application/json
-Authorization: BEARER eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVSUQiOjEsImV4cCI6MTYyMjk0NzAwOCwiaXNzIjoiaHR0cHM6Ly9naXRodWIuY29tL2NoYXNlU3BhY2UvYWRtaW5iZyJ9.eJLm17Os_drdiccVpazKIKELckOacqAQsuxbS1SYEXs
-
-{
-  "group_name": "xx",
-  "role_id": 0
-}
-
-<> 2021-04-25T073802.400.json
-
-###
-
-POST http://localhost:6600/web/v1/UpdateUserGroup
-Content-Type: application/json
-Authorization: BEARER eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVSUQiOjEsImV4cCI6MTYyMjk0NzAwOCwiaXNzIjoiaHR0cHM6Ly9naXRodWIuY29tL2NoYXNlU3BhY2UvYWRtaW5iZyJ9.eJLm17Os_drdiccVpazKIKELckOacqAQsuxbS1SYEXs
-
-{
-  "group_name": "xx",
-  "role_id": 0
-}
-
-<> 2021-04-25T073316.400.json
-
-###
-
-POST http://localhost:6600/web/v1/UpdateUserGroup
-Content-Type: application/json
-Authorization: BEARER eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVSUQiOjEsImV4cCI6MTYyMjk0NzAwOCwiaXNzIjoiaHR0cHM6Ly9naXRodWIuY29tL2NoYXNlU3BhY2UvYWRtaW5iZyJ9.eJLm17Os_drdiccVpazKIKELckOacqAQsuxbS1SYEXs
-
-{
-  "group_name": "xx",
-  "role_id": 0
-}
-
-<> 2021-04-25T073036.400.json
-
-###
-
-POST http://localhost:6600/web/v1/UpdateUserGroup
-Content-Type: application/json
-Authorization: BEARER eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVSUQiOjEsImV4cCI6MTYyMjk0NzAwOCwiaXNzIjoiaHR0cHM6Ly9naXRodWIuY29tL2NoYXNlU3BhY2UvYWRtaW5iZyJ9.eJLm17Os_drdiccVpazKIKELckOacqAQsuxbS1SYEXs
-
-{
-  "group_name": "xx",
-  "role_id": 0
-}
-
-<> 2021-04-25T072138.400.json
-
-###
-
-POST http://localhost:6600/web/v1/NewUserGroup
-Content-Type: application/json
-Authorization: BEARER eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVSUQiOjEsImV4cCI6MTYyMjk0NzAwOCwiaXNzIjoiaHR0cHM6Ly9naXRodWIuY29tL2NoYXNlU3BhY2UvYWRtaW5iZyJ9.eJLm17Os_drdiccVpazKIKELckOacqAQsuxbS1SYEXs
-
-{
-  "group_name": "xx",
-  "role_id": 0
-}
-
-<> 2021-04-25T072121.400.json
-
-###
-
-POST http://localhost:6600/web/v1/NewUserGroup?pn=1&ps=5
-Content-Type: application/json
-Authorization: BEARER eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVSUQiOjEsImV4cCI6MTYyMjk0NzAwOCwiaXNzIjoiaHR0cHM6Ly9naXRodWIuY29tL2NoYXNlU3BhY2UvYWRtaW5iZyJ9.eJLm17Os_drdiccVpazKIKELckOacqAQsuxbS1SYEXs
-
-{
-  "group_name": "xx",
-  "role_id": 0
-}
-
-<> 2021-04-25T064355.400.json
-
-###
-
-POST http://localhost:6600/web/v1/NewUserGroup?pn=1&ps=5
-Content-Type: application/json
-Authorization: BEARER eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVSUQiOjEsImV4cCI6MTYyMjk0NzAwOCwiaXNzIjoiaHR0cHM6Ly9naXRodWIuY29tL2NoYXNlU3BhY2UvYWRtaW5iZyJ9.eJLm17Os_drdiccVpazKIKELckOacqAQsuxbS1SYEXs
-
-{
-  "group_name": "xx",
-  "role_id": 0
-}
-
-<> 2021-04-25T064044.400.json
-
-###
-
-POST http://localhost:6600/web/v1/NewUserGroup?pn=1&ps=5
-Content-Type: application/json
-Authorization: BEARER eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVSUQiOjEsImV4cCI6MTYyMjk0NzAwOCwiaXNzIjoiaHR0cHM6Ly9naXRodWIuY29tL2NoYXNlU3BhY2UvYWRtaW5iZyJ9.eJLm17Os_drdiccVpazKIKELckOacqAQsuxbS1SYEXs
-
-{
-  "group_name": "xx",
-  "role_id": 0
-}
-
-<> 2021-04-25T064043.200.json
-
-###
-
-POST http://localhost:6600/web/v1/NewUserGroup?pn=1&ps=5
-Content-Type: application/json
-Authorization: BEARER eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVSUQiOjEsImV4cCI6MTYyMjk0NzAwOCwiaXNzIjoiaHR0cHM6Ly9naXRodWIuY29tL2NoYXNlU3BhY2UvYWRtaW5iZyJ9.eJLm17Os_drdiccVpazKIKELckOacqAQsuxbS1SYEXs
-
-{
-  "group_name": "xx",
-  "role_id": 0
-}
-
-<> 2021-04-25T063710.200.json
-
-###
-
-POST http://localhost:6600/web/v1/NewUserGroup?pn=1&ps=5
-Content-Type: application/json
-Authorization: BEARER eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVSUQiOjEsImV4cCI6MTYyMjk0NzAwOCwiaXNzIjoiaHR0cHM6Ly9naXRodWIuY29tL2NoYXNlU3BhY2UvYWRtaW5iZyJ9.eJLm17Os_drdiccVpazKIKELckOacqAQsuxbS1SYEXs
-
-{
-  "group_name": "xx",
-  "role_id": 0
-}
-
-<> 2021-04-25T063706.200.json
-
-###
-
-POST http://localhost:6600/web/v1/SignIn
-Content-Type: application/json
-
-{
-  "account_id": "admin",
-  "pwd": "MTIz"
-}
-
-<> 2021-04-25T063648.200.json
-
-###
-
-POST http://localhost:6600/web/v1/NewUserGroup?pn=1&ps=5
-Content-Type: application/json
-Authorization: BEARER eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVSUQiOjEsImV4cCI6MTYxODUzNTE1NSwiaXNzIjoiaHR0cHM6Ly9naXRodWIuY29tL2NoYXNlU3BhY2UvYWRtaW5iZyJ9.DButaa2r7Orkd2S7a5YAod_0ieY9v9AT9DRVf6CVZuw
-
-{
-  "group_name": "xx",
-  "role_id": 0
-}
-
-<> 2021-04-25T063450.401.json
-
-###
-
-POST http://localhost:6600/web/v1/NewUserGroup?pn=1&ps=5
-Content-Type: application/json
-Authorization: BEARER eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVSUQiOjEsImV4cCI6MTYxODUzNTE1NSwiaXNzIjoiaHR0cHM6Ly9naXRodWIuY29tL2NoYXNlU3BhY2UvYWRtaW5iZyJ9.DButaa2r7Orkd2S7a5YAod_0ieY9v9AT9DRVf6CVZuw
-
-{
-  "group_name": "xx",
-  "role_id": 0
-}
-
-<> 2021-03-17T014249.200.json
-
-###
-
-POST http://localhost:6600/web/v1/NewUserGroup?pn=1&ps=5
-Content-Type: application/json
-Authorization: BEARER eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVSUQiOjEsImV4cCI6MTYxODUzNTE1NSwiaXNzIjoiaHR0cHM6Ly9naXRodWIuY29tL2NoYXNlU3BhY2UvYWRtaW5iZyJ9.DButaa2r7Orkd2S7a5YAod_0ieY9v9AT9DRVf6CVZuw
-
-{
-  "group_name": "xx",
-  "role_id": 1
-}
-
-<> 2021-03-17T014242.400.json
-
-###
-
-POST http://localhost:6600/web/v1/NewUserGroup?pn=1&ps=5
-Content-Type: application/json
-Authorization: BEARER eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVSUQiOjEsImV4cCI6MTYxODUzNTE1NSwiaXNzIjoiaHR0cHM6Ly9naXRodWIuY29tL2NoYXNlU3BhY2UvYWRtaW5iZyJ9.DButaa2r7Orkd2S7a5YAod_0ieY9v9AT9DRVf6CVZuw
-
-{
-  "group_name": "xx",
-  "role_id": 1
-}
-
-<> 2021-03-17T014235.400.json
-
-###
-
-POST http://localhost:6600/web/v1/NewUserGroup?pn=1&ps=5
-Content-Type: application/json
-Authorization: BEARER eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVSUQiOjEsImV4cCI6MTYxODUzNTE1NSwiaXNzIjoiaHR0cHM6Ly9naXRodWIuY29tL2NoYXNlU3BhY2UvYWRtaW5iZyJ9.DButaa2r7Orkd2S7a5YAod_0ieY9v9AT9DRVf6CVZuw
-
-{
-  "group_name": "xx",
-  "role_id": 1
-}
-
-<> 2021-03-17T014051.400.json
-
-###
-
-POST http://localhost:6600/web/v1/NewUserGroup?pn=1&ps=5
-Content-Type: application/json
-Authorization: BEARER eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVSUQiOjEsImV4cCI6MTYxODUzNTE1NSwiaXNzIjoiaHR0cHM6Ly9naXRodWIuY29tL2NoYXNlU3BhY2UvYWRtaW5iZyJ9.DButaa2r7Orkd2S7a5YAod_0ieY9v9AT9DRVf6CVZuw
-
-{
-  "group_name": "xx",
-  "role_id": 0
-}
-
-<> 2021-03-17T014036.200.json
-
-###
-
-POST http://localhost:6600/web/v1/NewUserGroup?pn=1&ps=5
-Content-Type: application/json
-Authorization: BEARER eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVSUQiOjEsImV4cCI6MTYxODUzNTE1NSwiaXNzIjoiaHR0cHM6Ly9naXRodWIuY29tL2NoYXNlU3BhY2UvYWRtaW5iZyJ9.DButaa2r7Orkd2S7a5YAod_0ieY9v9AT9DRVf6CVZuw
-
-{
-  "group_name": "xx",
-  "role_id": 11
-}
-
-<> 2021-03-17T014026.400.json
-
-###
-
-POST http://localhost:6600/web/v1/NewUserGroup?pn=1&ps=5
-Content-Type: application/json
-Authorization: BEARER eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVSUQiOjEsImV4cCI6MTYxODUzNTE1NSwiaXNzIjoiaHR0cHM6Ly9naXRodWIuY29tL2NoYXNlU3BhY2UvYWRtaW5iZyJ9.DButaa2r7Orkd2S7a5YAod_0ieY9v9AT9DRVf6CVZuw
-
-{
-  "group_name": "xx",
-  "role_id": 11
-}
-
-<> 2021-03-17T013917.400.json
-
-###
-
-POST http://localhost:6600/web/v1/NewUserGroup?pn=1&ps=5
-Content-Type: application/json
-Authorization: BEARER eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVSUQiOjMsImV4cCI6MTYxOTQ2ODkyMiwiaXNzIjoiaHR0cHM6Ly9naXRodWIuY29tL2NoYXNlU3BhY2UvYWRtaW5iZyJ9.tsq2qCKp2pj35YJokJkq9-oSgZl1xgsuOGBT-94yEX4
-
-{
-  "group_name": "xx",
-  "role_id": 11
-}
-
-<> 2021-03-17T013907.403.json
-
-###
-
-GET http://localhost:6600/web/v1/GetUserList?pn=1&ps=5
-Authorization: BEARER eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVSUQiOjEsImV4cCI6MTYxODUzNTE1NSwiaXNzIjoiaHR0cHM6Ly9naXRodWIuY29tL2NoYXNlU3BhY2UvYWRtaW5iZyJ9.DButaa2r7Orkd2S7a5YAod_0ieY9v9AT9DRVf6CVZuw
-
-<> 2021-03-16T023406.200.json
-
-###
-
-GET http://localhost:6600/web/v1/GetUserList?pn=1&ps=5
-Authorization: BEARER eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVSUQiOjMsImV4cCI6MTYxOTQ2ODkyMiwiaXNzIjoiaHR0cHM6Ly9naXRodWIuY29tL2NoYXNlU3BhY2UvYWRtaW5iZyJ9.tsq2qCKp2pj35YJokJkq9-oSgZl1xgsuOGBT-94yEX4
-
-<> 2021-03-16T023239.403.json
 
 ###
 

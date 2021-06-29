@@ -11,6 +11,7 @@ import (
 	"gorm.io/gorm/clause"
 )
 
+// Temp struct is used by crud pkg
 type UserIdentity struct {
 	Uid             int32
 	AccountId       string
@@ -67,7 +68,7 @@ func GetUserBase(uid int32) (*cproto.User, error) {
 }
 
 func InsertUser(entity *model.UserBase) error {
-	// Any validation should be completed in outside.
+	// All validation should be completed in outside.
 	sql := fmt.Sprintf(`
 		INSERT INTO %s (account_id, encrypted_pwd, salt, nick_name, phone
 								 , email, sex, remark, status)
@@ -102,31 +103,22 @@ func DeleteUser(userIdt UserIdentity) (bool, error) {
 }
 
 // Update user info, that is not permitted to modify account_id by default.
-func UpdateUser(userIdt UserIdentity, alter *cproto.UpdateUserReq) error {
-	sql := `
-		UPDATE adminbg_user
-		SET nick_name = ?, phone = ?, email = ?, sex = ?, status = ?, group_id = ?, remark = ?, 
+func UpdateUserBase(uid int32, alter *cproto.User, containsDeleted bool) error {
+	sql := fmt.Sprintf(`UPDATE %s
+		SET nick_name = ?, phone = ?, email = ?, sex = ?, status = ?, remark = ?, 
 			encrypted_pwd = if(? = '', encrypted_pwd, SHA1(CONCAT(?, salt)))
-		WHERE 
-	`
+		WHERE`, TN.User)
 
 	expr := clause.Expr{
 		SQL: sql,
-		Vars: []interface{}{alter.Name, alter.Phone, alter.Email, alter.Sex, alter.Status, alter.GroupId,
+		Vars: []interface{}{alter.Name, alter.Phone, alter.Email, alter.Sex, alter.Status,
 			alter.Remark, alter.Pwd, alter.Pwd},
 	}
 
-	if userIdt.Uid != 0 {
-		expr.SQL += "uid=?"
-		expr.Vars = append(expr.Vars, userIdt.Uid)
-	} else if userIdt.AccountId != "" {
-		expr.SQL += "account_id=?"
-		expr.Vars = append(expr.Vars, userIdt.AccountId)
-	} else {
-		return nil
-	}
+	expr.SQL += "uid=?"
+	expr.Vars = append(expr.Vars, uid)
 
-	if !userIdt.ContainsDeleted {
+	if !containsDeleted {
 		expr.SQL += " AND deleted_at IS NULL"
 	}
 	ret := g.MySQL.Exec(expr.SQL, expr.Vars...)
@@ -134,6 +126,26 @@ func UpdateUser(userIdt UserIdentity, alter *cproto.UpdateUserReq) error {
 		return cerror.ErrNothingUpdated
 	}
 	return cerror.WrapMysqlErr(ret.Error)
+}
+
+func UpdateUserGroupRef(uid int32, groupId int16, delete bool) error {
+	var sql string
+	if delete {
+		sql = `delete from %s where uid=? and group_id=?`
+	} else {
+		sql = `insert into %s (uid, group_id) values (?,?) on duplicate key update group_id = group_id`
+	}
+	exec := g.MySQL.Exec(fmt.Sprintf(sql, TN.UserGroupRef), uid, groupId)
+	if exec.Error != nil {
+		return exec.Error
+	}
+	if exec.RowsAffected != 1 {
+		if delete {
+			return cerror.ErrNothingDeleted
+		}
+		return cerror.ErrYouHaveDoneIt
+	}
+	return nil
 }
 
 // Used by only administrator

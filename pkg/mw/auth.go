@@ -56,12 +56,12 @@ func IfCanCallThisAPI(sr SimpleRole) gin.HandlerFunc {
 			common.SetRsp(c, errors.Wrap(cerror.ErrUnauthorized, "mw"))
 			return
 		}
+		path := c.Request.URL.Path // e.g. /web/v1/NewUser
+
 		// Super admin user skips check below.
 		if yes, _ := common.IsSuperAdmin(uid); yes {
 			return
 		}
-		path := c.Request.URL.Path // e.g. /web/v1/NewUser
-
 		if sr == SimpleRole_SuperAdmin {
 			log.Warnf("[%s] [!!!request rejected] uid:%d try to request API:[%s] only super admin is permitted",
 				util.GetRunningFuncName("/"), uid, path)

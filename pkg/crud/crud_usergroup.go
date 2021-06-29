@@ -35,17 +35,15 @@ func InsertUserGroup(group *cproto.Group) error {
 }
 
 func DelUserGroup(gid int32) error {
-	if gid == model.DefaultUserGroupId {
-		return cerror.ErrReservedResource
+	exec := g.MySQL.Take(&model.User{}, "group_id=?", gid)
+	if _gorm.IsDBErr(exec.Error) {
+		return exec.Error
 	}
-	exec := g.MySQL.Delete(&model.UserGroup{}, "group_id=?", gid)
-	if exec.Error != nil {
-		return cerror.WrapMysqlErr(exec.Error)
+	if exec.RowsAffected > 0 {
+		return errors.Errorf("this group is being used, can't be delete")
 	}
-	if exec.RowsAffected == 0 {
-		return cerror.ErrResourceNotFound
-	}
-	return nil
+	exec = g.MySQL.Delete(&model.UserGroup{}, "group_id=?", gid)
+	return cerror.WrapDeleteDBOneRecordErr(exec)
 }
 
 func UpdateUserGroup(group *cproto.Group) error {

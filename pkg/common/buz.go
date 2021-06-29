@@ -1,6 +1,9 @@
 package common
 
+/*
+buz.go: business common logic func
+*/
+
 func IsSuperAdmin(uid int32) (bool, error) {
-	// More custom logic can be added here
 	return uid == 1, nil
 }

@@ -12,7 +12,7 @@ import (
 
 /*
   	It's not recommend to depend struct's gorm tag, we defined all tables struct at `/pkg/model/DDL.sql`,
-  if you need to modify them, just directly modify `DDL.sql`.
+  if you need to modify them, modify the `DDL.sql` first.
 */
 
 type BaseModel struct {
@@ -110,7 +110,7 @@ func (g *UserGroup) Proto() *cproto.Group {
 
 type Role struct {
 	BaseModel
-	RoleId   int16
+	RoleId   int16 `gorm:"pk"`
 	RoleName string
 }
 

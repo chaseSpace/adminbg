@@ -83,6 +83,9 @@ func UpdateUserLogic(req *cproto.UpdateUserReq) (*cproto.UpdateUserRsp, error) {
 	rsp := new(cproto.UpdateUserRsp)
 
 	if req.Delete {
+		if req.Uid == model.DefaultUserId {
+			return nil, cerror.ErrCantOptReservedData
+		}
 		hits, err := crud.DeleteUser(crud.UserIdentity{Uid: req.Uid})
 		if err != nil {
 			return nil, err
@@ -92,24 +95,32 @@ func UpdateUserLogic(req *cproto.UpdateUserReq) (*cproto.UpdateUserRsp, error) {
 		}
 		return rsp, nil
 	}
-
 	// update
-	if req.Pwd != "" {
-		byteS, err := base64.StdEncoding.DecodeString(req.Pwd)
-		if err != nil {
-			return nil, errors.Wrap(cerror.ErrParams, "invalid pwd")
+	var err error
+	switch _ = 0; {
+	case req.UpdateBase:
+		if req.NewUser.Pwd != "" {
+			byteS, err := base64.StdEncoding.DecodeString(req.NewUser.Pwd)
+			if err != nil {
+				return nil, errors.Wrap(cerror.ErrParams, "invalid pwd")
+			}
+			req.NewUser.Pwd = string(byteS) // change to plain text
 		}
-		req.Pwd = string(byteS) // change to plain text
+		err = (&model.UserBase{
+			Uid:    999, // feel free, the key is below fields.
+			Sex:    req.NewUser.Sex,
+			Status: req.NewUser.Status,
+		}).AttrCheck()
+		if err != nil {
+			return nil, err
+		}
+		err = crud.UpdateUserBase(req.Uid, &req.NewUser, true)
+	case req.BindGroup:
+		err = crud.UpdateUserGroupRef(req.Uid, req.NewUser.GroupId, false)
+	case req.UnbindGroup:
+		err = crud.UpdateUserGroupRef(req.Uid, req.NewUser.GroupId, true)
 	}
-	err := (&model.UserBase{
-		Uid:    999, // feel free, the key is below fields.
-		Sex:    req.Sex,
-		Status: req.Status,
-	}).AttrCheck()
-	if err != nil {
-		return nil, err
-	}
-	err = crud.UpdateUser(crud.UserIdentity{Uid: req.Uid, ContainsDeleted: true}, req)
+
 	return rsp, err
 }
 

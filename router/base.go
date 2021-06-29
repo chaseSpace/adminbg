@@ -35,6 +35,9 @@ func Init(engine *gin.Engine) {
 		v1AuthAPI.GET("/QueryUserGroup", handler.QueryUserGroup)
 		v1AuthAPI.GET("/GetUserGroupList", handler.GetUserGroupList)
 
+		v1AuthAPI.POST("/NewRole", handler.NewRole)
+		v1AuthAPI.POST("/UpdateRole", handler.UpdateRole)
+
 		v1AuthAPI.POST("/NewMenu", handler.NewMenu)
 		v1AuthAPI.GET("/GetMenuList", handler.GetMenuList)
 		v1AuthAPI.POST("/UpdateMenu", handler.UpdateMenu)
@@ -48,7 +51,7 @@ func Init(engine *gin.Engine) {
 		v1AuthAPI.POST("/UpdateAPI", handler.UpdateAPI)
 	}
 
-	// v1AuthOnlySuperAdmin sub-router hold handle-functions(APIs) that can only be requested by Administrator(the only one).
+	// v1AuthOnlySuperAdmin sub-router hold handle-functions(APIs) that can only be requested by super admin user(only one).
 	v1AuthOnlySuperAdmin := engine.Group("/web/v1").
 		Use(mw.IfAuthenticated).
 		Use(mw.IfCanCallThisAPI(mw.SimpleRole_SuperAdmin))

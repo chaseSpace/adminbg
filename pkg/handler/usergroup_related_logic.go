@@ -4,6 +4,7 @@ import (
 	"adminbg/cerror"
 	"adminbg/cproto"
 	"adminbg/pkg/crud"
+	"adminbg/pkg/model"
 	"adminbg/util"
 	"github.com/pkg/errors"
 )
@@ -16,6 +17,9 @@ func NewUserGroupLogic(req *cproto.NewUserGroupReq) (*cproto.NewUserGroupRsp, er
 func UpdateUserGroupLogic(req *cproto.UpdateUserGroupReq) (*cproto.UpdateUserGroupRsp, error) {
 	if req.GroupId < 1 {
 		return nil, errors.Wrap(cerror.ErrParams, "invalid group_id")
+	}
+	if req.GroupId == model.DefaultUserGroupId {
+		return nil, cerror.ErrCantOptReservedData
 	}
 	if req.Delete {
 		return new(cproto.UpdateUserGroupRsp), crud.DelUserGroup(req.GroupId)

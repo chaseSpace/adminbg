@@ -44,6 +44,12 @@ Coming...
             -	操作日志(包含登录相关)
     -   通用API
         -   获取当前用户可访问的菜单信息（包含子菜单，不包含也不需要功能）
+        
+
+一些原则
+1. user.account_id是账号id，用于用户登录输入，内部增删改查仍然使用uid
+2. 一个用户可属于多个组，但一个组只能绑定一个角色
+3. 组（UserGroup）、角色（role）都有一条默认数据，代码中限制了不能删改。
 -->
 
 ## Develop progress
@@ -58,18 +64,17 @@ Detailed APIs:
 -   System management
     -   User management related
         -   ✔️ /NewUser 
-        -   ✔️ /UpdateUser 
+        -   ✔️ /UpdateUser(Support editing and deleting. Be careful Default-User can't be deleted)
         -   ✔️ /QueryUser
         -   ✔️ /GetUserList(Only super administrator can call it in general.)
-        -   /DeleteUser(But the data will remain in the DB.)
     -   UserGroup management
         -   ✔️ /NewUserGroup
         -   ✔️ /UpdateUserGroup(Support editing and deleting. Be careful Default-Group can't be deleted)
         -   ✔️ /QueryUserGroup
         -   ✔️ /GetUserGroupList(Only super administrator can call it in general.)
     -   Role management
-        -   /NewRole
-        -   /UpdateRole
+        -   ✔️ /NewRole
+        -   ✔️ /UpdateRole
         -   /GetRole
         -   /GetRoleList
         -   /DeleteRole(Default-Role can't be deleted)

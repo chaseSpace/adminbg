@@ -16,10 +16,13 @@ type SignOutReq struct{}
 type SignOutRsp struct{}
 
 type User struct {
-	Name      string        `json:"name" binding:"required"`
-	Uid       int32         `json:"uid"`        // only be used at query action
-	AccountId string        `json:"account_id"` // if is update action, `account_id` is unused field
-	Pwd       string        `json:"pwd"`        // if is query action, `pwd` is unused field
+	Name      string `json:"name" binding:"required"`
+	Uid       int32  `json:"uid"`        // only be used at query action
+	AccountId string `json:"account_id"` // if is update action, `account_id` is unused field
+	// For `Pwd`
+	// if is query action, `pwd` is always empty
+	// if is update action, it must be transmitted with base64 encoded. empty won't update password.
+	Pwd       string        `json:"pwd"`
 	Phone     string        `json:"phone"`
 	Email     string        `json:"email"`
 	Sex       SexTyp        `json:"sex" binding:"required"`    // string type, search `SexTyp` at this file
@@ -74,9 +77,13 @@ func (sta UserStatusTyp) IsValid() bool {
 
 // POST /web/v1/ModifyUser
 type UpdateUserReq struct {
-	Delete bool  `json:"delete"` // if true, server will delete user for this uid, other params would be ignored.
-	Uid    int32 `json:"uid" binding:"required"`
-	User
+	Delete  bool  `json:"delete"` // if true, server will delete user for this uid, other params would be ignored.
+	Uid     int32 `json:"uid" binding:"required"`
+	NewUser User  `json:"new_user"`
+	/*  Only one of (UpdateBase/UpdateRole/BindGroup) can be true*/
+	UpdateBase  bool `json:"update_base"`  // if true, server use `User` struct update DB, except `GroupId`
+	BindGroup   bool `json:"bind_group"`   // if true, server bind `User`.`GroupId` with `User`.Uid
+	UnbindGroup bool `json:"unbind_group"` // if true, server unbind `User`.`GroupId` with `User`.Uid
 }
 
 type UpdateUserRsp struct{}

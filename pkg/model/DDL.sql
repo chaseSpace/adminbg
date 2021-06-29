@@ -13,11 +13,11 @@ DDL: DATA DEFINE LANGUAGE
 CREATE DATABASE IF NOT EXISTS adminbg;
 USE adminbg;
 
-# User
+-- User
 DROP TABLE IF EXISTS adminbg_user;
 CREATE TABLE adminbg_user
 (
-    uid           INT PRIMARY KEY AUTO_INCREMENT,
+    uid           INT PRIMARY KEY AUTO_INCREMENT COMMENT 'uid is more used inside the system, unique',
     account_id    VARCHAR(50)                    NOT NULL COMMENT 'Use for sign-in, unique, cant modify in general',
     encrypted_pwd VARCHAR(40)                    NOT NULL,
     salt          VARCHAR(20)                    NOT NULL,
@@ -42,10 +42,10 @@ CREATE TABLE adminbg_user
 -- >> Plain password is 123
 INSERT INTO adminbg_user (encrypted_pwd, salt, account_id, uid)
 VALUES ('85e25c1e193df1df5ada40fa52d3de6c713a242f', 'salt', 'admin', 1);
-# select sha1(concat('123','salt')) = '85e25c1e193df1df5ada40fa52d3de6c713a242f' ;
+-- select sha1(concat('123','salt')) ==> '85e25c1e193df1df5ada40fa52d3de6c713a242f' ;
 
 
-# User_group_ref
+-- User_group_ref
 DROP TABLE IF EXISTS adminbg_user_group_ref;
 CREATE TABLE adminbg_user_group_ref
 (
@@ -60,7 +60,7 @@ CREATE TABLE adminbg_user_group_ref
     DEFAULT CHARSET = utf8mb4;
 
 
-# Group
+-- Group
 DROP TABLE IF EXISTS adminbg_usergroup;
 CREATE TABLE adminbg_usergroup
 (
@@ -76,11 +76,11 @@ CREATE TABLE adminbg_usergroup
     ENGINE = InnoDB
     DEFAULT CHARSET = utf8mb4;
 
-# You have to execute this two SQLs to insert a id=1 AUTO_INCREMENT column.
+-- You have to execute this two SQLs to insert a id=1 AUTO_INCREMENT column.
 INSERT INTO adminbg_usergroup(group_id, group_name, role_id)
 VALUES (1, 'DefaultGroup', 1);
 
-# Role
+-- Role
 DROP TABLE IF EXISTS adminbg_role;
 CREATE TABLE adminbg_role
 (
@@ -95,11 +95,11 @@ CREATE TABLE adminbg_role
 )
     ENGINE = InnoDB
     DEFAULT CHARSET = utf8mb4;
-# You have to execute this two SQLs to insert a id=1 AUTO_INCREMENT column.
+-- You have to execute this two SQLs to insert a id=1 AUTO_INCREMENT column.
 INSERT INTO adminbg_role(role_id, role_name, status)
 VALUES (1, 'DefaultRole', 'NORMAL');
 
-# Role_mf_ref
+-- Role_mf_ref
 DROP TABLE IF EXISTS adminbg_role_mf_ref;
 CREATE TABLE adminbg_role_mf_ref
 (
@@ -114,7 +114,7 @@ CREATE TABLE adminbg_role_mf_ref
     DEFAULT CHARSET = utf8mb4;
 
 
-# Menu_and_function
+-- Menu_and_function
 DROP TABLE IF EXISTS adminbg_menu_and_function;
 CREATE TABLE adminbg_menu_and_function
 (
@@ -137,11 +137,11 @@ CREATE TABLE adminbg_menu_and_function
     ENGINE = InnoDB
     AUTO_INCREMENT = 2000
     DEFAULT CHARSET = utf8mb4;
-# DefaultMenu, also called root class menu cannot be deleted
+-- DefaultMenu, also called root class menu cannot be deleted
 INSERT INTO adminbg_menu_and_function (mf_id, mf_name, path, parent_id, level, type, menu_route, menu_display, sort_num)
 VALUES (100, 'DefaultMenu', '100/', 0, 0, 'MENU', '', 'N', 0);
 
-# Mf_api_ref
+-- Mf_api_ref
 DROP TABLE IF EXISTS adminbg_mf_api_ref;
 CREATE TABLE adminbg_mf_api_ref
 (
@@ -156,7 +156,7 @@ CREATE TABLE adminbg_mf_api_ref
     DEFAULT CHARSET = utf8mb4;
 
 
-# API
+-- API
 DROP TABLE IF EXISTS adminbg_api;
 CREATE TABLE adminbg_api
 (
@@ -174,17 +174,17 @@ CREATE TABLE adminbg_api
     DEFAULT CHARSET = utf8mb4;
 
 
-# ---------------------------- split line -----------------------------------
+-- ---------------------------- split line -----------------------------------
 
-# Operation_log
+-- Operation_log
 DROP TABLE IF EXISTS adminbg_operation_log;
 CREATE TABLE adminbg_operation_log
 (
     op_id       INT PRIMARY KEY AUTO_INCREMENT,
-    type        ENUM ('SIGN-IN','SIGN-OUT','OTHER') NOT NULL,
-    op_uid      INT                                 NOT NULL,
-    op_username VARCHAR(50)                         NOT NULL DEFAULT '' COMMENT 'shortcut for username',
-    remark      VARCHAR(50)                         NOT NULL COMMENT 'remark is alterable',
-    created_at  DATETIME(3)                         NOT NULL DEFAULT CURRENT_TIMESTAMP(3),
-    updated_at  DATETIME(3)                         NOT NULL DEFAULT CURRENT_TIMESTAMP(3) ON UPDATE CURRENT_TIMESTAMP(3)
+    type        ENUM ('[sign-in]','[sign-out]','[other]') NOT NULL,
+    op_uid      INT                                       NOT NULL,
+    op_username VARCHAR(50)                               NOT NULL DEFAULT '' COMMENT 'snapshot for username',
+    remark      VARCHAR(50)                               NOT NULL,
+    created_at  DATETIME(3)                               NOT NULL DEFAULT CURRENT_TIMESTAMP(3),
+    updated_at  DATETIME(3)                               NOT NULL DEFAULT CURRENT_TIMESTAMP(3) ON UPDATE CURRENT_TIMESTAMP(3)
 )

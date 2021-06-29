@@ -9,5 +9,6 @@ const MenuRootId = 100
 const (
 	DefaultMenuId      = 1
 	DefaultUserGroupId = 1
+	DefaultUserId      = 1
 	DefaultRoleId      = 1
 )
