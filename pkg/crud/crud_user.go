@@ -8,6 +8,7 @@ import (
 	"adminbg/util/_gorm"
 	"fmt"
 	"github.com/pkg/errors"
+	"gorm.io/gorm"
 	"gorm.io/gorm/clause"
 )
 
@@ -52,16 +53,16 @@ func GetUserByAccountId(accountId string) (*model.User, error) {
 func GetUserBase(uid int32) (*cproto.User, error) {
 	sql := fmt.Sprintf(`
 		SELECT a.*, b.group_id, c.role_id
-		FROM %s a, %s b, %s c
-		WHERE a.uid = ?
-			AND a.uid = b.uid
-			AND b.group_id = c.group_id`, TN.User, TN.UserGroupRef, TN.UserGroup)
+		FROM %s a
+				 LEFT JOIN %s b ON a.uid = b.uid
+				 LEFT JOIN %s c ON b.group_id = c.group_id
+		WHERE a.uid = ?`, TN.User, TN.UserGroupRef, TN.UserGroup)
 	row := new(model.User)
 	exec := g.MySQL.Raw(sql, uid).Scan(row)
 	if _gorm.IsDBErr(exec.Error) {
 		return nil, cerror.WrapMysqlErr(exec.Error)
 	}
-	if row.Uid < 1 {
+	if exec.RowsAffected != 1 {
 		return nil, errors.New(fmt.Sprintf("uid:%d not found", uid))
 	}
 	return row.Proto(), nil
@@ -69,7 +70,7 @@ func GetUserBase(uid int32) (*cproto.User, error) {
 
 func InsertUser(entity *model.UserBase) error {
 	// All validation should be completed in outside.
-	sql := fmt.Sprintf(`
+	insertUser := fmt.Sprintf(`
 		INSERT INTO %s (account_id, encrypted_pwd, salt, nick_name, phone
 								 , email, sex, remark, status)
 		SELECT ?, SHA1(CONCAT(?, ?)), ?
@@ -79,15 +80,40 @@ func InsertUser(entity *model.UserBase) error {
 				SELECT 1
 				FROM %s
 				WHERE account_id = ?
-			);
-		`, TN.User, TN.User)
-	ret := g.MySQL.Exec(sql, entity.AccountId, entity.EncryptedPwd, entity.Salt, entity.Salt, entity.NickName,
-		entity.Phone, entity.Email, entity.Sex, entity.Remark, entity.Status, entity.AccountId)
-	// We don't have to insert row to table `YOUR_TABLE_PREFIX_user_group_ref` here.
-	if ret.RowsAffected == 0 {
-		return errors.Wrap(cerror.ErrParams, "account_id exists")
-	}
-	return cerror.WrapMysqlErr(ret.Error)
+			)`, TN.User, TN.User)
+	insertUGRef := fmt.Sprintf(`
+		INSERT INTO %s (uid, group_id)
+		SELECT ?, ?
+		WHERE EXISTS (
+			SELECT 1
+			FROM %s
+			WHERE group_id = ?
+		)`, TN.UserGroupRef, TN.UserGroup)
+	err := g.MySQL.Transaction(func(tx *gorm.DB) error {
+		exec := tx.Exec(insertUser, entity.AccountId, entity.EncryptedPwd, entity.Salt, entity.Salt, entity.NickName,
+			entity.Phone, entity.Email, entity.Sex, entity.Remark, entity.Status, entity.AccountId)
+		if exec.Error != nil {
+			return cerror.WrapMysqlErr(exec.Error)
+		}
+		// We don't have to insert row to table `YOUR_TABLE_PREFIX_user_group_ref` here.
+		if exec.RowsAffected != 1 {
+			return errors.Wrap(cerror.ErrParams, "account_id exists")
+		}
+		user := new(model.User)
+		err := tx.Take(user, "account_id=?", entity.AccountId).Error
+		if _gorm.IsDBErr(err) {
+			return cerror.WrapMysqlErr(err)
+		}
+		exec = tx.Exec(insertUGRef, user.Uid, entity.GroupId, entity.GroupId)
+		if exec.Error != nil {
+			return cerror.WrapMysqlErr(err)
+		}
+		if exec.RowsAffected != 1 {
+			return errors.Wrap(cerror.ErrParams, "group_id not exists")
+		}
+		return nil
+	})
+	return err
 }
 
 func DeleteUser(userIdt UserIdentity) (bool, error) {

@@ -7,7 +7,7 @@ import (
 )
 
 /*
-非业务逻辑，纯tool性质代码
+Non-business logic, Auxiliary tools
 */
 
 func main() {

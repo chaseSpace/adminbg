@@ -8,6 +8,12 @@ import (
 	"strings"
 )
 
+const (
+	EnvTest = "test"
+	EnvDev  = "dev"
+	EnvProd = "prod"
+)
+
 func If(condition bool, then func(), _else ...func()) {
 	if condition {
 		if then != nil {

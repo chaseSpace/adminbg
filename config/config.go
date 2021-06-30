@@ -12,7 +12,7 @@ type Conf struct {
 }
 
 type AppAdminbg struct {
-	Mode string // dev | test | prod
+	Env  string // dev | test | prod
 	Name string
 	Host string
 	Port int16
@@ -43,5 +43,5 @@ func (c *Conf) AssertOK() {
 	}
 	timeout := time.Duration(c.AppAdminbg.Jwt.Timeout) * time.Second
 	timeoutDev := time.Duration(c.AppAdminbg.Jwt.TimeoutForDev) * time.Second
-	util.InitJWT(timeout, timeoutDev, 0, c.AppAdminbg.Jwt.Secret, c.AppAdminbg.Mode)
+	util.InitJWT(timeout, timeoutDev, 0, c.AppAdminbg.Jwt.Secret, c.AppAdminbg.Env)
 }

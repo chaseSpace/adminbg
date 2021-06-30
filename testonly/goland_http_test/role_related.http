@@ -3,7 +3,7 @@ Content-Type: application/json
 Authorization: BEARER {{admin_token}}
 
 {
-  "role_name": "x"
+  "role_name": "1x"
 }
 
 ###
@@ -16,3 +16,11 @@ Authorization: BEARER {{admin_token}}
   "role_name": "x1",
   "delete": true
 }
+
+###
+GET {{addr}}/web/v1/QueryRole?role_id=11
+Authorization: BEARER {{admin_token}}
+
+###
+GET {{addr}}/web/v1/GetRoleList
+Authorization: BEARER {{admin_token}}

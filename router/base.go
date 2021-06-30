@@ -23,32 +23,8 @@ func Init(engine *gin.Engine) {
 	v1AuthAPI := engine.Group("/web/v1").
 		Use(mw.IfAuthenticated).
 		Use(mw.IfCanCallThisAPI(mw.SimpleRole_Comm))
-
 	{
-		v1AuthAPI.POST("/NewUser", handler.NewUser)
-		v1AuthAPI.POST("/UpdateUser", handler.UpdateUser)
-		v1AuthAPI.GET("/QueryUser", handler.QueryUser)
-		v1AuthAPI.GET("/GetUserList", handler.GetUserList)
-
-		v1AuthAPI.POST("/NewUserGroup", handler.NewUserGroup)
-		v1AuthAPI.POST("/UpdateUserGroup", handler.UpdateUserGroup)
-		v1AuthAPI.GET("/QueryUserGroup", handler.QueryUserGroup)
-		v1AuthAPI.GET("/GetUserGroupList", handler.GetUserGroupList)
-
-		v1AuthAPI.POST("/NewRole", handler.NewRole)
-		v1AuthAPI.POST("/UpdateRole", handler.UpdateRole)
-
-		v1AuthAPI.POST("/NewMenu", handler.NewMenu)
-		v1AuthAPI.GET("/GetMenuList", handler.GetMenuList)
-		v1AuthAPI.POST("/UpdateMenu", handler.UpdateMenu)
-		v1AuthAPI.DELETE("/DeleteMenus", handler.DeleteMenus)
-		v1AuthAPI.POST("/NewFunction", handler.NewFunction)
-		v1AuthAPI.POST("/UpdateFunction", handler.UpdateFunction)
-
-		v1AuthAPI.GET("/GetAPIList", handler.GetAPIList)
-		v1AuthAPI.POST("/UpdateFuncAndAPIBindInfo", handler.UpdateFuncAndAPIBindInfo)
-		v1AuthAPI.POST("/NewAPI", handler.NewAPI)
-		v1AuthAPI.POST("/UpdateAPI", handler.UpdateAPI)
+		_ = v1AuthAPI
 	}
 
 	// v1AuthOnlySuperAdmin sub-router hold handle-functions(APIs) that can only be requested by super admin user(only one).
@@ -56,6 +32,32 @@ func Init(engine *gin.Engine) {
 		Use(mw.IfAuthenticated).
 		Use(mw.IfCanCallThisAPI(mw.SimpleRole_SuperAdmin))
 	{
-		_ = v1AuthOnlySuperAdmin
+		v1AuthOnlySuperAdmin.POST("/NewUser", handler.NewUser)
+		v1AuthOnlySuperAdmin.POST("/UpdateUser", handler.UpdateUser)
+		v1AuthOnlySuperAdmin.GET("/QueryUser", handler.QueryUser)
+		v1AuthOnlySuperAdmin.GET("/GetUserList", handler.GetUserList)
+
+		v1AuthOnlySuperAdmin.POST("/NewUserGroup", handler.NewUserGroup)
+		v1AuthOnlySuperAdmin.POST("/UpdateUserGroup", handler.UpdateUserGroup)
+		v1AuthOnlySuperAdmin.GET("/QueryUserGroup", handler.QueryUserGroup)
+		v1AuthOnlySuperAdmin.GET("/GetUserGroupList", handler.GetUserGroupList)
+
+		v1AuthOnlySuperAdmin.POST("/NewRole", handler.NewRole)
+		v1AuthOnlySuperAdmin.POST("/UpdateRole", handler.UpdateRole)
+		v1AuthOnlySuperAdmin.GET("/QueryRole", handler.QueryRole)
+		v1AuthOnlySuperAdmin.GET("/GetRoleList", handler.GetRoleList)
+
+		v1AuthOnlySuperAdmin.POST("/NewMenu", handler.NewMenu)
+		v1AuthOnlySuperAdmin.GET("/GetMenuList", handler.GetMenuList)
+		v1AuthOnlySuperAdmin.POST("/UpdateMenu", handler.UpdateMenu)
+		v1AuthOnlySuperAdmin.DELETE("/DeleteMenus", handler.DeleteMenus)
+		v1AuthOnlySuperAdmin.POST("/NewFunction", handler.NewFunction)
+		v1AuthOnlySuperAdmin.POST("/UpdateFunction", handler.UpdateFunction)
+
+		v1AuthOnlySuperAdmin.GET("/GetAPIList", handler.GetAPIList)
+		v1AuthOnlySuperAdmin.POST("/UpdateFuncAndAPIBindInfo", handler.UpdateFuncAndAPIBindInfo)
+		v1AuthOnlySuperAdmin.POST("/NewAPI", handler.NewAPI)
+		v1AuthOnlySuperAdmin.POST("/UpdateAPI", handler.UpdateAPI)
 	}
+
 }

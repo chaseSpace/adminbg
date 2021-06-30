@@ -41,7 +41,7 @@ func InitJWT(timeout, timeoutForDev, notValidBefore time.Duration, secret, sysMo
 }
 
 func (j *JwtHelper) GenToken(claims jws.Claims) ([]byte, error) {
-	if j.sysMode == "dev" {
+	if j.sysMode == EnvDev {
 		claims.SetExpiration(time.Now().Add(j.timeoutForDev))
 	} else {
 		claims.SetExpiration(time.Now().Add(j.timeout))
@@ -55,10 +55,10 @@ func (j *JwtHelper) GenToken(claims jws.Claims) ([]byte, error) {
 	return b, nil
 }
 
-func (j *JwtHelper) Verify(JWT jwt.JWT) (jwt.Claims, error) {
-	err := JWT.Validate(j.secret, j.cryptoMethod, j.validator)
+func (j *JwtHelper) Verify(v jwt.JWT) (jwt.Claims, error) {
+	err := v.Validate(j.secret, j.cryptoMethod, j.validator)
 	if err != nil {
 		return nil, errors.Wrap(err, "jwt")
 	}
-	return JWT.Claims(), nil
+	return v.Claims(), nil
 }

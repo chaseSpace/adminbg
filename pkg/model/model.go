@@ -79,7 +79,7 @@ func (u *UserBase) AttrCheck() error {
 type UserGroupRef struct {
 	Id        int32
 	Uid       int32
-	GroupId   int32
+	GroupId   int16
 	CreatedAt time.Time
 	UpdatedAt time.Time
 }
@@ -90,7 +90,7 @@ func (*UserGroupRef) TableName() string {
 
 type UserGroup struct {
 	BaseModel
-	GroupId   int32
+	GroupId   int16
 	GroupName string
 	RoleId    int16
 }
@@ -116,6 +116,15 @@ type Role struct {
 
 func (*Role) TableName() string {
 	return TablePrefix + "role"
+}
+
+func (r *Role) Proto() *cproto.Role {
+	return &cproto.Role{
+		RoleId:    r.RoleId,
+		RoleName:  r.RoleName,
+		CreatedAt: r.CreatedAt.Format(util.TimeLayout),
+		UpdatedAt: r.UpdatedAt.Format(util.TimeLayout),
+	}
 }
 
 type RoleMfRef struct {

@@ -34,7 +34,7 @@ func InsertUserGroup(group *cproto.Group) error {
 	return nil
 }
 
-func DelUserGroup(gid int32) error {
+func DelUserGroup(gid int16) error {
 	exec := g.MySQL.Take(&model.User{}, "group_id=?", gid)
 	if _gorm.IsDBErr(exec.Error) {
 		return exec.Error

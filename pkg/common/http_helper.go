@@ -14,11 +14,12 @@ const (
 
 type HttpRsp struct {
 	Data interface{} `json:"data"`
-	Tip  string      `json:"tip"` // common msg
+	Tips string      `json:"tips"` // common msg
+	Succ bool        `json:"succ"`
 }
 
 func ExtractReqParams(c *gin.Context, req interface{}) (*HttpRsp, error) {
-	rsp := &HttpRsp{Tip: "extract req params success"}
+	rsp := &HttpRsp{Tips: "extract req params success"}
 
 	if reflect.ValueOf(req).Elem().NumField() == 0 {
 		return rsp, nil
@@ -29,7 +30,7 @@ func ExtractReqParams(c *gin.Context, req interface{}) (*HttpRsp, error) {
 	err := c.ShouldBind(req)
 	if err != nil {
 		err = errors.Wrap(cerror.ErrExtractReqParams, err.Error())
-		rsp.Tip = err.Error()
+		rsp.Tips = err.Error()
 		return rsp, err
 	}
 	return rsp, nil
@@ -46,11 +47,14 @@ func MustExtractReqParams(c *gin.Context, req interface{}) {
 // The params `data` can be a pointer or not. If the data size is a little big, it's better to be a pointer.
 func SetRsp(c *gin.Context, err error, data ...interface{}) {
 	var r = &HttpRsp{}
-	if len(data) > 0 {
+	// Note: We must to use reflect to evaluate if data[0] is nil, because `data[0] == nil` would always be false.
+	if len(data) > 0 && !reflect.ValueOf(data[0]).IsNil() {
 		r.Data = data[0]
+	} else {
+		r.Data = &struct{}{}
 	}
 	// If code=200, frontend make a green tip popup, otherwise, make a rea warn tip popup;
-	// the content of popup is rsp.Tip field.
+	// the content of popup is rsp.Tips field.
 	code := http.StatusOK
 	if err != nil {
 		if errors.Is(err, cerror.ErrParams) {
@@ -62,12 +66,14 @@ func SetRsp(c *gin.Context, err error, data ...interface{}) {
 		} else if errors.Is(err, cerror.ErrNothingUpdated) ||
 			errors.Is(err, cerror.ErrNothingDeleted) {
 			// Keep 200 OK
+			r.Succ = true
 		} else { // It can be expanded here
 			code = http.StatusBadRequest
 		}
-		r.Tip = err.Error()
+		r.Tips = err.Error()
 	} else {
-		r.Tip = "success"
+		r.Tips = "success"
+		r.Succ = true
 	}
 	c.AbortWithStatusJSON(code, r)
 }

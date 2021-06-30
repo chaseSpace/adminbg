@@ -8,7 +8,7 @@ type NewUserGroupRsp struct {
 }
 
 type Group struct {
-	GroupId   int32  `json:"group_id"` // ignored at create user-group action
+	GroupId   int16  `json:"group_id"` // ignored at create user-group action
 	GroupName string `json:"group_name" binding:"required"`
 	RoleId    int16  `json:"role_id"`
 	CreatedAt string `json:"created_at"` // YYYY-MM-dd HH:mm:SS; only be used at query action

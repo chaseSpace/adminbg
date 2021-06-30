@@ -74,6 +74,8 @@ func NewUserLogic(req *cproto.NewUserReq) (*cproto.NewUserRsp, error) {
 		Sex:          req.Sex,
 		Remark:       req.Remark,
 		Status:       req.Status,
+		GroupId:      req.GroupId,
+		//RoleId:       req.RoleId,  because one group can only bind one role, so dont not need accept roleId
 	}
 	err = crud.InsertUser(userBase)
 	return new(cproto.NewUserRsp), err

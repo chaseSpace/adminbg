@@ -28,3 +28,24 @@ func UpdateRoleLogic(req *cproto.UpdateRoleReq) (*cproto.UpdateRoleRsp, error) {
 	err = crud.UpdateRole(&req.Role)
 	return new(cproto.UpdateRoleRsp), err
 }
+
+func QueryRoleLogic(req *cproto.QueryRoleReq) (*cproto.QueryRoleRsp, error) {
+	ent, err := crud.QueryRole(req.RoleId)
+	if err != nil {
+		return nil, err
+	}
+	rsp := &cproto.QueryRoleRsp{Role: ent.Proto()}
+	return rsp, err
+}
+
+func GetRoleListLogic(_ *cproto.GetRoleListReq) (*cproto.GetRoleListRsp, error) {
+	list, err := crud.GetRoleList(crud.CreatedAtAsc, crud.UpdatedAtAsc)
+	if err != nil {
+		return nil, err
+	}
+	rsp := &cproto.GetRoleListRsp{}
+	for _, i := range list {
+		rsp.List = append(rsp.List, i.Proto())
+	}
+	return rsp, err
+}

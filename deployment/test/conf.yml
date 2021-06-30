@@ -1,7 +1,7 @@
 app_adminbg:
   # dev开发环境 test测试环境 prod线上环境
   name: adminbg  # 服务名称
-  mode: dev
+  env: dev
   host: 0.0.0.0
   port: 6600
   jwt:
