@@ -77,7 +77,6 @@ Detailed APIs:
         -   ✔️ /UpdateRole
         -   ✔️ /QueryRole
         -   ✔️ /GetRoleList
-        -   /DeleteRole(Default-Role can't be deleted)
     -   Menu&Function management(Contains Binding management of functions and APIs)
         -   ✔️ /NewMenu
         -   ✔️ /GetMenuList(Contain child-menus && functions of leaf-menus)
